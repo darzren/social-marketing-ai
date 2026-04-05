@@ -50,10 +50,11 @@ marketing resource, use WebFetch to read it for deeper insight.
 ### 4. Synthesise findings
 Produce a concise research brief with:
 - `trending_topics` — 3-5 topics/themes getting traction right now
-- `recommended_content_type` — best format for today based on research
-- `content_angle` — a specific angle or hook to use in today's post
+- `recommended_content_type` — best format for today based on research (must not repeat recently used types)
+- `content_angle` — a specific angle or hook to use in today's post (must be distinct from recent posts)
 - `trending_hashtags` — any additional hashtags found beyond the config
 - `key_insight` — one sentence summary of the most useful finding
+- `previously_used_angles` — summary of angles used in recent posts (pulled from post history), so the post generator can clearly see what to avoid
 
 ---
 
@@ -74,10 +75,14 @@ Format:
     "triathlon race prep content",
     "open water swimming safety tips"
   ],
-  "recommended_content_type": "technique_tip",
+  "recommended_content_type": "race_motivation",
   "content_angle": "Focus on the mental side of race preparation — anxiety management before a big swim event is trending this week",
   "trending_hashtags": ["#OpenWaterSwimming", "#TriathlonTraining"],
-  "key_insight": "Short motivational reels with a single actionable tip are outperforming longer educational posts in the swimming niche this week."
+  "key_insight": "Short motivational reels with a single actionable tip are outperforming longer educational posts in the swimming niche this week.",
+  "previously_used_angles": [
+    "underwater dolphin kick technique and push-off drills",
+    "Italian craftsmanship and suit drag reduction"
+  ]
 }
 ```
 
