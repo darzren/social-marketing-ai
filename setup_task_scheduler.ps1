@@ -1,28 +1,25 @@
 # Social Marketing AI — Windows Task Scheduler Setup
-# Run this once in PowerShell as Administrator to register the 9am daily task
+# Run once in PowerShell as Administrator
 # Usage: .\setup_task_scheduler.ps1
-# To add more industries: .\setup_task_scheduler.ps1 -Industry real_estate
+#        .\setup_task_scheduler.ps1 -Industry real_estate -TimeAt 09:15
 
 param(
-    [string]$Industry = "generic",
-    [string]$TimeAt   = "09:00"
+    [string]$Industry = "velocx_nz",
+    [string]$TimeAt   = "09:15"
 )
 
-$taskName   = "SocialMarketingAI_$Industry"
-$scriptPath = "C:\social-marketing-ai\venv\Scripts\python.exe"
-$args       = "C:\social-marketing-ai\main.py --industry $Industry"
+$taskName   = "SocialMarketingAI_Post_$Industry"
+$scriptPath = "C:\social-marketing-ai\post_pending.bat"
 $workDir    = "C:\social-marketing-ai"
-$logPath    = "C:\social-marketing-ai\logs\task_scheduler_$Industry.log"
 
-# Remove existing task with this name if present
 Unregister-ScheduledTask -TaskName $taskName -Confirm:$false -ErrorAction SilentlyContinue
 
 $action  = New-ScheduledTaskAction `
     -Execute $scriptPath `
-    -Argument $args `
+    -Argument $Industry `
     -WorkingDirectory $workDir
 
-$trigger = New-ScheduledTaskTrigger -Daily -At $TimeAt
+$trigger  = New-ScheduledTaskTrigger -Daily -At $TimeAt
 
 $settings = New-ScheduledTaskSettingsSet `
     -ExecutionTimeLimit (New-TimeSpan -Hours 1) `
@@ -34,15 +31,14 @@ Register-ScheduledTask `
     -Action $action `
     -Trigger $trigger `
     -Settings $settings `
-    -Description "Daily social media post for industry: $Industry" `
+    -Description "Daily social media poster for: $Industry" `
     -RunLevel Highest `
     -Force
 
 Write-Host ""
 Write-Host "Task '$taskName' registered — fires daily at $TimeAt" -ForegroundColor Green
-Write-Host "To add another industry, run:"
-Write-Host "  .\setup_task_scheduler.ps1 -Industry real_estate -TimeAt 09:00" -ForegroundColor Cyan
-Write-Host "  .\setup_task_scheduler.ps1 -Industry swimwear -TimeAt 10:00" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "To view all tasks: Get-ScheduledTask | Where-Object { `$_.TaskName -like 'SocialMarketingAI*' }"
-Write-Host "To remove a task:  Unregister-ScheduledTask -TaskName '$taskName' -Confirm:`$false"
+Write-Host "Flow: Remote agent generates at 9:00am → this posts at 9:15am"
+Write-Host ""
+Write-Host "To add another brand:"
+Write-Host "  .\setup_task_scheduler.ps1 -Industry real_estate -TimeAt 09:15" -ForegroundColor Cyan
