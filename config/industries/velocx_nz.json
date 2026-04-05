@@ -21,6 +21,6 @@
     "tiktok": ["#SwimTok", "#SwimmingTips", "#TriathlonTok", "#SwimTraining", "#fyp", "#SwimLife"]
   },
   "post_frequency": "daily",
-  "platforms": ["facebook", "instagram", "tiktok"],
+  "platforms": ["facebook", "tiktok"],
   "content_types": ["performance_tip", "product_highlight", "training_insight", "race_motivation", "technique_tip", "community_spotlight"]
 }
