@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv()  # fallback global .env if present
 
 log_dir = Path("logs")
 log_dir.mkdir(exist_ok=True)
@@ -68,6 +68,14 @@ def main():
     args = parser.parse_args()
 
     logger.info(f"=== Social Marketing AI | Industry: {args.industry} | Dry-run: {args.dry_run} ===")
+
+    # Load industry-specific credentials (overrides any global .env values)
+    creds_path = Path(f"config/credentials/{args.industry}.env")
+    if creds_path.exists():
+        load_dotenv(creds_path, override=True)
+        logger.info(f"Loaded credentials from {creds_path}")
+    else:
+        logger.warning(f"No credentials file at {creds_path} — using global .env values")
 
     # Load posts written by the Claude agent
     from src.content_generator import load_pending_posts
