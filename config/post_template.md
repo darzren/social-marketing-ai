@@ -46,7 +46,8 @@ Would you try this? 👇
 [BLANK LINE]
 
 [ENGAGEMENT BAIT — 1 line, drives comments]
-Comment "[KEYWORD]" below and we'll [deliver something of value] 💡
+A simple question, reaction prompt, or tag request — no delivery promise required.
+Examples: "Drop a 🔥 if you agree!" / "Tag a teammate who needs this 👇" / "Which do you do — yes or no? 👇"
 ```
 
 ---
@@ -61,8 +62,9 @@ Comment "[KEYWORD]" below and we'll [deliver something of value] 💡
 - Include 3–6 emojis placed naturally throughout — not all at the end
 - Tone: friendly, conversational, easy to skim — adapt to brand voice
 - The SOFT CTA asks a question to invite replies
-- The ENGAGEMENT BAIT drives comment volume — use a brand-relevant keyword
-  (e.g. "Comment 'FAST' and we'll DM you our training guide" for a swimwear brand)
+- The ENGAGEMENT BAIT drives comment volume with a simple reaction prompt, question, or tag request
+  — no delivery promise, no follow-up required
+  (e.g. "Drop a 🔥 if you agree!" / "Tag a training partner who needs this 👇")
 - Hashtags on the very last line, separated by spaces
 - `post_text` contains everything EXCEPT hashtags and the engagement bait line
 - `engagement_bait` is the comment-prompt line only
@@ -77,7 +79,7 @@ Return STRICT JSON ONLY — no explanation, no markdown wrapper:
 {
   "content_angle": "one-line description of the angle or hook used",
   "post_text": "full post body: hook + problem + story + emotional trigger + value + soft CTA — NO hashtags, NO engagement bait",
-  "engagement_bait": "Comment '[KEYWORD]' below and we'll [value offer] 💡",
+  "engagement_bait": "Drop a 🔥 if this sounds like you! 👇",
   "hashtags": ["#Tag1", "#Tag2", "#Tag3"],
   "call_to_action": "the soft CTA question line repeated here for reporting"
 }
