@@ -1,0 +1,26 @@
+{
+  "industry": "real_estate",
+  "display_name": "Real Estate",
+  "description": "A real estate agency helping buyers, sellers, and investors navigate the property market with expert guidance and local knowledge.",
+  "tone": "trustworthy, expert, warm, and aspirational",
+  "target_audience": "home buyers, sellers, property investors, and first-time buyers aged 28-65",
+  "content_pillars": [
+    "home buying tips",
+    "market updates and trends",
+    "property investment advice",
+    "home staging and decor",
+    "neighbourhood spotlights",
+    "mortgage and finance tips",
+    "client success stories",
+    "open house announcements"
+  ],
+  "hashtags": {
+    "core": ["#realestate", "#property", "#homebuying", "#realestateinvesting", "#dreamhome"],
+    "facebook": ["#homeforsale", "#realestateagent", "#househunting", "#justlisted"],
+    "instagram": ["#realestatelife", "#luxuryhomes", "#homesofinstagram", "#interiordesign", "#newhome"],
+    "tiktok": ["#realestatetok", "#housetour", "#homeforsale", "#firsttimebuyer", "#fyp"]
+  },
+  "post_frequency": "daily",
+  "platforms": ["facebook", "instagram", "tiktok"],
+  "content_types": ["tip", "market_insight", "property_feature", "myth_buster", "local_spotlight", "question"]
+}

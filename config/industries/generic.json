@@ -1,0 +1,24 @@
+{
+  "industry": "generic",
+  "display_name": "General Business",
+  "description": "A modern, forward-thinking business focused on delivering value to customers.",
+  "tone": "professional yet approachable, inspiring, and informative",
+  "target_audience": "general consumers and business professionals aged 25-55",
+  "content_pillars": [
+    "productivity tips",
+    "motivational insights",
+    "industry trends",
+    "behind-the-scenes",
+    "customer success",
+    "how-to guides"
+  ],
+  "hashtags": {
+    "core": ["#business", "#success", "#entrepreneur", "#growth", "#motivation"],
+    "facebook": ["#smallbusiness", "#community", "#businesstips"],
+    "instagram": ["#instagood", "#dailyinspiration", "#businessowner", "#hustlehard"],
+    "tiktok": ["#businesstok", "#learnontiktok", "#fyp", "#tips"]
+  },
+  "post_frequency": "daily",
+  "platforms": ["facebook", "instagram", "tiktok"],
+  "content_types": ["tip", "quote", "fact", "story", "question"]
+}

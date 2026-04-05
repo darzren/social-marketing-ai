@@ -1,0 +1,26 @@
+{
+  "industry": "swimwear",
+  "display_name": "Swimwear Retail",
+  "description": "A vibrant swimwear brand celebrating body confidence, beach culture, and effortless summer style.",
+  "tone": "fun, confident, body-positive, aspirational, and energetic",
+  "target_audience": "fashion-conscious individuals aged 18-45 who love beach, travel, and active outdoor lifestyle",
+  "content_pillars": [
+    "style tips and outfit ideas",
+    "body confidence and empowerment",
+    "beach and travel destinations",
+    "new arrivals and collections",
+    "care and styling tips",
+    "summer lifestyle",
+    "behind the scenes",
+    "customer spotlights and UGC"
+  ],
+  "hashtags": {
+    "core": ["#swimwear", "#beachlife", "#swimstyle", "#summerfashion", "#bikini"],
+    "facebook": ["#beachwear", "#summervibes", "#fashionista", "#beachbabe", "#poolside"],
+    "instagram": ["#swimwearfashion", "#ootd", "#beachbody", "#vacationmode", "#resortwear", "#beachvibes"],
+    "tiktok": ["#swimweartok", "#beachfashion", "#summerstyle", "#fyp", "#fashiontok", "#beachday"]
+  },
+  "post_frequency": "daily",
+  "platforms": ["facebook", "instagram", "tiktok"],
+  "content_types": ["style_tip", "confidence_boost", "product_highlight", "destination_inspiration", "care_guide", "question"]
+}
