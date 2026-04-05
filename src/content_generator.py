@@ -1,71 +1,43 @@
 """
-Content Generator — uses Claude API to create platform-tailored social media posts.
+Content Generator — reads pre-generated posts from a JSON file written by the
+Claude Code remote agent. No Anthropic API key required.
+
+The remote agent generates the posts as part of its own reasoning and writes
+them to data/content_ready/<industry>_pending.json before calling post.py.
 """
 
 import json
-import random
-import anthropic
-from datetime import datetime
+from pathlib import Path
 
 
-def _build_prompt(industry_config: dict, platform: str, content_type: str) -> str:
-    cfg = industry_config
-    day_of_week = datetime.now().strftime("%A")
-    hashtags = " ".join(
-        cfg["hashtags"]["core"][:3] + cfg["hashtags"].get(platform, [])[:3]
-    )
-
-    platform_guidelines = {
-        "facebook": (
-            "Facebook post: conversational, 150-250 words, can include a question to drive comments, "
-            "suited for link sharing and community engagement. No markdown formatting."
-        ),
-        "instagram": (
-            "Instagram caption: visually descriptive, 100-150 words, use line breaks for readability, "
-            "emoji-friendly but not excessive, end with a call-to-action. No markdown formatting."
-        ),
-        "tiktok": (
-            "TikTok video description: punchy, 50-80 words, hook in the first line, "
-            "high energy, trendy language appropriate for short-form video content. No markdown formatting."
-        ),
-    }
-
-    return f"""You are a social media content creator for a {cfg['display_name']} business.
-
-Business description: {cfg['description']}
-Tone: {cfg['tone']}
-Target audience: {cfg['target_audience']}
-Today is {day_of_week}.
-Content type for this post: {content_type}
-Content pillars to draw from: {', '.join(cfg['content_pillars'])}
-
-Write a single {platform_guidelines[platform]}
-
-The post should feel fresh, relevant to today being {day_of_week}, and naturally include these hashtags at the end:
-{hashtags}
-
-Return ONLY the post text with hashtags. No explanations, no labels, no quotes around the output."""
-
-
-def generate_posts(industry_config: dict, api_key: str) -> dict:
+def load_pending_posts(industry: str) -> dict:
     """
-    Generate one post per platform for the given industry config.
-    Returns dict: { 'facebook': '...', 'instagram': '...', 'tiktok': '...' }
+    Load posts written by the Claude agent from data/content_ready/.
+
+    Expected file: data/content_ready/<industry>_pending.json
+    Expected shape: { "facebook": "...", "instagram": "...", "tiktok": "..." }
     """
-    client = anthropic.Anthropic(api_key=api_key)
-    platforms = industry_config.get("platforms", ["facebook", "instagram", "tiktok"])
-    content_types = industry_config.get("content_types", ["tip"])
-
-    posts = {}
-    for platform in platforms:
-        content_type = random.choice(content_types)
-        prompt = _build_prompt(industry_config, platform, content_type)
-
-        message = client.messages.create(
-            model="claude-opus-4-6",
-            max_tokens=600,
-            messages=[{"role": "user", "content": prompt}],
+    pending_path = Path(f"data/content_ready/{industry}_pending.json")
+    if not pending_path.exists():
+        raise FileNotFoundError(
+            f"No pending posts found at {pending_path}.\n"
+            "The Claude agent must write posts there before calling this script."
         )
-        posts[platform] = message.content[0].text.strip()
+    with open(pending_path, encoding="utf-8") as f:
+        posts = json.load(f)
 
+    # Clean up after loading so stale posts are never reused
+    pending_path.unlink()
     return posts
+
+
+def save_pending_posts(industry: str, posts: dict) -> Path:
+    """
+    Save generated posts to the pending file (used in local/API mode).
+    """
+    out_dir = Path("data/content_ready")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_path = out_dir / f"{industry}_pending.json"
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(posts, f, indent=2, ensure_ascii=False)
+    return out_path
