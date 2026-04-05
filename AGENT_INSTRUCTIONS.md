@@ -52,16 +52,17 @@ Write the research brief to:
 (replace TIMESTAMP with the value from Step 2)
 
 ### Step 6 — Generate the Facebook post
+Read `config/post_template.md` for formatting rules and required output structure.
+
 Using the brand config (Step 3), post history (Step 4), and research brief (Step 5),
-write a single Facebook post:
-- 150-250 words
+generate the post following the template exactly:
+- Use the `recommended_content_type` and `content_angle` from the research brief
 - Tone: premium, performance-driven, passionate about swimming, aspirational
 - Audience: competitive swimmers, triathletes, swim clubs in New Zealand
-- Use the `recommended_content_type` and `content_angle` from the research brief
-- Supplement config hashtags with any `trending_hashtags` from the research
-- No markdown formatting in the post text
+- Combine brand config hashtags with `trending_hashtags` from the research brief
 - MUST NOT repeat any topic, angle, drill, product, or hook from the last 7 posts
 - If the research angle overlaps with recent posts, pick the next best angle
+- Output must be strict JSON as defined in the template — no other text
 
 ### Step 7 — Write the post to a timestamped file
 Use the Write tool to save to:
@@ -70,9 +71,17 @@ data/content_ready/velocx_nz_TIMESTAMP_pending.json
 ```
 (replace TIMESTAMP with the value from Step 2 — same timestamp as the research file)
 
-File must contain a JSON object with a single key `facebook`:
+File must contain a JSON object with a single key `facebook` whose value is the
+structured JSON object from Step 6:
 ```json
-{"facebook": "your post text here"}
+{
+  "facebook": {
+    "content_angle": "one-line description of the angle used",
+    "post_text": "full formatted post body — no hashtags",
+    "hashtags": ["#Tag1", "#Tag2", "#Tag3"],
+    "call_to_action": "the CTA line"
+  }
+}
 ```
 
 ### Step 8 — Commit and push to GitHub

@@ -11,11 +11,12 @@ from src.platforms import facebook, instagram, tiktok
 logger = logging.getLogger(__name__)
 
 
-def run(posts: dict, industry: str, env: dict, pending_path: Path) -> dict:
+def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) -> dict:
     """
     Publish generated posts to each platform.
 
-    posts        — { 'facebook': '...', 'instagram': '...', 'tiktok': '...' }
+    posts        — { 'facebook': 'composed string', ... } ready for platform APIs
+    raw          — original structured pending JSON (archived as-is for history)
     industry     — industry slug (e.g. 'velocx_nz')
     env          — dict of environment variables
     pending_path — Path to the pending JSON file (will be moved to content_posted)
@@ -25,7 +26,6 @@ def run(posts: dict, industry: str, env: dict, pending_path: Path) -> dict:
     results = {
         "timestamp": datetime.now().strftime("%Y%m%d_%H%M%S"),
         "industry": industry,
-        "generated": posts,
         "platforms": {},
     }
 
@@ -72,7 +72,7 @@ def run(posts: dict, industry: str, env: dict, pending_path: Path) -> dict:
     )
     if any_success:
         from src.content_generator import archive_as_posted
-        posted_path = archive_as_posted(pending_path, industry, results)
+        posted_path = archive_as_posted(pending_path, industry, results, raw)
         logger.info(f"Archived to {posted_path}")
     else:
         logger.warning("No platforms posted successfully — pending file kept for retry.")

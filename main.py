@@ -82,7 +82,7 @@ def main():
     # Load posts written by the Claude agent
     from src.content_generator import load_pending_posts
     try:
-        posts, pending_path = load_pending_posts(args.industry)
+        posts, pending_path, raw = load_pending_posts(args.industry)
     except FileNotFoundError as e:
         logger.error(str(e))
         sys.exit(1)
@@ -101,7 +101,7 @@ def main():
         logger.warning(w)
 
     from src.poster import run
-    results = run(posts=posts, industry=args.industry, env=env, pending_path=pending_path)
+    results = run(posts=posts, raw=raw, industry=args.industry, env=env, pending_path=pending_path)
 
     logger.info("\n--- POSTING RESULTS ---")
     for platform, result in results["platforms"].items():
