@@ -22,11 +22,13 @@ load_dotenv()  # fallback global .env if present
 
 log_dir = Path("logs")
 log_dir.mkdir(exist_ok=True)
+import io
+_stdout_handler = logging.StreamHandler(io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace"))
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[
-        logging.StreamHandler(sys.stdout),
+        _stdout_handler,
         logging.FileHandler(log_dir / "social_marketing.log", encoding="utf-8"),
     ],
 )
