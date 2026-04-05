@@ -1,9 +1,7 @@
 """
-Orchestrator: loads config, generates posts, publishes, and archives results.
+Orchestrator: publishes posts to each platform and archives results.
 """
 
-import json
-import os
 import logging
 from datetime import datetime
 from pathlib import Path
@@ -12,32 +10,24 @@ from src.platforms import facebook, instagram, tiktok
 
 logger = logging.getLogger(__name__)
 
-DATA_READY = Path("data/content_ready")
-DATA_POSTED = Path("data/content_posted")
 
-
-def _archive(filename: str, content: dict, folder: Path) -> None:
-    folder.mkdir(parents=True, exist_ok=True)
-    filepath = folder / filename
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(content, f, indent=2, ensure_ascii=False)
-
-
-def run(posts: dict, industry: str, env: dict) -> dict:
+def run(posts: dict, industry: str, env: dict, pending_path: Path) -> dict:
     """
     Publish generated posts to each platform.
 
-    posts   — { 'facebook': '...', 'instagram': '...', 'tiktok': '...' }
-    industry — industry slug (e.g. 'real_estate')
-    env     — dict of environment variables
+    posts        — { 'facebook': '...', 'instagram': '...', 'tiktok': '...' }
+    industry     — industry slug (e.g. 'velocx_nz')
+    env          — dict of environment variables
+    pending_path — Path to the pending JSON file (will be moved to content_posted)
 
     Returns summary dict.
     """
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    results = {"timestamp": timestamp, "industry": industry, "platforms": {}}
-
-    # Save generated content before posting
-    _archive(f"{industry}_{timestamp}_generated.json", posts, DATA_READY)
+    results = {
+        "timestamp": datetime.now().strftime("%Y%m%d_%H%M%S"),
+        "industry": industry,
+        "generated": posts,
+        "platforms": {},
+    }
 
     # --- Facebook ---
     if "facebook" in posts:
@@ -76,8 +66,15 @@ def run(posts: dict, industry: str, env: dict) -> dict:
         status = "OK" if result["success"] else f"FAILED: {result.get('error')}"
         logger.info(f"TikTok: {status}")
 
-    # Archive full results (posts + outcomes)
-    archive_data = {"generated": posts, "results": results}
-    _archive(f"{industry}_{timestamp}_results.json", archive_data, DATA_POSTED)
+    # Move pending → posted only if at least one platform succeeded
+    any_success = any(
+        r.get("success") for r in results["platforms"].values()
+    )
+    if any_success:
+        from src.content_generator import archive_as_posted
+        posted_path = archive_as_posted(pending_path, industry, results)
+        logger.info(f"Archived to {posted_path}")
+    else:
+        logger.warning("No platforms posted successfully — pending file kept for retry.")
 
     return results
