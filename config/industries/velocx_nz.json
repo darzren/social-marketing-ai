@@ -1,0 +1,26 @@
+{
+  "industry": "velocx_nz",
+  "display_name": "Velocx NZ",
+  "description": "Velocx NZ sells premium Italian competitive swimwear for serious swimmers and triathletes. Products are crafted for performance, speed, and elite competition.",
+  "tone": "premium, performance-driven, passionate about swimming, aspirational, technical yet accessible",
+  "target_audience": "competitive swimmers, triathletes, swim clubs, coaches, and aquatic sports enthusiasts in New Zealand aged 16-45",
+  "content_pillars": [
+    "performance and speed tips for competitive swimmers",
+    "product highlights and Italian craftsmanship",
+    "race day preparation and mindset",
+    "swim training drills and technique",
+    "triathlon and open water swimming",
+    "NZ swim community and local events",
+    "athlete spotlights and success stories",
+    "care and maintenance of performance swimwear"
+  ],
+  "hashtags": {
+    "core": ["#VelocxNZ", "#CompetitiveSwimwear", "#ItalianSwimwear", "#SwimFast", "#EliteSwimwear"],
+    "facebook": ["#NewZealandSwimming", "#SwimNZ", "#Triathlon", "#PoolPerformance"],
+    "instagram": ["#SwimLife", "#SwimmerLife", "#Swimwear", "#TriathlonLife", "#SwimCoach", "#OpenWater"],
+    "tiktok": ["#SwimTok", "#SwimmingTips", "#TriathlonTok", "#SwimTraining", "#fyp", "#SwimLife"]
+  },
+  "post_frequency": "daily",
+  "platforms": ["facebook", "instagram", "tiktok"],
+  "content_types": ["performance_tip", "product_highlight", "training_insight", "race_motivation", "technique_tip", "community_spotlight"]
+}
