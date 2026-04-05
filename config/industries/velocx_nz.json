@@ -1,28 +1,123 @@
 {
   "industry": "velocx_nz",
   "display_name": "Velocx NZ",
-  "Call-to-action": "website",
+  "call_to_action": "shop_now",
   "website": "https://www.velocx.co.nz",
-  "description": "Velocx NZ sells premium Italian competitive swimwear for serious swimmers and triathletes. Products are crafted for performance, speed, and elite competition.",
-  "tone": "premium, performance-driven, passionate about swimming, aspirational, technical yet accessible",
-  "target_audience": "competitive swimmers, triathletes, swim clubs, coaches, and aquatic sports enthusiasts in New Zealand aged 16-45",
-  "content_pillars": [
-    "performance and speed tips for competitive swimmers",
-    "product highlights and Italian craftsmanship",
-    "race day preparation and mindset",
-    "swim training drills and technique",
-    "triathlon and open water swimming",
-    "NZ swim community and local events",
-    "athlete spotlights and success stories",
-    "care and maintenance of performance swimwear"
-  ],
-  "hashtags": {
-    "core": ["#VelocxNZ", "#CompetitiveSwimwear", "#ItalianSwimwear", "#SwimFast", "#EliteSwimwear"],
-    "facebook": ["#NewZealandSwimming", "#SwimNZ", "#Triathlon", "#PoolPerformance"],
-    "instagram": ["#SwimLife", "#SwimmerLife", "#Swimwear", "#TriathlonLife", "#SwimCoach", "#OpenWater"],
-    "tiktok": ["#SwimTok", "#SwimmingTips", "#TriathlonTok", "#SwimTraining", "#fyp", "#SwimLife"]
+
+  "description": "Velocx NZ is a performance swimwear retailer bringing elite global brands to New Zealand swimmers. Featuring Jaked, a premium Italian swimwear brand trusted by competitive athletes, Velocx helps swimmers train harder, race faster, and perform at their best.",
+
+  "tone": "authoritative yet energetic, performance-driven, confident, aspirational, community-focused, athlete-first mindset",
+
+  "brand_positioning": {
+    "velocx_role": "trusted curator and performance authority in NZ swimwear",
+    "hero_brand": "Jaked",
+    "jaked_positioning": "elite Italian performance swimwear designed for competitive swimmers and race performance",
+    "content_balance": "70% value/education/entertainment, 30% product (Jaked integration)"
   },
-  "post_frequency": "daily",
+
+  "target_audience": {
+    "primary": "competitive swimmers and triathletes in New Zealand aged 16–40",
+    "secondary": "fitness swimmers and aspiring athletes who want high-performance gear",
+    "entry_level": "younger swimmers or beginners influenced by elite athlete content",
+    "psychographics": [
+      "wants to improve performance and times",
+      "follows swim/fitness content online",
+      "inspired by elite athletes and competition",
+      "cares about quality gear and progression"
+    ]
+  },
+
+  "content_pillars": [
+    {
+      "pillar": "Swim Performance & Training",
+      "details": "tips, drills, technique breakdowns, race strategies"
+    },
+    {
+      "pillar": "Athlete Mindset & Motivation",
+      "details": "discipline, pushing limits, race mentality"
+    },
+    {
+      "pillar": "Jaked Product Integration",
+      "details": "show Jaked in action, benefits, performance angles, not hard selling"
+    },
+    {
+      "pillar": "Swimmer Lifestyle & Relatable Content",
+      "details": "POV content, struggles, routines, humour"
+    },
+    {
+      "pillar": "Community & NZ Swim Scene",
+      "details": "clubs, events, swimmers, UGC"
+    },
+    {
+      "pillar": "Trends & Viral Formats",
+      "details": "adapt TikTok/IG trends into swimming niche"
+    }
+  ],
+
+  "content_types": [
+    {
+      "type": "hook_reel",
+      "description": "strong 1-3 second hook, problem or POV-based"
+    },
+    {
+      "type": "performance_tip",
+      "description": "quick actionable swim tips (high saves)"
+    },
+    {
+      "type": "jaked_in_action",
+      "description": "show Jaked during training or racing naturally"
+    },
+    {
+      "type": "soft_product_education",
+      "description": "explain why performance swimwear matters (without hard selling)"
+    },
+    {
+      "type": "ugc_or_customer_feature",
+      "description": "real swimmers using Jaked"
+    },
+    {
+      "type": "trend_reel",
+      "description": "trending format adapted to swimmers"
+    },
+    {
+      "type": "comparison_content",
+      "description": "performance vs regular swimwear"
+    }
+  ],
+
+  "hashtags": {
+    "core": [
+      "#VelocxNZ",
+      "#Jaked",
+      "#SwimFast",
+      "#TrainToWin",
+      "#CompetitiveSwimming"
+    ],
+    "facebook": [
+      "#NZSwimmers",
+      "#SwimNZ",
+      "#TriathlonNZ",
+      "#SwimTraining"
+    ],
+    "instagram": [
+      "#SwimmerLife",
+      "#SwimCommunity",
+      "#SwimGear",
+      "#JakedSwim",
+      "#OpenWaterSwimming"
+    ],
+    "tiktok": [
+      "#SwimTok",
+      "#SwimmerPOV",
+      "#SwimTips",
+      "#TrainLikeAnAthlete",
+      "#FYP"
+    ]
+  },
+
+  "post_frequency": "1-2 posts daily",
+
   "platforms": ["facebook"],
-  "content_types": ["performance_tip", "product_highlight", "training_insight", "race_motivation", "technique_tip", "community_spotlight"]
+
+  "_note": "Instagram and TikTok are in platforms config but credentials not yet configured. Update 'platforms' array and add credentials to config/credentials/velocx_nz.env when ready."
 }
