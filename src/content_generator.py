@@ -32,17 +32,31 @@ DATA_POSTED = Path("data/content_posted")
 def _compose_post(platform_value: str | dict) -> str:
     """
     Compose a final post string from either:
-    - A structured dict: { post_text, hashtags, ... }
+    - A structured dict: { post_text, engagement_bait, hashtags, ... }
     - A legacy flat string (passed through unchanged)
+
+    Composed order:
+        post_text
+
+        engagement_bait  (optional)
+
+        #hashtag1 #hashtag2
     """
     if isinstance(platform_value, str):
         return platform_value
 
     post_text = platform_value.get("post_text", "").strip()
+    engagement_bait = platform_value.get("engagement_bait", "").strip()
     hashtags = platform_value.get("hashtags", [])
     hashtag_line = " ".join(hashtags)
 
-    return f"{post_text}\n\n{hashtag_line}".strip()
+    parts = [post_text]
+    if engagement_bait:
+        parts.append(engagement_bait)
+    if hashtag_line:
+        parts.append(hashtag_line)
+
+    return "\n\n".join(parts).strip()
 
 
 def load_pending_posts(industry: str) -> tuple[dict, Path]:
