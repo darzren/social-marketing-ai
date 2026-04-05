@@ -20,7 +20,7 @@ python -c "import datetime; print(datetime.datetime.now().strftime('%Y%m%d_%H%M%
 ```
 
 ### Step 3 — Read the brand config
-Read `config/industries/velocx_nz.json` for brand details, tone, audience,
+Read `config/industries/velocx_nz.json` for brand details, Call-to-action, website, tone, audience,
 content pillars, and hashtags.
 
 ### Step 4 — Review post history to avoid repetition
