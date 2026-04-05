@@ -4,7 +4,8 @@ venv/
 __pycache__/
 *.pyc
 logs/
-# content_ready and content_posted are tracked in git:
-# - content_ready: agent commits pending posts here to trigger GitHub Actions
-# - content_posted: permanent record of every post published
 .claude/
+
+# data/ folders are tracked in git:
+# - content_ready/  agent commits pending posts here → triggers GitHub Actions
+# - content_posted/ permanent archive of every published post
