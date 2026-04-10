@@ -20,7 +20,7 @@ python -c "import datetime; print(datetime.datetime.now().strftime('%Y%m%d_%H%M%
 ```
 
 ### Step 3 — Read the brand config
-Read `config/industries/velocx_nz.json` for brand details, Call-to-action, website, tone, audience,
+Read `config/industries/velocx_nz.json` for brand details, call_to_action, website, tone, audience,
 content pillars, and hashtags.
 
 ### Step 4 — Review post history to avoid repetition
@@ -35,7 +35,7 @@ Build a clear list of what has already been covered recently. This list is used
 in Steps 5 and 6 to guarantee today's post is fresh and non-repetitive.
 
 ### Step 5 — Research trending content
-Read `RESEARCH_AGENT.md` for full research instructions.
+Read `agents/RESEARCH_AGENT.md` for full research instructions.
 
 In summary:
 - Run 4-5 WebSearches for trending social media content in the competitive
@@ -52,7 +52,7 @@ Write the research brief to:
 (replace TIMESTAMP with the value from Step 2)
 
 ### Step 6 — Generate the Facebook post
-Read `config/post_template.md` for formatting rules and required output structure.
+Read `agents/POST_TEMPLATE.md` for formatting rules and required output structure.
 
 Using the brand config (Step 3), post history (Step 4), and research brief (Step 5),
 generate the post following the template exactly:
@@ -78,6 +78,7 @@ structured JSON object from Step 6:
   "facebook": {
     "content_angle": "one-line description of the angle used",
     "post_text": "full formatted post body — no hashtags",
+    "engagement_bait": "simple reaction prompt or tag request — no delivery promise",
     "hashtags": ["#Tag1", "#Tag2", "#Tag3"],
     "call_to_action": "the CTA line"
   }

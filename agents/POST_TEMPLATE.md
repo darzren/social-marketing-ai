@@ -47,14 +47,14 @@ Would you try this? 👇
 
 [ENGAGEMENT BAIT — 1 line, drives comments]
 A simple question, reaction prompt, or tag request — no delivery promise required.
-Examples: "Drop a 🔥 if you agree!" / "Tag a teammate who needs this 👇" / "Which do you do — yes or no? 👇"
+Examples: "Drop a 🔥 if you agree!" / "Tag a teammate who needs this 👇" / "Yes or no? 👇"
 ```
 
 ---
 
 ## Rules
 
-- **Max 200 words** (excluding hashtags)
+- **Max 200 words** (excluding hashtags and engagement bait)
 - Hook must stop the scroll — use a bold claim, question, or surprising statement
 - Every section separated by a blank line — never wall-of-text
 - Keep each line to 1–2 sentences
@@ -62,9 +62,8 @@ Examples: "Drop a 🔥 if you agree!" / "Tag a teammate who needs this 👇" / "
 - Include 3–6 emojis placed naturally throughout — not all at the end
 - Tone: friendly, conversational, easy to skim — adapt to brand voice
 - The SOFT CTA asks a question to invite replies
-- The ENGAGEMENT BAIT drives comment volume with a simple reaction prompt, question, or tag request
-  — no delivery promise, no follow-up required
-  (e.g. "Drop a 🔥 if you agree!" / "Tag a training partner who needs this 👇")
+- The ENGAGEMENT BAIT drives comment volume with a simple reaction prompt,
+  question, or tag request — no delivery promise, no follow-up required
 - Hashtags on the very last line, separated by spaces
 - `post_text` contains everything EXCEPT hashtags and the engagement bait line
 - `engagement_bait` is the comment-prompt line only
@@ -88,7 +87,7 @@ Return STRICT JSON ONLY — no explanation, no markdown wrapper:
 **Field rules:**
 - `post_text` — the main body following the 8-section structure above
 - `post_text` must NOT contain hashtags or the engagement bait line
-- `engagement_bait` — the comment-prompt line only (appended after post_text when published)
+- `engagement_bait` — reaction prompt only (no delivery promise)
 - `hashtags` — brand config tags plus any trending tags from research
 - `content_angle` — used by the history checker to detect repetition in future runs
 - `call_to_action` — the soft CTA question for tracking and reporting
