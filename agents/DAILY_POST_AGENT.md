@@ -93,19 +93,16 @@ File format (no `type` field needed for text posts — absence defaults to text)
 
 ### Step 5B — IMAGE POST (if today is an image day)
 
-**Research:** Read `agents/IMAGE_POST_AGENT.md` for full image research and generation instructions.
+Read and follow **`agents/IMAGE_POST_AGENT.md`** exactly.
 
 In summary:
-- Run 3–4 WebSearches for compelling visual content in the swimming/swimwear niche
-- Look for: high-performing image styles, visual themes, seasonal hooks, NZ-relevant angles
-- Use WebFetch on any useful resources found
-- Cross-reference against post history — avoid visual themes already used recently
-- Synthesise into a research brief and **save it** to:
-  `data/research/velocx_nz_TIMESTAMP_image_research.json`
-- Craft a detailed DALL-E/Pollinations prompt in brand style (dark, cinematic, athletic)
-- Brand colors: black `#000000`, white `#FFFFFF`, orange `#F8A30E`, light blue `#A3CEF1`
-- Leave bottom-center area uncluttered below the main subject (VelocX logo overlaid there)
-- Leave upper-left area clear if overlay_text will be used
+- Run 5–6 WebSearches across Facebook, Instagram and TikTok to find what image styles,
+  visual formats, and text hooks are gaining engagement in the swim/swimwear niche right now
+- Use WebFetch on any high-value articles or creator pages found
+- Cross-reference against post history — avoid image types used in the last 3 image posts
+- Decide on: image type, visual style, overlay text wording, caption format, hashtags
+- Save research brief to `data/research/velocx_nz_TIMESTAMP_image_research.json`
+- Write image pending file to `data/content_ready/velocx_nz_TIMESTAMP_image_pending.json`
 
 **Write the image pending file:**
 ```

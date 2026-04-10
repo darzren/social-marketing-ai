@@ -1,35 +1,125 @@
 # Image Post Agent Instructions
 
-This agent runs on **image days** (alternating with text days).
-It researches, crafts a DALL-E 3 image prompt, and writes the image pending file.
+Runs on **image days** (alternating with text days).
+Researches current trends across Facebook, Instagram and TikTok before deciding
+on the image type, overlay text, caption, and hashtags.
 
 ---
 
-## When to run this agent
+## Step 1 — Platform trend research
 
-The daily post agent determines post type by checking the last posted file.
-If the last post was a **text** post (or has no `type` field) → today is an **image** day.
-If the last post was an **image** post → today is a **text** day.
+Run **5–6 WebSearches** across all three platforms. Cover each angle below:
+
+### Facebook
+- `site:facebook.com OR "on Facebook" swimming swimwear 2026 trending engagement`
+- What image formats are getting shares/comments in the swim/triathlon niche on Facebook?
+- Are static photos, carousels, or Reels performing better right now?
+
+### Instagram
+- `instagram swimming swimwear trending posts engagement 2026`
+- `instagram reels vs photo posts swim athletic niche 2026`
+- What visual styles are dominating (dark/dramatic, bright/poolside, underwater, lifestyle)?
+- What caption hooks and overlay text are stopping the scroll?
+
+### TikTok
+- `tiktok swimming swimwear viral 2026 trending`
+- What content angles are going viral in the competitive swim / athletic gear niche?
+- What text hooks appear on high-performing photo/video posts?
+
+### Cross-platform
+- `competitive swimwear social media marketing trends 2026`
+- `Jaked OR competitive swimming instagram facebook trending content`
+- Are there any seasonal events, swim meets, or cultural moments relevant to NZ swimmers right now?
+
+Use **WebFetch** on any high-value articles, posts, or creator pages found.
 
 ---
 
-## Step 1 — Research the image concept
+## Step 2 — Synthesise research findings
 
-Run 3–4 WebSearches focused on:
-- Visually compelling swimming / triathlon / swimwear social media imagery
-- High-engagement image formats in the athletic/sports niche right now
-- Seasonal or event-driven visual themes relevant to NZ swimmers
-- Color and composition trends in sports photography on Instagram/Facebook
+From your research, determine:
 
-Use WebFetch on any useful articles found.
+**Image type** — which category will resonate most right now:
+- `race_action` — swimmer mid-stroke, race dive, finish wall, underwater dolphin kick
+- `training` — drills, early morning pool session, coach on deck
+- `gear_closeup` — swimsuit flat lay, goggle reflection, race suit detail
+- `lifestyle` — poolside, athlete portrait, post-race emotion
+- `open_water` — ocean/harbour swim, NZ coastal scene
+- `team` — club team, warm-up, group training
 
-Cross-reference against recent post history to ensure:
-- The visual theme (e.g. underwater shot, race start, training session) has not been used recently
-- The content angle is fresh and not repetitive
+**Visual style** — dark/dramatic, bright/clean, high-contrast, moody, energetic
 
-**Save the research brief** to:
+**Overlay text style** — short punchy (2–4 words), question hook, stat/fact, motivational
+
+**Caption tone** — which format is gaining traction: storytelling, list format, short sharp, question-led
+
+---
+
+## Step 3 — Check post history for repetition
+
+Read the most recent 7 files in `data/content_posted/` for `velocx_nz`.
+For each, extract:
+- `content.type` (text or image)
+- `content.facebook.content_angle` or `content.content_angle`
+
+For image posts specifically, note which `image_type` was used recently.
+**Do not repeat an image type used in the last 3 image posts.**
+
+---
+
+## Step 4 — Select image type and write overlay text
+
+Based on research (Step 2) and history (Step 3), decide:
+
+**Image type**: pick the trending type that hasn't been used recently.
+
+**Overlay text**: 2–5 words maximum. Must:
+- Stop the scroll immediately
+- Match the trending hook style you found in research
+- Be in sentence case or all-caps (match what's performing)
+- Avoid generic phrases like "Shop now" or "Check this out"
+
+Good examples based on current trends:
+- `"Built different."`
+- `"Race day ready."`
+- `"0.01 seconds matters."`
+- `"Train like you mean it."`
+- `"The water doesn't lie."`
+
+Or set `overlay_text` to `null` if research shows clean images without text are outperforming.
+
+---
+
+## Step 5 — Write the caption
+
+The caption accompanies the photo. It should:
+- Open with a hook that matches the trending format you found (question, bold statement, stat)
+- Be **under 150 words** — the image carries the weight, caption amplifies it
+- Follow the brand voice: premium, performance-driven, passionate about swimming
+- Include a soft CTA (not a hard sell)
+- **No hashtags in the caption** — they go in the `hashtags` field separately
+- **No engagement bait in the caption** — goes in `engagement_bait` field separately
+
+---
+
+## Step 6 — Build hashtag list
+
+Combine:
+- Brand core tags from `config/industries/velocx_nz.json`
+- Trending hashtags discovered in research
+- Platform-specific tags (e.g. `#InstagramSwimming`, `#TikTokSwim` where relevant)
+- NZ-specific tags (`#SwimNZ`, `#NZSwimmers`, `#NewZealandSwimming`)
+- Season/event tags if relevant
+
+Aim for **10–14 hashtags** total.
+
+---
+
+## Step 7 — Save the image research brief
+
+Write to:
 ```
-data/research/<industry>_TIMESTAMP_image_research.json
+data/research/velocx_nz_TIMESTAMP_image_research.json
 ```
 
 Format:
@@ -37,125 +127,51 @@ Format:
 {
   "industry": "velocx_nz",
   "post_type": "image",
-  "researched_at": "20260406_090000",
-  "trending_visual_themes": [
-    "underwater dolphin kick POV",
-    "dramatic race start silhouette",
-    "flat lay of elite race gear"
-  ],
-  "recommended_visual_style": "cinematic underwater action shot with dramatic orange lighting",
-  "content_angle": "The 15-metre underwater phase — where races are won and lost",
-  "trending_hashtags": ["#SwimPhotography", "#PoolLife"],
-  "key_insight": "High-contrast underwater action shots are outperforming poolside content 3:1 in the swim niche this week.",
-  "previously_used_visual_themes": [
-    "race start off the blocks",
-    "flat lay gear photo"
-  ]
+  "researched_at": "TIMESTAMP",
+  "platform_insights": {
+    "facebook": "what's performing on Facebook right now",
+    "instagram": "what's performing on Instagram right now",
+    "tiktok": "what's performing on TikTok right now"
+  },
+  "recommended_image_type": "race_action",
+  "recommended_visual_style": "dark, dramatic, high contrast",
+  "recommended_overlay_style": "short punchy 2-3 words, all caps",
+  "trending_hooks": ["hook 1 found in research", "hook 2"],
+  "key_insight": "one-line summary of the most important finding",
+  "previously_used_image_types": ["gear_closeup", "lifestyle"],
+  "trending_hashtags": ["#SwimFast", "#RaceReady"]
 }
 ```
 
 ---
 
-## Step 2 — Craft the DALL-E 3 image prompt
+## Step 8 — Write the image pending file
 
-The image must:
-- Be **1024×1024** square format (safe for Facebook, Instagram, TikTok)
-- Reflect brand aesthetic: **dark, premium, cinematic, athletic**
-- Brand colors: black `#000000`, white `#FFFFFF`, orange `#F8A30E` accent, light blue `#A3CEF1`
-- Leave the **bottom-right corner relatively uncluttered** (logo will be overlaid there)
-- Leave the **upper portion clean or with minimal text** if overlay_text will be used
-- Contain **no competing brand logos** on swimwear or gear
-- Feature **no specific real athletes** — use anonymous or silhouette-style subjects
-- Style: professional sports photography, cinematic, dramatic lighting, 8K quality
-
-**Good prompt structure:**
+Filename:
 ```
-[Subject + action] in a [setting], [lighting style], [colour palette matching brand],
-[camera angle/perspective], [mood/feel], no brand logos on swimwear, photorealistic, cinematic quality
+data/content_ready/velocx_nz_TIMESTAMP_image_pending.json
 ```
 
-**IMPORTANT: Keep the prompt under 400 characters.** Longer prompts cause URL errors.
-Be specific but concise — pick the 3–4 most important visual details, not every element.
-
-**Example subjects by content pillar:**
-- Performance/Training: swimmer mid-stroke underwater, race dive off blocks, dolphin kick sequence
-- Mindset/Motivation: athlete on pool deck pre-race, triumphant finish, podium moment
-- Lifestyle: early morning training, swim bag flat lay, goggle reflection of pool
-- Community/NZ: coastal open water swim, club team warm-up, harbour swim scenery
-- Gear: close-up of sleek racing swimsuit in water, goggle reflection, streamlined silhouette
-
----
-
-## Step 3 — Write the overlay text (optional)
-
-`overlay_text` is a short headline burned onto the image.
-- Maximum 5 words
-- Use if the image needs context — skip if the image speaks for itself
-- Font will be brand orange `#F8A30E` on a semi-transparent black background
-- Placed in the upper-left safe zone of the image
-
-If the image is self-explanatory (e.g. dramatic action shot), set `overlay_text` to `null`.
-
----
-
-## Step 4 — Write the Facebook caption
-
-The caption accompanies the photo post. Follow the same structure as the POST_TEMPLATE.md
-but adapted for an image post:
-- The image carries the visual hook — the caption amplifies it
-- Still use the 8-section structure: hook → problem → story → emotional trigger → value → soft CTA
-- Keep caption under 150 words (shorter than text posts — the image does the heavy lifting)
-- Include `engagement_bait` and `hashtags` as per standard template rules
-
----
-
-## Output format
-
-Return STRICT JSON ONLY — no explanation, no markdown wrapper:
-
-```json
-{
-  "type": "image",
-  "content_angle": "one-line description of the visual theme and angle",
-  "image_prompt": "Full DALL-E 3 prompt — detailed, specific, brand-aligned",
-  "overlay_text": "Short headline or null",
-  "caption": "Full photo caption: hook + problem + story + emotional trigger + value + soft CTA — NO hashtags, NO engagement bait",
-  "engagement_bait": "Drop a 🔥 if you agree! 👇",
-  "hashtags": ["#VelocxNZ", "#Jaked", "#SwimFast"],
-  "call_to_action": "the soft CTA question line"
-}
-```
-
-**Field rules:**
-- `type` — always `"image"` for image posts
-- `image_prompt` — the exact prompt sent to DALL-E 3; make it detailed and specific
-- `overlay_text` — max 5 words, or `null` if not needed
-- `caption` — the post text accompanying the photo (no hashtags, no engagement bait)
-- `engagement_bait` — reaction prompt only, no delivery promise
-- `hashtags` — brand config tags plus any trending visual/photography tags found in research
-
----
-
-## Pending file format
-
-The CCR agent writes the image pending file as:
-```
-data/content_ready/<industry>_TIMESTAMP_image_pending.json
-```
-
-The file wraps the above JSON under a `facebook` key, with the `type` field at the top level:
-
+Content (must include `"type": "image"` at top level):
 ```json
 {
   "type": "image",
   "facebook": {
-    "content_angle": "...",
-    "image_prompt": "...",
-    "overlay_text": "...",
-    "caption": "...",
-    "engagement_bait": "...",
-    "hashtags": ["#VelocxNZ"],
-    "call_to_action": "..."
+    "content_angle": "one-line description of the angle and why it was chosen",
+    "image_type": "race_action",
+    "image_prompt": "Concise Pollinations.ai prompt under 400 chars — used only if no clean image is available",
+    "overlay_text": "Built different.",
+    "caption": "Full photo caption — hook + story + value + soft CTA. No hashtags. No engagement bait.",
+    "engagement_bait": "Drop a fire emoji if this is your pre-race mindset.",
+    "hashtags": ["#VelocxNZ", "#Jaked", "#SwimFast", "#RaceReady"],
+    "call_to_action": "the soft CTA line from inside the caption"
   }
 }
 ```
+
+**Field rules:**
+- `image_type` — one of: `race_action`, `training`, `gear_closeup`, `lifestyle`, `open_water`, `team`
+- `image_prompt` — still required as fallback (under 400 chars, no elaborate descriptions)
+- `overlay_text` — 2–5 words or `null`
+- `caption` — under 150 words, no hashtags, no engagement bait
+- `engagement_bait` — reaction prompt only, no delivery promise
