@@ -540,15 +540,8 @@ def run_image_post(raw: dict, industry: str, env: dict, pending_path: Path) -> d
         logger.info(f"Processing {platform} image ({w}×{h}, type={image_type})...")
 
         try:
-            # Prefer clean images; fall back to Pollinations / DALL-E
-            clean_path = pick_clean_image(image_type, used_images)
-            if clean_path:
-                logger.info(f"Using clean image: {clean_path.name}")
-                image_bytes = load_clean_image(clean_path, w, h)
-                raw["clean_image"] = clean_path.name   # saved to archive for history
-            else:
-                logger.info("No clean image found — generating via Pollinations/DALL-E.")
-                image_bytes = generate_image(image_prompt, platform, openai_key)
+            logger.info("Generating fresh image via Pollinations/DALL-E...")
+            image_bytes = generate_image(image_prompt, platform, openai_key)
 
             image_bytes = overlay_logo_and_text(image_bytes, logo_path, platform, overlay_text)
 

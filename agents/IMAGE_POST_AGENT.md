@@ -35,6 +35,49 @@ Use **WebFetch** on any high-value articles, posts, or creator pages found.
 
 ---
 
+## VelocX visual style reference
+
+All generated images must match this established brand aesthetic. Use this as your
+creative brief when crafting every Pollinations.ai prompt.
+
+**Photography style:**
+- Professional sports / editorial photography quality
+- Dark, moody, cinematic — not bright or cheerful
+- Rich deep blue/teal pool water as primary background colour
+- Dramatic overhead or side lighting creating strong highlights and deep shadows
+- High contrast — subjects pop against dark surroundings
+- Motion blur or frozen-motion water droplets add energy
+- Shallow depth of field — subject sharp, background softly blurred
+
+**Subject types (by image_type):**
+- `race_action` — athlete mid-stroke (butterfly, breaststroke, freestyle), race dive off blocks, underwater dolphin kick, finish wall touch. Water exploding around the body. Jaked swim cap visible.
+- `training` — athlete drilling in lane, coach on deck, early morning empty pool with single swimmer, pull buoy, paddles
+- `gear_closeup` — sleek racing swimsuit flat lay on pool tiles or submerged in water, goggles with pool reflection, Jaked cap detail. Deep blue/teal water as backdrop.
+- `lifestyle` — athlete poolside post-session, towel around shoulders, focused expression, warm stadium lighting, wet hair
+- `open_water` — New Zealand coastal swim, ocean or harbour, dramatic sky, wetsuit or racing kit
+- `team` — swim club warm-up, lane full of swimmers, coach briefing athletes pre-race
+
+**Colours:**
+- Pool water: deep teal `#007B8A` to midnight blue `#001F3F`
+- Accent lighting: warm orange-amber `#F8A30E` from stadium overhead spots
+- Athlete skin: warm highlighted tones against dark water
+- Suit: sleek dark racing suit, no visible competing brand logos
+
+**What to avoid:**
+- Bright sunny outdoor pools (too casual)
+- White backgrounds or studio setups
+- Smiling lifestyle shots (we want focused, competitive, intense)
+- Generic stock photography feel
+- Any competing brand logos on suits, caps, or equipment
+
+**Composition:**
+- Bottom-centre area should be darker/less detailed (VelocX logo overlaid there)
+- Leave breathing room — don't crowd every corner
+- Portrait images: subject in upper 60%, pool/water fills lower portion
+- Landscape images: subject left or centre, water/pool atmosphere right
+
+---
+
 ## Step 2 — Synthesise research findings
 
 From your research, determine:
@@ -173,7 +216,8 @@ Content (must include `"type": "image"` at top level):
 
 **Field rules:**
 - `image_type` — one of: `race_action`, `training`, `gear_closeup`, `lifestyle`, `open_water`, `team`
-- `image_prompt` — still required as fallback (under 400 chars, no elaborate descriptions)
+- `image_prompt` — under 400 chars. Reflect VelocX visual style: dark cinematic pool,
+  brand orange accent lighting, no competing logos. Reference the style guide above.
 - `overlay_text` — 2–5 words or `null`
 - `caption` — under 150 words, no hashtags, no engagement bait
 - `engagement_bait` — reaction prompt only, no delivery promise

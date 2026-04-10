@@ -1,13 +1,13 @@
 """
-Local image post test — simulates a full image day pipeline without posting to Facebook.
-
-Writes a sample pending JSON → runs image selection + overlay → saves output to test_output/.
+Local image post test — generates a fresh AI image and applies the brand overlay.
+Always uses Pollinations.ai for generation (same as production).
 
 Usage:
     python scripts/test_image_post.py
     python scripts/test_image_post.py --image-type gear_closeup
-    python scripts/test_image_post.py --image-type lifestyle --text "Train harder."
-    python scripts/test_image_post.py --platform instagram
+    python scripts/test_image_post.py --image-type lifestyle --text "Train harder.\nJaked by VelocX NZ"
+    python scripts/test_image_post.py --platform facebook
+    python scripts/test_image_post.py --use-clean   # use local clean images (faster, no internet)
 
 Image types: race_action, training, gear_closeup, lifestyle, open_water, team
 """
@@ -57,7 +57,7 @@ SAMPLE_PENDING = {
 }
 
 
-def run_test(image_type: str, overlay_text: str | None, platforms: list[str]):
+def run_test(image_type: str, overlay_text: str | None, platforms: list[str], use_clean: bool = False):
     OUTPUT_DIR.mkdir(exist_ok=True)
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -88,14 +88,20 @@ def run_test(image_type: str, overlay_text: str | None, platforms: list[str]):
         print("-" * 55)
         print(f"Platform : {platform.upper()}  ({w}×{h})")
 
-        # Image source: clean image preferred, Pollinations as fallback
-        clean_path = pick_clean_image(img_type)
-        if clean_path:
-            print(f"Source   : clean image — {clean_path.name}")
-            image_bytes = load_clean_image(clean_path, w, h)
+        # Image source
+        if use_clean:
+            clean_path = pick_clean_image(img_type)
+            if clean_path:
+                print(f"Source   : clean image — {clean_path.name}")
+                image_bytes = load_clean_image(clean_path, w, h)
+            else:
+                print(f"Source   : Pollinations.ai (no matching clean image for '{img_type}')")
+                prompt = pdata.get("image_prompt", "competitive swimmer, cinematic dark pool")
+                image_bytes = generate_image(prompt, platform)
         else:
-            print(f"Source   : Pollinations.ai (no clean image found for type '{img_type}')")
-            prompt = pdata.get("image_prompt", "competitive swimmer, cinematic")
+            prompt = pdata.get("image_prompt", "competitive swimmer, cinematic dark pool")
+            print(f"Source   : Pollinations.ai")
+            print(f"Prompt   : {prompt[:80]}{'...' if len(prompt) > 80 else ''}")
             image_bytes = generate_image(prompt, platform)
 
         # Apply overlay
@@ -135,12 +141,16 @@ def main():
         choices=["all", "facebook", "instagram", "tiktok"],
         help="Platform to test (default: all)",
     )
+    parser.add_argument(
+        "--use-clean", action="store_true",
+        help="Use local clean images instead of generating (faster, no internet needed)",
+    )
     args = parser.parse_args()
 
     overlay_text = None if args.text == "none" else args.text
     platforms = list(PLATFORM_KEYS) if args.platform == "all" else [args.platform]
 
-    run_test(args.image_type, overlay_text, platforms)
+    run_test(args.image_type, overlay_text, platforms, use_clean=args.use_clean)
 
 
 if __name__ == "__main__":
