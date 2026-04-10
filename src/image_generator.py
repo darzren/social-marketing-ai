@@ -23,10 +23,15 @@ logger = logging.getLogger(__name__)
 
 # Image dimensions — 1024x1024 square, safe for Facebook, Instagram, TikTok
 IMAGE_SIZE = "1024x1024"
-# Safe zone margin (px) — ~8% on each side
+# Logo position: bottom-center, safe for all platforms
+# Bottom clearance: 130px clears Instagram like-bar (~100px) and TikTok buttons (~150px edge)
+LOGO_BOTTOM_MARGIN = 130
+# Logo width as fraction of image width — 25% is prominent without overwhelming
+LOGO_WIDTH_RATIO = 0.25
+# Semi-transparent backing pad around the logo (px)
+LOGO_BACKING_PAD = 18
+# Safe zone margin for text overlay (px)
 SAFE_MARGIN = 82
-# Logo max width as fraction of image width
-LOGO_WIDTH_RATIO = 0.18
 # Text font size
 FONT_SIZE = 52
 # Brand colors
@@ -101,7 +106,7 @@ def overlay_logo_and_text(
     img = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
     width, height = img.size  # 1024x1024
 
-    # --- Logo overlay ---
+    # --- Logo overlay (bottom-center, safe zone for all platforms) ---
     if logo_path.exists():
         try:
             logo = Image.open(logo_path).convert("RGBA")
@@ -109,10 +114,17 @@ def overlay_logo_and_text(
             logo_target_h = int(logo.height * (logo_target_w / logo.width))
             logo = logo.resize((logo_target_w, logo_target_h), Image.LANCZOS)
 
-            logo_x = width - logo_target_w - SAFE_MARGIN
-            logo_y = height - logo_target_h - SAFE_MARGIN
+            # Center horizontally, clear of platform UI at bottom
+            logo_x = (width - logo_target_w) // 2
+            logo_y = height - logo_target_h - LOGO_BOTTOM_MARGIN
+
+            # Semi-transparent dark backing so logo reads on any background
+            pad = LOGO_BACKING_PAD
+            backing = Image.new("RGBA", (logo_target_w + pad * 2, logo_target_h + pad * 2), (0, 0, 0, 160))
+            img.paste(backing, (logo_x - pad, logo_y - pad), backing)
+
             img.paste(logo, (logo_x, logo_y), logo)
-            logger.info("Logo overlaid successfully.")
+            logger.info("Logo overlaid at bottom-center.")
         except Exception as e:
             logger.warning(f"Logo overlay failed: {e}")
     else:
