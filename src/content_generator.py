@@ -79,8 +79,9 @@ def load_pending_posts(industry: str) -> tuple[dict, Path]:
     with open(pending_path, encoding="utf-8") as f:
         raw = json.load(f)
 
-    # Compose final strings for each platform, preserving raw for archiving
-    composed = {platform: _compose_post(value) for platform, value in raw.items()}
+    # Compose final strings for each platform, skipping non-platform keys like "type"
+    PLATFORM_KEYS = {"facebook", "instagram", "tiktok"}
+    composed = {k: _compose_post(v) for k, v in raw.items() if k in PLATFORM_KEYS}
     return composed, pending_path, raw
 
 

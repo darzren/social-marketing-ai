@@ -97,11 +97,19 @@ def main():
         return
 
     env = get_env()
+    env["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY", "")
     for w in validate_env(env):
         logger.warning(w)
 
-    from src.poster import run
-    results = run(posts=posts, raw=raw, industry=args.industry, env=env, pending_path=pending_path)
+    post_type = raw.get("type", "text")
+    if post_type == "image":
+        logger.info("Post type: IMAGE — running image generation pipeline.")
+        from src.image_generator import run_image_post
+        results = run_image_post(raw=raw, industry=args.industry, env=env, pending_path=pending_path)
+    else:
+        logger.info("Post type: TEXT — running standard post pipeline.")
+        from src.poster import run
+        results = run(posts=posts, raw=raw, industry=args.industry, env=env, pending_path=pending_path)
 
     logger.info("\n--- POSTING RESULTS ---")
     for platform, result in results["platforms"].items():

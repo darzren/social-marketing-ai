@@ -115,6 +115,15 @@
     ]
   },
 
+  "brand_colors": {
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "accent": "#F8A30E",
+    "accent_light": "#A3CEF1"
+  },
+
+  "logo_asset": "assets/logos/velocx_nz_logo.png",
+
   "post_frequency": "1-2 posts daily",
 
   "platforms": ["facebook"],
