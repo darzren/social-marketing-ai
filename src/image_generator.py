@@ -177,18 +177,20 @@ def generate_image(prompt: str, platform: str, openai_api_key: str = "") -> byte
     return _generate_pollinations(prompt, spec["pollinations_w"], spec["pollinations_h"])
 
 
-def _generate_pollinations(prompt: str, width: int, height: int) -> bytes:
+def _generate_pollinations(prompt: str, target_w: int, target_h: int) -> bytes:
     """
     Pollinations.ai — free, no API key, FLUX model.
-    Prompt is capped at 400 chars to keep the URL within safe limits.
-    Retries up to 3 times with a progressively shorter prompt on failure.
+
+    Always generates at 1024×1024 (most reliable size) then smart-crops to
+    the target platform dimensions. Retries with progressively shorter prompts.
     """
     import time
+    from PIL import Image as PILImage
 
     MAX_PROMPT_CHARS = 400
+    GEN_SIZE = 1024          # generate square, crop to target after
     base_url = "https://image.pollinations.ai/prompt/"
 
-    # Truncate at sentence boundary if possible, otherwise hard truncate
     def _truncate(text: str, limit: int) -> str:
         if len(text) <= limit:
             return text
@@ -199,25 +201,50 @@ def _generate_pollinations(prompt: str, width: int, height: int) -> bytes:
     attempts = [
         _truncate(prompt, MAX_PROMPT_CHARS),
         _truncate(prompt, 200),
-        "competitive swimmer in action, dark cinematic athletic photography, brand orange accent lighting, photorealistic",
+        "competitive swimmer in action, dark cinematic pool, orange accent lighting, photorealistic",
     ]
 
+    raw_bytes = None
     for i, p in enumerate(attempts):
         seed = random.randint(1, 999999)
         encoded = urllib.parse.quote(p)
-        url = f"{base_url}{encoded}?width={width}&height={height}&model=flux&nologo=true&seed={seed}"
-        logger.info(f"Pollinations.ai attempt {i + 1}/3 ({len(p)} chars, {width}×{height})...")
+        url = f"{base_url}{encoded}?width={GEN_SIZE}&height={GEN_SIZE}&model=flux&nologo=true&seed={seed}"
+        logger.info(f"Pollinations.ai attempt {i + 1}/3 (prompt {len(p)} chars, {GEN_SIZE}×{GEN_SIZE})...")
         try:
             response = requests.get(url, timeout=180)
             if response.status_code == 200:
-                return response.content
+                raw_bytes = response.content
+                break
             logger.warning(f"Attempt {i + 1} failed: HTTP {response.status_code}")
         except requests.exceptions.RequestException as e:
             logger.warning(f"Attempt {i + 1} request error: {e}")
+        wait = 30 if response.status_code == 429 else 8
         if i < len(attempts) - 1:
-            time.sleep(5)
+            logger.info(f"Waiting {wait}s before retry...")
+            time.sleep(wait)
 
-    raise RuntimeError("Pollinations.ai failed after 3 attempts. Check logs for details.")
+    if raw_bytes is None:
+        raise RuntimeError("Pollinations.ai failed after 3 attempts.")
+
+    # Smart-crop square image to target platform dimensions
+    img = PILImage.open(io.BytesIO(raw_bytes)).convert("RGB")
+    src_w, src_h = img.size
+    target_ratio = target_w / target_h
+    src_ratio = src_w / src_h
+
+    if src_ratio > target_ratio:
+        new_w = int(src_h * target_ratio)
+        left = (src_w - new_w) // 2
+        img = img.crop((left, 0, left + new_w, src_h))
+    else:
+        new_h = int(src_w / target_ratio)
+        img = img.crop((0, 0, src_w, new_h))
+
+    img = img.resize((target_w, target_h), PILImage.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG", quality=95)
+    logger.info(f"Image resized to {target_w}×{target_h} for platform.")
+    return buf.getvalue()
 
 
 def _generate_dalle(prompt: str, api_key: str, dalle_size: str,
