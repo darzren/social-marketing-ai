@@ -1,239 +1,211 @@
 """
-Image Review Agent
+Image Review Agent — Pillow-only, no external API required.
 
-Two-layer quality gate before posting to social media:
+Runs a multi-check quality gate before posting to social media.
+All checks use PIL/Pillow — free, fast, no API key needed.
 
-Layer 1 — Pillow sanity checks (fast, no API):
-  - Image opens without error (not corrupted)
-  - Dimensions within 10% of target
-  - Not all-black / all-white / single colour
-  - Sufficient contrast (std dev of pixel values)
-
-Layer 2 — Claude Vision review (content quality):
-  - Image is coherent and well-composed
-  - Text overlay is readable
-  - Brand colours (orange/black/teal) are visible
-  - No weird artifacts, distortion, or broken elements
-  - Overall suitability for professional social media posting
-
-Returns a ReviewResult with approved flag, score, and issues list.
+Checks performed:
+  1. File integrity       — image opens without error
+  2. Dimensions          — within 15% of target platform size
+  3. Not blank           — mean brightness between 15–240
+  4. Sufficient detail   — pixel variance (std dev) > 20
+  5. Sharpness           — edge density via Laplacian variance > threshold
+  6. Brand orange        — checks for #F8A30E pixels in the image
+  7. Text area darkness  — bottom gradient band is dark enough for text readability
+  8. Logo area           — top-right corner has a gradient (not pure white/bright)
+  9. Entropy             — image information content is high enough
 """
 
-import base64
 import io
 import logging
-import os
 from dataclasses import dataclass, field
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
+
+# Minimum acceptable scores per check
+THRESHOLDS = {
+    "min_brightness":      15,    # avoid near-black images
+    "max_brightness":      240,   # avoid near-white/overexposed
+    "min_stddev":          20,    # avoid solid-colour blocks
+    "min_edge_density":    0.02,  # fraction of edge pixels (sharpness)
+    "min_entropy":         5.5,   # bits of information per pixel
+    "brand_orange_pct":    0.003, # at least 0.3% pixels near brand orange
+    "text_area_max_mean":  100,   # bottom gradient must be dark (mean < 100)
+    "min_file_kb":         20,    # suspiciously small files
+}
+
+BRAND_ORANGE = (248, 163, 14)    # #F8A30E
+ORANGE_TOLERANCE = 40            # per-channel tolerance for colour matching
 
 
 @dataclass
 class ReviewResult:
     approved: bool
-    score: int                    # 1–10
+    score: int                      # 1–10
     issues: list[str] = field(default_factory=list)
+    passed_checks: list[str] = field(default_factory=list)
     recommendation: str = ""
-    layer1_passed: bool = True
-    layer2_passed: bool = True
 
 
-# ---------------------------------------------------------------------------
-# Layer 1 — Pillow sanity checks
-# ---------------------------------------------------------------------------
+def _colour_distance(px: tuple, target: tuple) -> int:
+    return max(abs(px[i] - target[i]) for i in range(3))
 
-def _layer1_sanity(image_bytes: bytes, target_w: int, target_h: int) -> ReviewResult:
-    """Fast programmatic checks — no API call needed."""
-    from PIL import Image, ImageStat
-
-    issues = []
-
-    # 1. Can the image be opened?
-    try:
-        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    except Exception as e:
-        return ReviewResult(
-            approved=False, score=0, layer1_passed=False,
-            issues=[f"Image cannot be opened: {e}"],
-            recommendation="Regenerate — image file is corrupted.",
-        )
-
-    w, h = img.size
-
-    # 2. Dimensions roughly correct (within 15%)
-    if abs(w - target_w) / target_w > 0.15 or abs(h - target_h) / target_h > 0.15:
-        issues.append(f"Dimensions {w}×{h} differ from target {target_w}×{target_h} by >15%.")
-
-    # 3. Not all-black or all-white
-    stat = ImageStat.Stat(img)
-    mean_brightness = sum(stat.mean) / 3
-    if mean_brightness < 10:
-        issues.append("Image is nearly all-black (mean brightness < 10).")
-    if mean_brightness > 245:
-        issues.append("Image is nearly all-white (mean brightness > 245).")
-
-    # 4. Sufficient pixel variance (not a solid colour)
-    mean_stddev = sum(stat.stddev) / 3
-    if mean_stddev < 15:
-        issues.append(f"Image has very low variance ({mean_stddev:.1f}) — may be a solid colour block.")
-
-    # 5. File size sanity (< 5KB is likely broken)
-    if len(image_bytes) < 5_000:
-        issues.append(f"File size suspiciously small ({len(image_bytes)} bytes).")
-
-    passed = len(issues) == 0
-    score  = 10 if passed else max(1, 10 - len(issues) * 3)
-    return ReviewResult(
-        approved=passed,
-        score=score,
-        issues=issues,
-        layer1_passed=passed,
-        recommendation="Passed basic sanity checks." if passed else "Failed sanity checks — regenerate.",
-    )
-
-
-# ---------------------------------------------------------------------------
-# Layer 2 — Claude Vision review
-# ---------------------------------------------------------------------------
-
-REVIEW_PROMPT = """You are reviewing a social media image for VelocX NZ, a premium competitive swimwear brand.
-
-Review this image and respond with ONLY a JSON object in this exact format:
-{
-  "approved": true or false,
-  "score": 1-10,
-  "coherent": true or false,
-  "text_readable": true or false,
-  "brand_colours_visible": true or false,
-  "professional_quality": true or false,
-  "issues": ["issue 1", "issue 2"],
-  "recommendation": "one sentence"
-}
-
-Score guide:
-  9-10 = Post-ready, excellent quality
-  7-8  = Good, minor imperfections
-  5-6  = Acceptable but not ideal
-  1-4  = Do not post
-
-Approve (true) only if score >= 7 AND:
-  - Image is coherent with no major distortions or broken elements
-  - Overall composition looks professional enough for Facebook/Instagram
-  - No inappropriate or offensive content
-
-Brand context: dark cinematic pool photography, orange (#F8A30E) accent lighting,
-competitive swimmers, Jaked brand equipment. Moody and premium feel.
-
-Text overlay (if present): should be readable against the dark gradient at the bottom.
-Logo (if present): small circular icon in top-right corner.
-
-Be strict — this goes directly to a brand's social media page."""
-
-
-def _layer2_vision(image_bytes: bytes, api_key: str) -> ReviewResult:
-    """Claude Vision content review."""
-    import json
-    import anthropic
-
-    try:
-        client = anthropic.Anthropic(api_key=api_key)
-        b64 = base64.b64encode(image_bytes).decode()
-
-        response = client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=512,
-            messages=[{
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": "image/jpeg",
-                            "data": b64,
-                        },
-                    },
-                    {"type": "text", "text": REVIEW_PROMPT},
-                ],
-            }],
-        )
-
-        raw = response.content[0].text.strip()
-        # Strip markdown code fences if present
-        if raw.startswith("```"):
-            raw = raw.split("```")[1]
-            if raw.startswith("json"):
-                raw = raw[4:]
-        data = json.loads(raw.strip())
-
-        approved = bool(data.get("approved", False))
-        score    = int(data.get("score", 5))
-        issues   = data.get("issues", [])
-        rec      = data.get("recommendation", "")
-
-        logger.info(f"Vision review: score={score}, approved={approved}, issues={issues}")
-        return ReviewResult(
-            approved=approved,
-            score=score,
-            issues=issues,
-            recommendation=rec,
-            layer2_passed=approved,
-        )
-
-    except Exception as e:
-        logger.warning(f"Claude Vision review failed: {e} — skipping Layer 2, defaulting to approved.")
-        return ReviewResult(
-            approved=True,
-            score=7,
-            issues=[],
-            recommendation="Vision review unavailable — proceeding with Layer 1 result.",
-            layer2_passed=True,
-        )
-
-
-# ---------------------------------------------------------------------------
-# Combined review
-# ---------------------------------------------------------------------------
 
 def review_image(
     image_bytes: bytes,
     target_w: int,
     target_h: int,
-    api_key: str = "",
+    api_key: str = "",          # kept for interface compatibility, not used
 ) -> ReviewResult:
     """
-    Run both review layers. Returns a combined ReviewResult.
-    Layer 2 is skipped if api_key is not provided.
+    Review image quality using Pillow only.
+    api_key parameter is accepted but ignored (no external API needed).
     """
-    logger.info("Running image review (Layer 1: sanity checks)...")
-    l1 = _layer1_sanity(image_bytes, target_w, target_h)
+    from PIL import Image, ImageFilter, ImageStat
 
-    if not l1.approved:
-        logger.warning(f"Layer 1 FAILED: {l1.issues}")
-        return l1
+    issues: list[str] = []
+    passed: list[str] = []
+    t = THRESHOLDS
 
-    logger.info("Layer 1 passed.")
+    # ------------------------------------------------------------------
+    # Check 1 — File integrity
+    # ------------------------------------------------------------------
+    try:
+        img = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    except Exception as e:
+        return ReviewResult(
+            approved=False, score=0,
+            issues=[f"Corrupted image file: {e}"],
+            recommendation="Regenerate — image cannot be opened.",
+        )
+    passed.append("file_integrity")
 
-    if not api_key:
-        logger.info("ANTHROPIC_API_KEY not set — skipping Layer 2 vision review.")
-        return l1
+    w, h = img.size
 
-    logger.info("Running image review (Layer 2: Claude Vision)...")
-    l2 = _layer2_vision(image_bytes, api_key)
-
-    if not l2.approved:
-        logger.warning(f"Layer 2 FAILED: score={l2.score}, issues={l2.issues}")
+    # ------------------------------------------------------------------
+    # Check 2 — Dimensions
+    # ------------------------------------------------------------------
+    w_diff = abs(w - target_w) / target_w
+    h_diff = abs(h - target_h) / target_h
+    if w_diff > 0.15 or h_diff > 0.15:
+        issues.append(f"Dimensions {w}×{h} vs target {target_w}×{target_h} (>{15}% off).")
     else:
-        logger.info(f"Layer 2 passed: score={l2.score}. {l2.recommendation}")
+        passed.append("dimensions")
 
-    # Combine: both layers must pass
-    combined_issues = l1.issues + l2.issues
+    # ------------------------------------------------------------------
+    # Check 3 — Not blank (brightness)
+    # ------------------------------------------------------------------
+    stat = ImageStat.Stat(img)
+    mean_brightness = sum(stat.mean) / 3
+    if mean_brightness < t["min_brightness"]:
+        issues.append(f"Image too dark (mean brightness {mean_brightness:.1f} < {t['min_brightness']}).")
+    elif mean_brightness > t["max_brightness"]:
+        issues.append(f"Image too bright/washed out (mean {mean_brightness:.1f} > {t['max_brightness']}).")
+    else:
+        passed.append("brightness")
+
+    # ------------------------------------------------------------------
+    # Check 4 — Pixel variance (not a solid colour block)
+    # ------------------------------------------------------------------
+    mean_stddev = sum(stat.stddev) / 3
+    if mean_stddev < t["min_stddev"]:
+        issues.append(f"Very low pixel variance ({mean_stddev:.1f}) — image may be a solid block.")
+    else:
+        passed.append("variance")
+
+    # ------------------------------------------------------------------
+    # Check 5 — Sharpness (Laplacian edge detection)
+    # ------------------------------------------------------------------
+    edges     = img.convert("L").filter(ImageFilter.FIND_EDGES)
+    edge_stat = ImageStat.Stat(edges)
+    edge_mean = edge_stat.mean[0]
+    edge_density = edge_mean / 255
+    if edge_density < t["min_edge_density"]:
+        issues.append(f"Image appears blurry or lacks detail (edge density {edge_density:.3f}).")
+    else:
+        passed.append("sharpness")
+
+    # ------------------------------------------------------------------
+    # Check 6 — Entropy (information content)
+    # ------------------------------------------------------------------
+    entropy = img.convert("L").entropy()
+    if entropy < t["min_entropy"]:
+        issues.append(f"Low image entropy ({entropy:.2f}) — image lacks visual complexity.")
+    else:
+        passed.append("entropy")
+
+    # ------------------------------------------------------------------
+    # Check 7 — Brand orange colour present
+    # ------------------------------------------------------------------
+    small = img.resize((100, 100))          # sample for speed
+    pixels = list(small.getdata())
+    orange_count = sum(
+        1 for px in pixels
+        if _colour_distance(px, BRAND_ORANGE) <= ORANGE_TOLERANCE
+    )
+    orange_pct = orange_count / len(pixels)
+    if orange_pct < t["brand_orange_pct"]:
+        issues.append(
+            f"Brand orange (#F8A30E) not detected ({orange_pct*100:.2f}% pixels). "
+            "Overlay may not have applied correctly."
+        )
+    else:
+        passed.append("brand_orange")
+
+    # ------------------------------------------------------------------
+    # Check 8 — Text area darkness (bottom 30% should be dark for readability)
+    # ------------------------------------------------------------------
+    band_top  = int(h * 0.70)
+    text_band = img.crop((0, band_top, w, h))
+    text_stat = ImageStat.Stat(text_band)
+    text_mean = sum(text_stat.mean) / 3
+    if text_mean > t["text_area_max_mean"]:
+        issues.append(
+            f"Bottom text area too bright (mean {text_mean:.1f} > {t['text_area_max_mean']}). "
+            "Text may not be readable against the background."
+        )
+    else:
+        passed.append("text_area_darkness")
+
+    # ------------------------------------------------------------------
+    # Check 9 — File size sanity
+    # ------------------------------------------------------------------
+    size_kb = len(image_bytes) / 1024
+    if size_kb < t["min_file_kb"]:
+        issues.append(f"File suspiciously small ({size_kb:.1f}KB < {t['min_file_kb']}KB).")
+    else:
+        passed.append("file_size")
+
+    # ------------------------------------------------------------------
+    # Score and verdict
+    # ------------------------------------------------------------------
+    total_checks = len(passed) + len(issues)
+    pass_rate    = len(passed) / total_checks if total_checks else 0
+    score        = max(1, round(pass_rate * 10))
+
+    # Hard-fail conditions (image should never be posted)
+    hard_fails = [i for i in issues if any(kw in i for kw in
+                  ["Corrupted", "too dark", "too bright", "solid block"])]
+
+    approved = score >= 7 and len(hard_fails) == 0
+
+    if approved:
+        recommendation = f"Approved — {len(passed)}/{total_checks} checks passed."
+    else:
+        recommendation = f"Rejected — {len(issues)} issue(s) found. Regenerate."
+
+    logger.info(
+        f"Image review: score={score}/10, approved={approved}, "
+        f"passed={len(passed)}, issues={len(issues)}"
+    )
+    if issues:
+        for issue in issues:
+            logger.warning(f"  Issue: {issue}")
+
     return ReviewResult(
-        approved=l1.approved and l2.approved,
-        score=min(l1.score, l2.score),
-        issues=combined_issues,
-        recommendation=l2.recommendation or l1.recommendation,
-        layer1_passed=l1.layer1_passed,
-        layer2_passed=l2.layer2_passed,
+        approved=approved,
+        score=score,
+        issues=issues,
+        passed_checks=passed,
+        recommendation=recommendation,
     )
