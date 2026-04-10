@@ -65,6 +65,19 @@ PLATFORM_SPECS = {
 
 PLATFORM_KEYS = {"facebook", "instagram", "tiktok"}
 
+# Clean images directory
+CLEAN_IMAGES_DIR = Path("assets/clean_images")
+
+# Keyword hints used to loosely match filenames to image_type
+IMAGE_TYPE_HINTS = {
+    "race_action":  ["race", "action", "butterfly", "breaststroke", "freestyle", "DSC_70", "SaveClip", "SnapInsta"],
+    "training":     ["train", "drill", "DSC_69", "DSC_70"],
+    "gear_closeup": ["gear", "suit", "flat", "product", "jaked_ "],
+    "lifestyle":    ["DSC_69", "poolside", "portrait"],
+    "open_water":   ["open", "ocean", "sea", "harbour"],
+    "team":         ["team", "group", "club"],
+}
+
 # Brand colors
 BRAND_ORANGE = "#F8A30E"
 # Bottom gradient (for overlay_text area)
@@ -85,6 +98,65 @@ TEXT_BACKING_ALPHA  = 0      # no pill backing — text sits on gradient band
 def _hex_to_rgb(hex_color: str) -> tuple[int, int, int]:
     h = hex_color.lstrip("#")
     return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+
+
+# ---------------------------------------------------------------------------
+# Clean image selection
+# ---------------------------------------------------------------------------
+
+def pick_clean_image(image_type: str, used_images: list[str] | None = None) -> Path | None:
+    """
+    Pick a clean image from assets/clean_images/ that matches the image_type.
+    Avoids recently used images where possible.
+    Returns None if no clean images are available.
+    """
+    if not CLEAN_IMAGES_DIR.exists():
+        return None
+
+    all_images = [
+        p for p in CLEAN_IMAGES_DIR.iterdir()
+        if p.suffix.lower() in (".jpg", ".jpeg", ".png") and p.name != ".gitkeep"
+    ]
+    if not all_images:
+        return None
+
+    used = set(used_images or [])
+
+    # Try to match by image_type hints first
+    hints = IMAGE_TYPE_HINTS.get(image_type, [])
+    preferred = [p for p in all_images if any(h.lower() in p.name.lower() for h in hints)]
+    unused_preferred = [p for p in preferred if p.name not in used]
+    unused_any = [p for p in all_images if p.name not in used]
+
+    pool = unused_preferred or unused_any or preferred or all_images
+    chosen = random.choice(pool)
+    logger.info(f"Clean image selected: {chosen.name} (type={image_type})")
+    return chosen
+
+
+def load_clean_image(image_path: Path, target_w: int, target_h: int) -> bytes:
+    """Load and centre-crop a clean image to the target platform dimensions."""
+    from PIL import Image as PILImage
+
+    img = PILImage.open(image_path).convert("RGB")
+    src_w, src_h = img.size
+    target_ratio = target_w / target_h
+    src_ratio = src_w / src_h
+
+    if src_ratio > target_ratio:
+        # Wider than target — crop sides, keep centre
+        new_w = int(src_h * target_ratio)
+        left = (src_w - new_w) // 2
+        img = img.crop((left, 0, left + new_w, src_h))
+    else:
+        # Taller than target — crop bottom, keep top (subject usually at top)
+        new_h = int(src_w / target_ratio)
+        img = img.crop((0, 0, src_w, new_h))
+
+    img = img.resize((target_w, target_h), PILImage.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG", quality=95)
+    return buf.getvalue()
 
 
 # ---------------------------------------------------------------------------
@@ -380,6 +452,18 @@ def run_image_post(raw: dict, industry: str, env: dict, pending_path: Path) -> d
             results["platforms"][platform] = {"success": False, "error": "image_prompt missing"}
         return results
 
+    # Build list of recently used clean images to avoid repeats
+    used_images: list[str] = []
+    data_posted = Path("data/content_posted")
+    if data_posted.exists():
+        recent = sorted(data_posted.glob(f"{industry}*_posted.json"))[-7:]
+        for pf in recent:
+            try:
+                d = json.loads(pf.read_text(encoding="utf-8"))
+                used_images.append(d.get("content", {}).get("clean_image", ""))
+            except Exception:
+                pass
+
     # Generate and post per active platform
     for platform, platform_data in raw.items():
         if platform not in PLATFORM_KEYS or not isinstance(platform_data, dict):
@@ -387,10 +471,20 @@ def run_image_post(raw: dict, industry: str, env: dict, pending_path: Path) -> d
 
         spec = PLATFORM_SPECS.get(platform, PLATFORM_SPECS["facebook"])
         w, h = spec["pollinations_w"], spec["pollinations_h"]
-        logger.info(f"Processing {platform} image ({w}×{h})...")
+        image_type = platform_data.get("image_type", "race_action")
+        logger.info(f"Processing {platform} image ({w}×{h}, type={image_type})...")
 
         try:
-            image_bytes = generate_image(image_prompt, platform, openai_key)
+            # Prefer clean images; fall back to Pollinations / DALL-E
+            clean_path = pick_clean_image(image_type, used_images)
+            if clean_path:
+                logger.info(f"Using clean image: {clean_path.name}")
+                image_bytes = load_clean_image(clean_path, w, h)
+                raw["clean_image"] = clean_path.name   # saved to archive for history
+            else:
+                logger.info("No clean image found — generating via Pollinations/DALL-E.")
+                image_bytes = generate_image(image_prompt, platform, openai_key)
+
             image_bytes = overlay_logo_and_text(image_bytes, logo_path, platform, overlay_text)
 
             caption = _compose_caption(platform_data)
