@@ -1,0 +1,46 @@
+name: Health Check & Auto-Retry
+
+on:
+  schedule:
+    - cron: '23 21 * * *'   # 9:23am NZT (20 min after daily post agent at 9:03am)
+  workflow_dispatch:          # allow manual trigger from GitHub Actions UI
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv
+
+      - name: Write credentials
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          mkdir -p config/credentials
+          printf "FACEBOOK_PAGE_ID=%s\nFACEBOOK_ACCESS_TOKEN=%s\nOPENAI_API_KEY=%s\n" \
+            "$FACEBOOK_PAGE_ID" "$FACEBOOK_ACCESS_TOKEN" "$OPENAI_API_KEY" \
+            > config/credentials/velocx_nz.env
+
+      - name: Run health check
+        run: python src/health_check.py --industry velocx_nz
+
+      - name: Commit retry file (if written)
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data/content_ready/ data/content_posted/
+          git diff --staged --quiet || (git commit -m "health-check: auto-retry velocx_nz $(date +'%Y%m%d_%H%M%S')" && git push)
