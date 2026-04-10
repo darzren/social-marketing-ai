@@ -41,24 +41,24 @@ PLATFORM_SPECS = {
         "pollinations_w": 1200,
         "pollinations_h": 630,
         "dalle_size": "1792x1024",
-        "logo_bottom_margin": 60,
-        "logo_width_ratio": 0.22,
+        "logo_bottom_margin": 30,
+        "logo_width_ratio": 0.55,    # wide ratio so height clamp drives the size
         "text_safe_margin": 60,
     },
     "instagram": {
         "pollinations_w": 1080,
         "pollinations_h": 1350,
         "dalle_size": "1024x1792",
-        "logo_bottom_margin": 140,
-        "logo_width_ratio": 0.25,
+        "logo_bottom_margin": 110,
+        "logo_width_ratio": 0.45,
         "text_safe_margin": 80,
     },
     "tiktok": {
         "pollinations_w": 1080,
         "pollinations_h": 1920,
         "dalle_size": "1024x1792",
-        "logo_bottom_margin": 240,   # TikTok has tall interaction UI at bottom
-        "logo_width_ratio": 0.25,
+        "logo_bottom_margin": 200,
+        "logo_width_ratio": 0.45,
         "text_safe_margin": 100,
     },
 }
@@ -67,9 +67,19 @@ PLATFORM_KEYS = {"facebook", "instagram", "tiktok"}
 
 # Brand colors
 BRAND_ORANGE = "#F8A30E"
-LOGO_BACKING_ALPHA = 160   # 0–255, semi-transparent black backing behind logo
-FONT_SIZE_BASE = 52        # scales with image width
-TEXT_BACKING_ALPHA = 200
+# Bottom gradient (for overlay_text area)
+BOTTOM_BAND_RATIO   = 0.30   # fraction of image height
+BOTTOM_MAX_ALPHA    = 210
+# Top gradient (behind logo in top corner)
+TOP_BAND_RATIO      = 0.22   # fraction of image height
+TOP_MAX_ALPHA       = 160
+# Logo corner margin as fraction of image width
+LOGO_CORNER_MARGIN_RATIO = 0.04
+# Logo sized relative to image width
+LOGO_WIDTH_TARGET_RATIO  = 0.18
+# Text overlay
+FONT_SIZE_BASE      = 52
+TEXT_BACKING_ALPHA  = 0      # no pill backing — text sits on gradient band
 
 
 def _hex_to_rgb(hex_color: str) -> tuple[int, int, int]:
@@ -167,6 +177,45 @@ def _generate_dalle(prompt: str, api_key: str, dalle_size: str,
 # Logo and text overlay
 # ---------------------------------------------------------------------------
 
+def _apply_gradient(img: "Image.Image", width: int, y_start: int, band_height: int,
+                    max_alpha: int, direction: str = "bottom_up") -> None:
+    """
+    Paint a full-width gradient band onto img.
+    direction='bottom_up': transparent at top, max_alpha at bottom (bottom band).
+    direction='top_down':  max_alpha at top, transparent at bottom (top band).
+    """
+    from PIL import Image
+
+    strip = Image.new("L", (1, band_height))
+    for y in range(band_height):
+        t = y / max(band_height - 1, 1)
+        if direction == "bottom_up":
+            alpha = int(t ** 1.6 * max_alpha)
+        else:
+            alpha = int((1 - t) ** 1.6 * max_alpha)
+        strip.putpixel((0, y), alpha)
+
+    alpha_mask = strip.resize((width, band_height), Image.BILINEAR)
+    black_band = Image.new("RGBA", (width, band_height), (0, 0, 0, 255))
+    img.paste(black_band, (0, y_start), alpha_mask)
+
+
+def _load_font(size: int):
+    from PIL import ImageFont
+    for fp in [
+        "C:/Windows/Fonts/arialbd.ttf",
+        "C:/Windows/Fonts/arial.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
+    ]:
+        try:
+            return ImageFont.truetype(fp, size)
+        except Exception:
+            continue
+    return ImageFont.load_default()
+
+
 def overlay_logo_and_text(
     image_bytes: bytes,
     logo_path: Path,
@@ -174,75 +223,63 @@ def overlay_logo_and_text(
     overlay_text: str | None = None,
 ) -> bytes:
     """
-    Overlay the brand logo (bottom-center) and optional text (upper-left).
-    Positioning and sizing are platform-specific.
+    Overlay matching reference promo style:
+      - Logo icon: top-right corner on a subtle dark gradient
+      - overlay_text: bottom-center on a dark gradient, brand orange
     """
-    from PIL import Image, ImageDraw, ImageFont
+    from PIL import Image, ImageDraw
 
     spec = PLATFORM_SPECS.get(platform, PLATFORM_SPECS["facebook"])
-    logo_bottom_margin = spec["logo_bottom_margin"]
-    logo_width_ratio = spec["logo_width_ratio"]
     text_safe_margin = spec["text_safe_margin"]
 
     img = Image.open(io.BytesIO(image_bytes)).convert("RGBA")
     width, height = img.size
 
-    # --- Logo overlay (bottom-center, within platform safe zone) ---
+    corner_margin = int(width * LOGO_CORNER_MARGIN_RATIO)
+
+    # --- Top gradient (behind logo) ---
+    top_band_h = int(height * TOP_BAND_RATIO)
+    _apply_gradient(img, width, 0, top_band_h, TOP_MAX_ALPHA, direction="top_down")
+
+    # --- Logo — top-right corner ---
     if logo_path.exists():
         try:
             logo = Image.open(logo_path).convert("RGBA")
-            logo_w = int(width * logo_width_ratio)
-            logo_h = int(logo.height * (logo_w / logo.width))
-            logo = logo.resize((logo_w, logo_h), Image.LANCZOS)
+            logo_target_w = int(width * LOGO_WIDTH_TARGET_RATIO)
+            logo_target_h = int(logo.height * (logo_target_w / logo.width))
+            # Clamp so it stays within the top gradient band
+            if logo_target_h > int(top_band_h * 0.80):
+                logo_target_h = int(top_band_h * 0.80)
+                logo_target_w = int(logo.width * (logo_target_h / logo.height))
+            logo = logo.resize((logo_target_w, logo_target_h), Image.LANCZOS)
 
-            logo_x = (width - logo_w) // 2
-            logo_y = height - logo_h - logo_bottom_margin
-
-            # Semi-transparent dark backing for readability on any background
-            pad = int(logo_w * 0.08)
-            backing = Image.new(
-                "RGBA",
-                (logo_w + pad * 2, logo_h + pad * 2),
-                (0, 0, 0, LOGO_BACKING_ALPHA),
-            )
-            img.paste(backing, (logo_x - pad, logo_y - pad), backing)
+            logo_x = width - logo_target_w - corner_margin
+            logo_y = corner_margin
             img.paste(logo, (logo_x, logo_y), logo)
-            logger.info(f"Logo overlaid at bottom-center for {platform} ({width}×{height}).")
+            logger.info(f"Logo ({logo_target_w}×{logo_target_h}) at top-right for {platform}.")
         except Exception as e:
             logger.warning(f"Logo overlay failed: {e}")
     else:
-        logger.warning(f"Logo not found at {logo_path} — skipping logo overlay.")
+        logger.warning(f"Logo not found at {logo_path} — skipping.")
 
-    # --- Text overlay (upper-left, within safe zone) ---
+    # --- overlay_text — bottom-center on dark gradient ---
     if overlay_text:
+        bottom_band_h = int(height * BOTTOM_BAND_RATIO)
+        _apply_gradient(img, width, height - bottom_band_h, bottom_band_h,
+                        BOTTOM_MAX_ALPHA, direction="bottom_up")
+
         draw = ImageDraw.Draw(img)
         orange_rgb = _hex_to_rgb(BRAND_ORANGE) + (255,)
-
-        # Scale font size proportionally to image width
         font_size = max(36, int(FONT_SIZE_BASE * (width / 1080)))
-        font = None
-        for fp in [
-            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
-            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
-            "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
-        ]:
-            try:
-                font = ImageFont.truetype(fp, font_size)
-                break
-            except Exception:
-                continue
-        if font is None:
-            font = ImageFont.load_default()
+        font = _load_font(font_size)
 
-        tx, ty = text_safe_margin, text_safe_margin
-        pad = 14
-        bbox = draw.textbbox((tx, ty), overlay_text, font=font)
-        draw.rectangle(
-            [bbox[0] - pad, bbox[1] - pad, bbox[2] + pad, bbox[3] + pad],
-            fill=(0, 0, 0, TEXT_BACKING_ALPHA),
-        )
+        # Centre text horizontally, sit in the lower third of the bottom band
+        bbox = draw.textbbox((0, 0), overlay_text, font=font)
+        text_w = bbox[2] - bbox[0]
+        tx = (width - text_w) // 2
+        ty = height - bottom_band_h // 2 - (bbox[3] - bbox[1]) // 2
         draw.text((tx, ty), overlay_text, fill=orange_rgb, font=font)
-        logger.info(f"Text overlay added for {platform}: '{overlay_text}'")
+        logger.info(f"Text '{overlay_text}' centered at bottom for {platform}.")
 
     final = img.convert("RGB")
     buf = io.BytesIO()
