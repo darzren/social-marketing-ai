@@ -81,18 +81,20 @@ IMAGE_TYPE_HINTS = {
 # Brand colors
 BRAND_ORANGE = "#F8A30E"
 # Bottom gradient (for overlay_text area)
-BOTTOM_BAND_RATIO   = 0.30   # fraction of image height
-BOTTOM_MAX_ALPHA    = 210
+BOTTOM_BAND_RATIO   = 0.45   # taller band to accommodate more text
+BOTTOM_MAX_ALPHA    = 230
 # Top gradient (behind logo in top corner)
-TOP_BAND_RATIO      = 0.22   # fraction of image height
+TOP_BAND_RATIO      = 0.22
 TOP_MAX_ALPHA       = 160
 # Logo corner margin as fraction of image width
 LOGO_CORNER_MARGIN_RATIO = 0.04
-# Logo sized relative to image width
-LOGO_WIDTH_TARGET_RATIO  = 0.18
-# Text overlay
-FONT_SIZE_BASE      = 52
-TEXT_BACKING_ALPHA  = 0      # no pill backing — text sits on gradient band
+# Logo sized relative to image width — bigger for prominence
+LOGO_WIDTH_TARGET_RATIO  = 0.28
+# Text overlay — headline font size base (scales with image width)
+FONT_SIZE_HEADLINE  = 88
+FONT_SIZE_SUBTEXT   = 52
+# Max text width as fraction of image width (for word wrap)
+TEXT_MAX_WIDTH_RATIO = 0.88
 
 
 def _hex_to_rgb(hex_color: str) -> tuple[int, int, int]:
@@ -335,6 +337,9 @@ def overlay_logo_and_text(
         logger.warning(f"Logo not found at {logo_path} — skipping.")
 
     # --- overlay_text — bottom-center on dark gradient ---
+    # overlay_text supports multi-line via "\n":
+    #   Line 1 (before first \n) → large headline in brand orange
+    #   Line 2+ (after first \n) → smaller subtext in white
     if overlay_text:
         bottom_band_h = int(height * BOTTOM_BAND_RATIO)
         _apply_gradient(img, width, height - bottom_band_h, bottom_band_h,
@@ -342,16 +347,76 @@ def overlay_logo_and_text(
 
         draw = ImageDraw.Draw(img)
         orange_rgb = _hex_to_rgb(BRAND_ORANGE) + (255,)
-        font_size = max(36, int(FONT_SIZE_BASE * (width / 1080)))
-        font = _load_font(font_size)
+        white_rgb  = (255, 255, 255, 255)
 
-        # Centre text horizontally, sit in the lower third of the bottom band
-        bbox = draw.textbbox((0, 0), overlay_text, font=font)
-        text_w = bbox[2] - bbox[0]
-        tx = (width - text_w) // 2
-        ty = height - bottom_band_h // 2 - (bbox[3] - bbox[1]) // 2
-        draw.text((tx, ty), overlay_text, fill=orange_rgb, font=font)
-        logger.info(f"Text '{overlay_text}' centered at bottom for {platform}.")
+        scale = width / 1080
+        headline_size = max(52, int(FONT_SIZE_HEADLINE * scale))
+        subtext_size  = max(32, int(FONT_SIZE_SUBTEXT  * scale))
+        max_text_w    = int(width * TEXT_MAX_WIDTH_RATIO)
+
+        headline_font = _load_font(headline_size)
+        subtext_font  = _load_font(subtext_size)
+
+        # Split into headline and subtext lines
+        lines = overlay_text.split("\n")
+        headline = lines[0].strip()
+        sublines = [l.strip() for l in lines[1:] if l.strip()]
+
+        def wrap_line(text: str, font, max_w: int) -> list[str]:
+            """Wrap a single line to fit within max_w pixels."""
+            import textwrap
+            words = text.split()
+            wrapped = []
+            current = ""
+            for word in words:
+                test = f"{current} {word}".strip()
+                bbox = draw.textbbox((0, 0), test, font=font)
+                if bbox[2] - bbox[0] <= max_w:
+                    current = test
+                else:
+                    if current:
+                        wrapped.append(current)
+                    current = word
+            if current:
+                wrapped.append(current)
+            return wrapped or [text]
+
+        headline_lines = wrap_line(headline, headline_font, max_text_w)
+        sub_wrapped = []
+        for sl in sublines:
+            sub_wrapped.extend(wrap_line(sl, subtext_font, max_text_w))
+
+        # Calculate total text block height
+        line_gap = int(headline_size * 0.15)
+        sub_gap  = int(headline_size * 0.25)
+
+        h_line_h  = headline_size + line_gap
+        total_h   = len(headline_lines) * h_line_h
+        if sub_wrapped:
+            total_h += sub_gap + len(sub_wrapped) * (subtext_size + line_gap)
+
+        # Position: vertically centred in the bottom band, with bottom padding
+        band_top = height - bottom_band_h
+        bottom_pad = int(bottom_band_h * 0.12)
+        ty = height - total_h - bottom_pad
+
+        # Draw headline lines (brand orange)
+        for hline in headline_lines:
+            bbox = draw.textbbox((0, 0), hline, font=headline_font)
+            tx = (width - (bbox[2] - bbox[0])) // 2
+            draw.text((tx, ty), hline, fill=orange_rgb, font=headline_font)
+            ty += h_line_h
+
+        # Draw subtext lines (white)
+        if sub_wrapped:
+            ty += sub_gap - line_gap
+            for sline in sub_wrapped:
+                bbox = draw.textbbox((0, 0), sline, font=subtext_font)
+                tx = (width - (bbox[2] - bbox[0])) // 2
+                draw.text((tx, ty), sline, fill=white_rgb, font=subtext_font)
+                ty += subtext_size + line_gap
+
+        logger.info(f"Text overlay ({len(headline_lines)} headline + {len(sub_wrapped)} sublines) for {platform}.")
 
     final = img.convert("RGB")
     buf = io.BytesIO()

@@ -73,18 +73,20 @@ Based on research (Step 2) and history (Step 3), decide:
 
 **Image type**: pick the trending type that hasn't been used recently.
 
-**Overlay text**: 2–5 words maximum. Must:
-- Stop the scroll immediately
-- Match the trending hook style you found in research
-- Be in sentence case or all-caps (match what's performing)
-- Avoid generic phrases like "Shop now" or "Check this out"
+**Overlay text**: Use `\n` to separate lines. Structure:
+- **Line 1** — large headline in brand orange (2–5 words, punchy hook)
+- **Line 2** — smaller subtext in white (brand name, product line, or supporting line)
+- **Line 3** — optional (website URL or second supporting line)
 
-Good examples based on current trends:
-- `"Built different."`
-- `"Race day ready."`
-- `"0.01 seconds matters."`
-- `"Train like you mean it."`
-- `"The water doesn't lie."`
+The renderer will auto-wrap long lines and scale font size per platform.
+
+Format: `"Headline here.\nSubtext line.\nOptional third line."`
+
+Good examples:
+- `"Built to race.\nJaked competitive swimwear\nvelocx.co.nz"`
+- `"0.01 seconds matters.\nPremium Italian race suits\nvelocx.co.nz"`
+- `"Train like you mean it.\nJaked by VelocX NZ"`
+- `"Race day ready.\nShop the full Jaked range\nvelocx.co.nz"`
 
 Or set `overlay_text` to `null` if research shows clean images without text are outperforming.
 

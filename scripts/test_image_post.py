@@ -37,7 +37,7 @@ SAMPLE_PENDING = {
         "content_angle": "The race start — 2 seconds that decide everything",
         "image_type": "race_action",
         "image_prompt": "competitive swimmer race dive off blocks, dark dramatic pool, orange accent lighting, cinematic",
-        "overlay_text": "Built to race.",
+        "overlay_text": "Built to race.\nJaked competitive swimwear\nvelocx.co.nz",
         "caption": (
             "The race starts before you hit the water.\n\n"
             "Elite swimmers know the first 15 metres are where medals are won — "
