@@ -40,11 +40,37 @@ def _hex_to_rgb(hex_color: str) -> tuple[int, int, int]:
     return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
 
 
-def generate_dalle_image(prompt: str, api_key: str) -> bytes:
-    """Call DALL-E 3 and return the image as bytes."""
+def generate_image(prompt: str, openai_api_key: str = "") -> bytes:
+    """
+    Generate image from prompt.
+    Uses DALL-E 3 if OPENAI_API_KEY is provided, otherwise Pollinations.ai (free).
+    """
+    if openai_api_key:
+        return _generate_dalle(prompt, openai_api_key)
+    return _generate_pollinations(prompt)
+
+
+def _generate_pollinations(prompt: str) -> bytes:
+    """Pollinations.ai — free, no API key, FLUX model, 1024x1024."""
+    import random
+    import urllib.parse
+    seed = random.randint(1, 999999)
+    encoded = urllib.parse.quote(prompt)
+    url = (
+        f"https://image.pollinations.ai/prompt/{encoded}"
+        f"?width=1024&height=1024&model=flux&nologo=true&seed={seed}"
+    )
+    logger.info("Generating image with Pollinations.ai (free / FLUX model)...")
+    response = requests.get(url, timeout=120)
+    response.raise_for_status()
+    return response.content
+
+
+def _generate_dalle(prompt: str, api_key: str) -> bytes:
+    """DALL-E 3 via OpenAI API — ~$0.04 per image."""
     from openai import OpenAI
     client = OpenAI(api_key=api_key)
-    logger.info("Calling DALL-E 3...")
+    logger.info("Generating image with DALL-E 3...")
     response = client.images.generate(
         model="dall-e-3",
         prompt=prompt,
@@ -53,7 +79,7 @@ def generate_dalle_image(prompt: str, api_key: str) -> bytes:
         n=1,
     )
     image_url = response.data[0].url
-    logger.info(f"DALL-E 3 image URL received, downloading...")
+    logger.info("DALL-E 3 image URL received, downloading...")
     img_response = requests.get(image_url, timeout=60)
     img_response.raise_for_status()
     return img_response.content
@@ -194,16 +220,13 @@ def run_image_post(raw: dict, industry: str, env: dict, pending_path: Path) -> d
     page_id = env.get("FACEBOOK_PAGE_ID", "")
     access_token = env.get("FACEBOOK_ACCESS_TOKEN", "")
 
-    if not openai_key:
-        logger.error("OPENAI_API_KEY not set — cannot generate image.")
-        results["platforms"]["facebook"] = {"success": False, "error": "OPENAI_API_KEY missing"}
-    elif not image_prompt:
+    if not image_prompt:
         logger.error("image_prompt is empty — cannot generate image.")
         results["platforms"]["facebook"] = {"success": False, "error": "image_prompt missing"}
     else:
         try:
-            # 1. Generate image
-            image_bytes = generate_dalle_image(image_prompt, openai_key)
+            # 1. Generate image (free via Pollinations.ai, or DALL-E 3 if OPENAI_API_KEY set)
+            image_bytes = generate_image(image_prompt, openai_key)
 
             # 2. Overlay logo + text
             logo_path = Path(f"assets/logos/{industry}_logo.png")

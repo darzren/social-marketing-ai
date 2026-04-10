@@ -23,7 +23,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests python-dotenv openai pillow
+        run: pip install requests python-dotenv pillow
 
       - name: Write credentials
         env:
