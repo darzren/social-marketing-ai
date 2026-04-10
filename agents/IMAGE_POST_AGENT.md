@@ -27,6 +27,33 @@ Cross-reference against recent post history to ensure:
 - The visual theme (e.g. underwater shot, race start, training session) has not been used recently
 - The content angle is fresh and not repetitive
 
+**Save the research brief** to:
+```
+data/research/<industry>_TIMESTAMP_image_research.json
+```
+
+Format:
+```json
+{
+  "industry": "velocx_nz",
+  "post_type": "image",
+  "researched_at": "20260406_090000",
+  "trending_visual_themes": [
+    "underwater dolphin kick POV",
+    "dramatic race start silhouette",
+    "flat lay of elite race gear"
+  ],
+  "recommended_visual_style": "cinematic underwater action shot with dramatic orange lighting",
+  "content_angle": "The 15-metre underwater phase — where races are won and lost",
+  "trending_hashtags": ["#SwimPhotography", "#PoolLife"],
+  "key_insight": "High-contrast underwater action shots are outperforming poolside content 3:1 in the swim niche this week.",
+  "previously_used_visual_themes": [
+    "race start off the blocks",
+    "flat lay gear photo"
+  ]
+}
+```
+
 ---
 
 ## Step 2 — Craft the DALL-E 3 image prompt

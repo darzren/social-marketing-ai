@@ -100,10 +100,12 @@ In summary:
 - Look for: high-performing image styles, visual themes, seasonal hooks, NZ-relevant angles
 - Use WebFetch on any useful resources found
 - Cross-reference against post history — avoid visual themes already used recently
-- Craft a detailed DALL-E 3 prompt in brand style (dark, cinematic, athletic)
+- Synthesise into a research brief and **save it** to:
+  `data/research/velocx_nz_TIMESTAMP_image_research.json`
+- Craft a detailed DALL-E/Pollinations prompt in brand style (dark, cinematic, athletic)
 - Brand colors: black `#000000`, white `#FFFFFF`, orange `#F8A30E`, light blue `#A3CEF1`
-- Leave bottom-right corner uncluttered (VelocX logo will be overlaid there)
-- Leave upper area clear if overlay_text will be used
+- Leave bottom-center area uncluttered below the main subject (VelocX logo overlaid there)
+- Leave upper-left area clear if overlay_text will be used
 
 **Write the image pending file:**
 ```
@@ -143,7 +145,7 @@ Replace GITHUB_TOKEN with the token provided in your session prompt.
 ### Step 7 — Report
 Confirm:
 - Today's post type (text or image) and why
-- Topics/angles skipped due to post history
-- The research brief filename and key insight
+- Topics/angles or visual themes skipped due to post history
+- The research brief filename (`*_research.json` or `*_image_research.json`) and key insight
 - The post filename and a one-line summary of today's angle
 - Whether the push succeeded
