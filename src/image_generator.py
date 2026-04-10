@@ -567,10 +567,39 @@ def run_image_post(raw: dict, industry: str, env: dict, pending_path: Path) -> d
         logger.info(f"Processing {platform} image ({w}×{h}, type={image_type})...")
 
         try:
-            logger.info("Generating fresh image via Pollinations/DALL-E...")
-            image_bytes = generate_image(image_prompt, platform, openai_key)
+            from src.image_reviewer import review_image
 
-            image_bytes = overlay_logo_and_text(image_bytes, logo_path, platform, overlay_text)
+            spec   = PLATFORM_SPECS.get(platform, PLATFORM_SPECS["facebook"])
+            tw, th = spec["pollinations_w"], spec["pollinations_h"]
+            anthropic_key = env.get("ANTHROPIC_API_KEY", "")
+
+            image_bytes = None
+            MAX_RETRIES = 3
+            for attempt in range(1, MAX_RETRIES + 1):
+                logger.info(f"Generating image — attempt {attempt}/{MAX_RETRIES}...")
+                candidate = generate_image(image_prompt, platform, openai_key)
+                candidate = overlay_logo_and_text(candidate, logo_path, platform, overlay_text)
+
+                review = review_image(candidate, tw, th, anthropic_key)
+                if review.approved:
+                    logger.info(f"Image approved (score={review.score}). {review.recommendation}")
+                    image_bytes = candidate
+                    break
+                else:
+                    logger.warning(
+                        f"Image rejected on attempt {attempt} "
+                        f"(score={review.score}): {review.issues}"
+                    )
+                    if attempt < MAX_RETRIES:
+                        logger.info("Regenerating with a new seed...")
+
+            if image_bytes is None:
+                logger.error("Image failed review after all attempts — skipping this platform.")
+                results["platforms"][platform] = {
+                    "success": False,
+                    "error": f"Image quality review failed after {MAX_RETRIES} attempts.",
+                }
+                continue
 
             caption = _compose_caption(platform_data)
             poster_fn = PLATFORM_POSTERS.get(platform)

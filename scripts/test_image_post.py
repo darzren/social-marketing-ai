@@ -27,6 +27,7 @@ from src.image_generator import (
     overlay_logo_and_text,
     _compose_caption,
 )
+from src.image_reviewer import review_image
 
 OUTPUT_DIR = Path("test_output")
 LOGO_PATH  = Path("assets/logos/velocx_nz_logo.png")
@@ -57,7 +58,8 @@ SAMPLE_PENDING = {
 }
 
 
-def run_test(image_type: str, overlay_text: str | None, platforms: list[str], use_clean: bool = False):
+def run_test(image_type: str, overlay_text: str | None, platforms: list[str],
+             use_clean: bool = False, run_review: bool = False):
     OUTPUT_DIR.mkdir(exist_ok=True)
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -116,6 +118,18 @@ def run_test(image_type: str, overlay_text: str | None, platforms: list[str], us
         out_path.write_bytes(result)
         print(f"Saved    : {out_path.name}")
 
+        # Optional review step
+        if run_review:
+            import os
+            api_key = os.getenv("ANTHROPIC_API_KEY", "")
+            review = review_image(result, w, h, api_key)
+            status = "APPROVED" if review.approved else "REJECTED"
+            print(f"Review   : {status} (score={review.score}/10)")
+            if review.issues:
+                for issue in review.issues:
+                    print(f"           - {issue}")
+            print(f"           {review.recommendation}")
+
         # Show caption preview
         caption = _compose_caption(pdata)
         print(f"Caption  :\n{caption[:200]}{'...' if len(caption) > 200 else ''}\n")
@@ -145,12 +159,17 @@ def main():
         "--use-clean", action="store_true",
         help="Use local clean images instead of generating (faster, no internet needed)",
     )
+    parser.add_argument(
+        "--review", action="store_true",
+        help="Run image review after generation (Layer 1 always; Layer 2 needs ANTHROPIC_API_KEY)",
+    )
     args = parser.parse_args()
 
     overlay_text = None if args.text == "none" else args.text
     platforms = list(PLATFORM_KEYS) if args.platform == "all" else [args.platform]
 
-    run_test(args.image_type, overlay_text, platforms, use_clean=args.use_clean)
+    run_test(args.image_type, overlay_text, platforms,
+             use_clean=args.use_clean, run_review=args.review)
 
 
 if __name__ == "__main__":
