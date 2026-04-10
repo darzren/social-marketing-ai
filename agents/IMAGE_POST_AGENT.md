@@ -71,9 +71,11 @@ The image must:
 **Good prompt structure:**
 ```
 [Subject + action] in a [setting], [lighting style], [colour palette matching brand],
-[camera angle/perspective], [mood/feel], bottom-right corner has clear space for branding,
-no brand logos visible on swimwear, photorealistic, ultra high detail, cinematic quality
+[camera angle/perspective], [mood/feel], no brand logos on swimwear, photorealistic, cinematic quality
 ```
+
+**IMPORTANT: Keep the prompt under 400 characters.** Longer prompts cause URL errors.
+Be specific but concise — pick the 3–4 most important visual details, not every element.
 
 **Example subjects by content pillar:**
 - Performance/Training: swimmer mid-stroke underwater, race dive off blocks, dolphin kick sequence

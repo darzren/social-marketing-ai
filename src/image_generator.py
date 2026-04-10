@@ -94,17 +94,46 @@ def generate_image(prompt: str, platform: str, openai_api_key: str = "") -> byte
 
 
 def _generate_pollinations(prompt: str, width: int, height: int) -> bytes:
-    """Pollinations.ai — free, no API key, FLUX model."""
-    seed = random.randint(1, 999999)
-    encoded = urllib.parse.quote(prompt)
-    url = (
-        f"https://image.pollinations.ai/prompt/{encoded}"
-        f"?width={width}&height={height}&model=flux&nologo=true&seed={seed}"
-    )
-    logger.info(f"Generating {width}×{height} image with Pollinations.ai (FLUX)...")
-    response = requests.get(url, timeout=180)
-    response.raise_for_status()
-    return response.content
+    """
+    Pollinations.ai — free, no API key, FLUX model.
+    Prompt is capped at 400 chars to keep the URL within safe limits.
+    Retries up to 3 times with a progressively shorter prompt on failure.
+    """
+    import time
+
+    MAX_PROMPT_CHARS = 400
+    base_url = "https://image.pollinations.ai/prompt/"
+
+    # Truncate at sentence boundary if possible, otherwise hard truncate
+    def _truncate(text: str, limit: int) -> str:
+        if len(text) <= limit:
+            return text
+        cut = text[:limit]
+        last_period = cut.rfind(".")
+        return (cut[:last_period + 1] if last_period > limit * 0.6 else cut).strip()
+
+    attempts = [
+        _truncate(prompt, MAX_PROMPT_CHARS),
+        _truncate(prompt, 200),
+        "competitive swimmer in action, dark cinematic athletic photography, brand orange accent lighting, photorealistic",
+    ]
+
+    for i, p in enumerate(attempts):
+        seed = random.randint(1, 999999)
+        encoded = urllib.parse.quote(p)
+        url = f"{base_url}{encoded}?width={width}&height={height}&model=flux&nologo=true&seed={seed}"
+        logger.info(f"Pollinations.ai attempt {i + 1}/3 ({len(p)} chars, {width}×{height})...")
+        try:
+            response = requests.get(url, timeout=180)
+            if response.status_code == 200:
+                return response.content
+            logger.warning(f"Attempt {i + 1} failed: HTTP {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            logger.warning(f"Attempt {i + 1} request error: {e}")
+        if i < len(attempts) - 1:
+            time.sleep(5)
+
+    raise RuntimeError("Pollinations.ai failed after 3 attempts. Check logs for details.")
 
 
 def _generate_dalle(prompt: str, api_key: str, dalle_size: str,
