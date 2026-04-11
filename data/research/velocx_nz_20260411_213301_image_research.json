@@ -1,0 +1,22 @@
+{
+  "industry": "velocx_nz",
+  "post_type": "image",
+  "researched_at": "20260411_213301",
+  "platform_insights": {
+    "facebook": "Image albums and visual storytelling are outperforming single images in 2026; educational and community-driven content with strong shareability is driving engagement. Median image engagement rate is 4.55% on Facebook. Squad/team recognition posts generate high shares as followers tagging teammates amplifies organic reach.",
+    "instagram": "Dark cinematic sports photography is a dominant visual trend in 2026 — luxury performance brand aesthetics resonate because consumers connect with mood and story over product. Directional low lighting, deep colour grading, and chiaroscuro contrast are preferred over bright cheerful setups for performance brands.",
+    "tiktok": "Swim team camaraderie and relatable competitive swimming culture are consistently performing well. Viral content includes squad dynamics, team moments, and collective achievement content. Swim club identity and belonging content generates strong comment volume from athletes tagging teammates."
+  },
+  "recommended_image_type": "team",
+  "recommended_visual_style": "dark cinematic indoor pool, coach briefing squad or multiple swimmers in lanes, dramatic overhead orange-amber spotlights, deep teal water, high contrast chiaroscuro — collective energy, not solo athlete",
+  "recommended_overlay_style": "short punchy 3-4 words, squad/collective theme, motivational statement referencing the team",
+  "trending_hooks": [
+    "Squad culture content performing strongly on TikTok and Facebook — tagging teammates drives comment volume",
+    "Post-event recognition content gets high shares — NZ Age Group Championships just finished April 8-12 at Hawke's Bay",
+    "Team identity and collective belonging resonate deeply with competitive swimmers aged 16-40",
+    "Cinematic dark sports photography with warm amber accent lighting is the dominant performance brand aesthetic on Instagram in 2026"
+  ],
+  "key_insight": "The 2026 NZ Age Group Swimming Championships just wrapped (April 8, Hawke's Bay Regional Aquatic Centre), making squad and club recognition content highly timely and shareable with the NZ competitive swimming community right now.",
+  "previously_used_image_types": ["race_action", "open_water", "training"],
+  "trending_hashtags": ["#NZAgeGroups", "#SwimClub", "#SwimSquad", "#AgeGroupSwimming", "#SwimNZChamps"]
+}
