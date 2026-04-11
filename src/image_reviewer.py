@@ -1,19 +1,17 @@
 """
-Image Review Agent — Pillow-only, no external API required.
+Image Review Agent — two optional layers.
 
-Runs a multi-check quality gate before posting to social media.
-All checks use PIL/Pillow — free, fast, no API key needed.
+Layer 1 (always runs, no API):
+  Pillow sanity + quality checks — catches corrupted, blank, wrong-size,
+  missing overlay, unreadable text area, low-detail images.
 
-Checks performed:
-  1. File integrity       — image opens without error
-  2. Dimensions          — within 15% of target platform size
-  3. Not blank           — mean brightness between 15–240
-  4. Sufficient detail   — pixel variance (std dev) > 20
-  5. Sharpness           — edge density via Laplacian variance > threshold
-  6. Brand orange        — checks for #F8A30E pixels in the image
-  7. Text area darkness  — bottom gradient band is dark enough for text readability
-  8. Logo area           — top-right corner has a gradient (not pure white/bright)
-  9. Entropy             — image information content is high enough
+Layer 2 (optional, needs ANTHROPIC_API_KEY):
+  Claude Vision (Haiku) — checks content the Pillow layer can't see:
+  correct subject matter, no weird AI artifacts, brand aesthetic match,
+  professional composition. Costs ~$0.001 per image (~$0.27/year at 1/day).
+
+If ANTHROPIC_API_KEY is not set, Layer 1 alone is used and the image is
+posted as long as it passes all technical checks.
 """
 
 import io
@@ -51,15 +49,114 @@ def _colour_distance(px: tuple, target: tuple) -> int:
     return max(abs(px[i] - target[i]) for i in range(3))
 
 
+# ---------------------------------------------------------------------------
+# Layer 2 — Claude Vision (optional)
+# ---------------------------------------------------------------------------
+
+VISION_PROMPT = """You are reviewing an AI-generated social media image for VelocX NZ,
+a premium competitive swimwear brand (Jaked brand, New Zealand).
+
+Respond with ONLY a JSON object — no other text:
+{
+  "approved": true or false,
+  "score": 1-10,
+  "subject_correct": true or false,
+  "no_artifacts": true or false,
+  "brand_aesthetic": true or false,
+  "issues": ["issue 1", "issue 2"],
+  "recommendation": "one sentence"
+}
+
+Score guide: 9-10 excellent, 7-8 good, 5-6 marginal, 1-4 reject.
+Approve (true) only if score >= 7 AND no major issues.
+
+What to check:
+- Subject is swimming / swimwear / pool / athlete related (not random scene)
+- No severe AI artifacts (melted body parts, extra limbs, broken text on objects)
+- Dark cinematic pool aesthetic — moody, premium, athletic feel
+- Looks like professional sports photography, not generic stock photo
+- Brand orange (#F8A30E) accent lighting visible somewhere
+- Bottom area is darker (for text overlay readability)
+
+Be strict — this goes directly to a brand's social media page."""
+
+
+def _layer2_vision(image_bytes: bytes, api_key: str) -> ReviewResult:
+    """Claude Vision content review — ~$0.001 per image."""
+    import base64
+    import json
+
+    try:
+        import anthropic
+        client = anthropic.Anthropic(api_key=api_key)
+        b64 = base64.b64encode(image_bytes).decode()
+
+        response = client.messages.create(
+            model="claude-haiku-4-5-20251001",
+            max_tokens=400,
+            messages=[{
+                "role": "user",
+                "content": [
+                    {
+                        "type": "image",
+                        "source": {
+                            "type": "base64",
+                            "media_type": "image/jpeg",
+                            "data": b64,
+                        },
+                    },
+                    {"type": "text", "text": VISION_PROMPT},
+                ],
+            }],
+        )
+
+        raw = response.content[0].text.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```")[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+        data  = json.loads(raw.strip())
+
+        approved = bool(data.get("approved", False))
+        score    = int(data.get("score", 5))
+        issues   = data.get("issues", [])
+        rec      = data.get("recommendation", "")
+
+        logger.info(f"Layer 2 (Vision): score={score}, approved={approved}")
+        if issues:
+            for issue in issues:
+                logger.warning(f"  Vision issue: {issue}")
+
+        return ReviewResult(
+            approved=approved, score=score,
+            issues=issues, recommendation=rec,
+        )
+
+    except ImportError:
+        logger.warning("anthropic package not installed — skipping Layer 2.")
+        return ReviewResult(approved=True, score=8, recommendation="Layer 2 skipped (package missing).")
+    except Exception as e:
+        logger.warning(f"Layer 2 vision review error: {e} — defaulting to approved.")
+        return ReviewResult(approved=True, score=7, recommendation=f"Layer 2 unavailable: {e}")
+
+
+# ---------------------------------------------------------------------------
+# Combined review entry point
+# ---------------------------------------------------------------------------
+
 def review_image(
     image_bytes: bytes,
     target_w: int,
     target_h: int,
-    api_key: str = "",          # kept for interface compatibility, not used
+    api_key: str = "",
 ) -> ReviewResult:
     """
     Review image quality using Pillow only.
     api_key parameter is accepted but ignored (no external API needed).
+    """
+    """
+    Run Layer 1 (Pillow) always. Run Layer 2 (Claude Vision) only if api_key is set.
+    Both layers must pass for the image to be approved.
     """
     from PIL import Image, ImageFilter, ImageStat
 
@@ -190,22 +287,45 @@ def review_image(
     approved = score >= 7 and len(hard_fails) == 0
 
     if approved:
-        recommendation = f"Approved — {len(passed)}/{total_checks} checks passed."
+        recommendation = f"Layer 1 passed — {len(passed)}/{total_checks} checks."
     else:
-        recommendation = f"Rejected — {len(issues)} issue(s) found. Regenerate."
+        recommendation = f"Layer 1 rejected — {len(issues)} issue(s). Regenerate."
 
     logger.info(
-        f"Image review: score={score}/10, approved={approved}, "
-        f"passed={len(passed)}, issues={len(issues)}"
+        f"Layer 1 (Pillow): score={score}/10, approved={approved}, "
+        f"passed={len(passed)}/{total_checks}"
     )
     if issues:
         for issue in issues:
-            logger.warning(f"  Issue: {issue}")
+            logger.warning(f"  Layer 1 issue: {issue}")
+
+    l1_result = ReviewResult(
+        approved=approved, score=score,
+        issues=issues, passed_checks=passed,
+        recommendation=recommendation,
+    )
+
+    if not l1_result.approved:
+        return l1_result
+
+    # ------------------------------------------------------------------
+    # Layer 2 — Claude Vision (only if API key provided)
+    # ------------------------------------------------------------------
+    if not api_key:
+        logger.info("ANTHROPIC_API_KEY not set — Layer 2 skipped, using Layer 1 result.")
+        return l1_result
+
+    logger.info("Running Layer 2 (Claude Vision)...")
+    l2 = _layer2_vision(image_bytes, api_key)
+
+    combined_score  = min(l1_result.score, l2.score)
+    combined_issues = l1_result.issues + l2.issues
+    combined_passed = l1_result.approved and l2.approved
 
     return ReviewResult(
-        approved=approved,
-        score=score,
-        issues=issues,
+        approved=combined_passed,
+        score=combined_score,
+        issues=combined_issues,
         passed_checks=passed,
-        recommendation=recommendation,
+        recommendation=l2.recommendation or l1_result.recommendation,
     )
