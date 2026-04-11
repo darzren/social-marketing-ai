@@ -1,0 +1,52 @@
+name: Insights & Strategy - VelocX NZ
+
+on:
+  schedule:
+    - cron: '0 18 * * 0'   # Sunday 6am NZT (UTC+13 in summer) — weekly strategy refresh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  insights:
+    runs-on: ubuntu-latest
+    environment: velocx_nz
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv anthropic
+
+      - name: Write credentials
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          mkdir -p config/credentials
+          printf "FACEBOOK_PAGE_ID=%s\nFACEBOOK_ACCESS_TOKEN=%s\nANTHROPIC_API_KEY=%s\n" \
+            "$FACEBOOK_PAGE_ID" \
+            "$FACEBOOK_ACCESS_TOKEN" \
+            "$ANTHROPIC_API_KEY" \
+            > config/credentials/velocx_nz.env
+
+      - name: Run performance tracker
+        run: python src/performance_tracker.py --industry velocx_nz --days 30
+
+      - name: Run strategy updater
+        run: python src/strategy_updater.py --industry velocx_nz
+
+      - name: Commit insights, strategy, and updated brand config
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data/insights/ config/strategy/ config/industries/velocx_nz.json
+          git diff --staged --quiet || (git commit -m "insights: velocx_nz strategy update $(date +'%Y%m%d')" && git push)

@@ -13,3 +13,7 @@ logs/
 
 # Local test output — never commit
 test_output/
+
+# Strategy and insights are committed (tracked for auditing + scheduler reads them)
+# data/insights/  → tracked
+# config/strategy/ → tracked
