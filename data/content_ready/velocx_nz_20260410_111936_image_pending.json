@@ -1,26 +1,25 @@
 {
   "type": "image",
   "facebook": {
-    "content_angle": "Race day truth — the raw emotional moment a NZ age group swimmer touches the timing pad at NAGS 2026 and the scoreboard delivers its verdict",
-    "image_prompt": "A competitive swimmer at the finish wall of an indoor competition swimming pool, both hands pressed against an electronic timing pad mounted on the pool wall, head tilted back with swim goggles pushed up to the forehead, frozen-motion water droplets streaming off the face and arms, expression of raw emotional release — triumph mixed with exhaustion, warm orange-amber stadium overhead spotlights creating dramatic highlights on wet athletic skin, deep teal pool water surrounding the swimmer with shimmering lane rope reflections below the surface, blurred lane dividers flanking the subject on either side, faint out-of-focus crowd and competition infrastructure in the deep background, high-contrast chiaroscuro lighting with deep dark shadows beyond the illuminated athlete, no brand logos visible on sleek dark racing suit, bottom-right corner of the frame is clear dark pool water with no subject — reserved for branding overlay, upper-left zone minimal and dark — just ambient pool atmosphere and soft light reflections, photorealistic ultra high detail, cinematic film grade, 8K professional sports photography quality, teal-and-orange color palette with anamorphic bokeh in background, 1024x1024 square format",
-    "overlay_text": "Own The Wall.",
-    "caption": "This is what all of it is for.\n\nThe 5am alarms. The double sessions. The sets that hurt. The days when the clock wasn't moving and you trained anyway.\n\nRight now in Hastings, NZ's best age group swimmers are living this exact moment at NAGS 2026 — Day 3 of 5 is under way. The timing pad doesn't negotiate. It simply gives you the truth about how hard you prepared.\n\nEvery fraction of a second earned in training shows up right here — in technique, in mindset, and in gear that didn't slow you down. The athletes at that wall know this.\n\nShop the Jaked range at velocx.co.nz",
-    "engagement_bait": "Drop a 🏆 if you've lived this moment — or tag a swimmer who's racing at NAGS right now! 👇",
+    "content_angle": "Race day intensity — swimmer launching off the blocks, cinematic dark pool atmosphere",
+    "image_type": "race_action",
+    "image_prompt": "competitive swimmer diving off starting blocks, dark cinematic indoor pool, dramatic orange-amber overhead spotlights, deep teal water, frozen motion water explosion, sleek dark racing suit, no logos, high contrast chiaroscuro lighting, professional sports photography, bottom area dark for text overlay",
+    "overlay_text": "Built to race.\nJaked competitive swimwear\nvelocx.co.nz",
+    "caption": "Two seconds. That's all you get off the blocks.\n\nElite swimmers know the race is decided before the first stroke — the dive, the underwater phase, the breakout. Every millisecond matters.\n\nJaked race suits are engineered to hold your streamline longer, so every start works harder for you.\n\nShop the full range at velocx.co.nz",
+    "engagement_bait": "Drop a fire emoji if you drill your race starts. 🔥",
     "hashtags": [
       "#VelocxNZ",
       "#Jaked",
       "#SwimFast",
-      "#TrainToWin",
+      "#RaceReady",
       "#CompetitiveSwimming",
-      "#NZSwimmers",
       "#SwimNZ",
-      "#SwimTraining",
-      "#NAGS2026",
-      "#SwimNZ2026",
-      "#AgeGroupSwimming",
-      "#RaceDay",
-      "#SwimPhotography"
+      "#NZSwimmers",
+      "#SwimStart",
+      "#TrainToWin",
+      "#SwimLife",
+      "#RaceDay"
     ],
-    "call_to_action": "Is someone you know racing at NAGS 2026 this week? 👇"
+    "call_to_action": "What's your weakness off the blocks?"
   }
 }
