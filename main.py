@@ -98,6 +98,7 @@ def main():
 
     env = get_env()
     env["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY", "")
+    env["ANTHROPIC_API_KEY"] = os.getenv("ANTHROPIC_API_KEY", "")
     for w in validate_env(env):
         logger.warning(w)
 
