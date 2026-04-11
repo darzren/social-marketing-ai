@@ -52,6 +52,8 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
       - name: Run content scheduler
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ inputs.force }}" = "true" ]; then
             python src/content_scheduler.py --industry velocx_nz --force
