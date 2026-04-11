@@ -124,9 +124,67 @@
 
   "logo_asset": "assets/logos/velocx_nz_logo.png",
 
-  "post_frequency": "1-2 posts daily",
-
   "platforms": ["facebook"],
+  "_note": "Instagram and TikTok are in platforms config but credentials not yet configured. Update 'platforms' array and add credentials to config/credentials/velocx_nz.env when ready.",
 
-  "_note": "Instagram and TikTok are in platforms config but credentials not yet configured. Update 'platforms' array and add credentials to config/credentials/velocx_nz.env when ready."
+  "posting_schedule": {
+    "timezone": "Pacific/Auckland",
+    "daily_time": "09:03",
+    "health_check_offset_minutes": 20,
+    "frequency": "daily",
+    "alternating_types": true
+  },
+
+  "voice_guide": {
+    "headline_style": "short punchy, 2–5 words, imperative or bold statement",
+    "caption_max_words": 150,
+    "caption_style": "hook first, story/value middle, soft CTA at end — no hashtags in body",
+    "overlay_examples": [
+      "Built to race.",
+      "0.01 seconds matters.",
+      "Train like you mean it.",
+      "Race day ready.",
+      "Own the wall."
+    ]
+  },
+
+  "image_style": {
+    "description": "Dark, moody, cinematic — professional sports/editorial photography quality",
+    "photography_style": [
+      "dark moody cinematic — not bright or cheerful",
+      "rich deep blue/teal pool water as primary background colour",
+      "dramatic overhead or side lighting creating strong highlights and deep shadows",
+      "high contrast — subjects pop against dark surroundings",
+      "motion blur or frozen-motion water droplets add energy",
+      "shallow depth of field — subject sharp, background softly blurred"
+    ],
+    "avoid": [
+      "bright sunny outdoor pools (too casual)",
+      "white backgrounds or studio setups",
+      "smiling lifestyle shots (we want focused, competitive, intense)",
+      "generic stock photography feel",
+      "any competing brand logos on suits, caps, or equipment"
+    ],
+    "composition_rules": [
+      "bottom-centre area should be darker/less detailed — VelocX logo is overlaid there",
+      "leave breathing room — don't crowd every corner",
+      "portrait images: subject in upper 60%, pool/water fills lower portion",
+      "landscape images: subject left or centre, water/pool atmosphere right"
+    ],
+    "color_palette": {
+      "pool_water": "deep teal #007B8A to midnight blue #001F3F",
+      "accent_lighting": "warm orange-amber #F8A30E from stadium overhead spots",
+      "athlete_skin": "warm highlighted tones against dark water",
+      "suit": "sleek dark racing suit, no visible competing brand logos"
+    },
+    "prompt_base": "dark cinematic indoor pool, dramatic orange-amber overhead spotlights, deep teal water, high contrast chiaroscuro lighting, professional sports photography, bottom area dark for text overlay",
+    "image_types": {
+      "race_action": "athlete mid-stroke (butterfly, breaststroke, freestyle), race dive off blocks, underwater dolphin kick, finish wall touch. Water exploding around the body. Jaked swim cap visible.",
+      "training": "athlete drilling in lane, coach on deck, early morning empty pool with single swimmer, pull buoy, paddles",
+      "gear_closeup": "sleek racing swimsuit flat lay on pool tiles or submerged in water, goggles with pool reflection, Jaked cap detail. Deep blue/teal water as backdrop.",
+      "lifestyle": "athlete poolside post-session, towel around shoulders, focused expression, warm stadium lighting, wet hair",
+      "open_water": "New Zealand coastal swim, ocean or harbour, dramatic sky, wetsuit or racing kit",
+      "team": "swim club warm-up, lane full of swimmers, coach briefing athletes pre-race"
+    }
+  }
 }

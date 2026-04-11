@@ -3,6 +3,9 @@
 Runs 20 minutes after the daily post agent.
 Verifies today's post succeeded. If not, diagnoses and fixes automatically.
 
+> **This agent is brand-agnostic.** Substitute `{INDUSTRY}` with the value set
+> in your session entry file (e.g. `velocx_nz`).
+
 ---
 
 ## Step 1 — Get today's date prefix
@@ -12,9 +15,10 @@ python -c "import datetime; print(datetime.datetime.now().strftime('%Y%m%d'))"
 Note the output (e.g. `20260410`) — used to match today's files.
 
 ## Step 2 — Check post status
+
 Use Glob to find files matching today's date prefix:
-- `data/content_posted/velocx_nz_TODAY*_posted.json`
-- `data/content_ready/velocx_nz_TODAY*_pending.json`
+- `data/content_posted/{INDUSTRY}_TODAY*_posted.json`
+- `data/content_ready/{INDUSTRY}_TODAY*_pending.json`
 
 Read any files found. Determine which case applies:
 
@@ -28,6 +32,7 @@ Read any files found. Determine which case applies:
 ---
 
 ## Step 3A — All good
+
 Report success. Include:
 - The posted filename
 - Platform results
@@ -40,17 +45,17 @@ Report success. Include:
 Read the `results` field in the posted file to identify the error.
 
 **Image generation errors** (Pollinations 500, timeout, etc.):
-1. Read the original image_prompt from `content.facebook.image_prompt`
+1. Read the original `image_prompt` from `content.facebook.image_prompt`
 2. Shorten it to under 300 characters
 3. Write a new image pending file:
-   `data/content_ready/velocx_nz_NEWTIMESTAMP_image_pending.json`
+   `data/content_ready/{INDUSTRY}_NEWTIMESTAMP_image_pending.json`
    with the shortened prompt and same caption/hashtags
-4. Push to GitHub → triggers GitHub Actions to retry
+4. Push to GitHub → triggers the post workflow to retry
 
 **Facebook API errors** (token expired, permissions):
 - These cannot be fixed automatically
 - Report the exact error message
-- Instruct the user to check the Facebook token in GitHub Secrets
+- Instruct the user to check the Facebook token in the `{INDUSTRY}` GitHub Environment secrets
 
 **All other errors**:
 - Report the error
@@ -75,22 +80,23 @@ git config user.email agent@claude.ai
 git config user.name Claude-Agent
 git remote set-url origin https://GITHUB_TOKEN@github.com/darzren/social-marketing-ai.git
 git add data/content_ready/
-git commit -m "retry: re-trigger GitHub Actions for velocx_nz"
+git commit -m "retry: re-trigger GitHub Actions for {INDUSTRY}"
 git push
 ```
 
 ---
 
-## Step 4D — No files at all (CCR daily agent failed)
+## Step 4D — No files at all (daily agent failed)
 
 The daily agent never completed. Run the full daily job now:
-Read and follow `agents/DAILY_POST_AGENT.md` exactly as if it were the morning run.
+Read and follow `agents/brands/{INDUSTRY}.md` → which calls `agents/DAILY_POST_AGENT.md`.
 
 ---
 
 ## Step 5 — Report
 
 Always end with a clear summary:
+- **Brand**: `{INDUSTRY}`
 - **Status**: OK / Fixed and retried / Cannot fix automatically
 - **Root cause**: what went wrong
 - **Action taken**: what was done to resolve it

@@ -9,3 +9,7 @@ logs/
 # data/ folders are tracked in git:
 # - content_ready/  agent commits pending posts here → triggers GitHub Actions
 # - content_posted/ permanent archive of every published post
+# - research/       saved by agent, tracked for auditing
+
+# Local test output — never commit
+test_output/

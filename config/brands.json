@@ -1,0 +1,34 @@
+{
+  "active_brands": [
+    {
+      "industry": "velocx_nz",
+      "display_name": "VelocX NZ",
+      "config": "config/industries/velocx_nz.json",
+      "agent_entry": "agents/brands/velocx_nz.md",
+      "workflow_post": ".github/workflows/post_velocx_nz.yml",
+      "workflow_health": ".github/workflows/health_velocx_nz.yml",
+      "github_environment": "velocx_nz",
+      "active": true
+    }
+  ],
+
+  "add_new_brand": {
+    "description": "Follow these steps exactly to add a new brand to the system.",
+    "steps": [
+      "1. Copy config/industries/velocx_nz.json → config/industries/{industry}.json. Fill in ALL fields — especially image_style, voice_guide, hashtags, brand_colors, and posting_schedule.",
+      "2. Copy agents/brands/velocx_nz.md → agents/brands/{industry}.md. Change the INDUSTRY value and display name.",
+      "3. Copy .github/workflows/post_velocx_nz.yml → .github/workflows/post_{industry}.yml. Replace all occurrences of 'velocx_nz' with '{industry}'.",
+      "4. Copy .github/workflows/health_velocx_nz.yml → .github/workflows/health_{industry}.yml. Replace all occurrences of 'velocx_nz' with '{industry}'. Update the cron schedule to the brand's posting time.",
+      "5. In GitHub repo → Settings → Environments → New environment. Name it '{industry}'.",
+      "6. Add these secrets to the new environment: FACEBOOK_PAGE_ID, FACEBOOK_ACCESS_TOKEN, ANTHROPIC_API_KEY. Add INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_USER_ID if using Instagram.",
+      "7. Add logo file: assets/logos/{industry}_logo.png (PNG with transparency, recommended 2000x2000).",
+      "8. Register the new brand in this file under active_brands.",
+      "9. Commit and push. The new brand is now live."
+    ],
+    "notes": [
+      "Each brand has its own GitHub Environment with isolated secrets — no cross-brand credential leakage.",
+      "The path filter in each post workflow ('{industry}_*_pending.json') ensures only that brand's pending files trigger its workflow.",
+      "Posting schedules are independent — each brand's health_check workflow has its own cron."
+    ]
+  }
+}
