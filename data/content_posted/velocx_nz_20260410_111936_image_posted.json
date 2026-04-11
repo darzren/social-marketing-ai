@@ -1,0 +1,36 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260410_111936_image",
+  "posted_at": "20260411_002331",
+  "content": {
+    "type": "image",
+    "facebook": {
+      "content_angle": "Race day intensity — swimmer launching off the blocks, cinematic dark pool atmosphere",
+      "image_type": "race_action",
+      "image_prompt": "competitive swimmer diving off starting blocks, dark cinematic indoor pool, dramatic orange-amber overhead spotlights, deep teal water, frozen motion water explosion, sleek dark racing suit, no logos, high contrast chiaroscuro lighting, professional sports photography, bottom area dark for text overlay",
+      "overlay_text": "Built to race.\nJaked competitive swimwear\nvelocx.co.nz",
+      "caption": "Two seconds. That's all you get off the blocks.\n\nElite swimmers know the race is decided before the first stroke — the dive, the underwater phase, the breakout. Every millisecond matters.\n\nJaked race suits are engineered to hold your streamline longer, so every start works harder for you.\n\nShop the full range at velocx.co.nz",
+      "engagement_bait": "Drop a fire emoji if you drill your race starts. 🔥",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#RaceReady",
+        "#CompetitiveSwimming",
+        "#SwimNZ",
+        "#NZSwimmers",
+        "#SwimStart",
+        "#TrainToWin",
+        "#SwimLife",
+        "#RaceDay"
+      ],
+      "call_to_action": "What's your weakness off the blocks?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "122161186322977604"
+    }
+  }
+}
