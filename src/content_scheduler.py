@@ -307,6 +307,24 @@ def git_commit_and_push(industry: str, post_type: str) -> bool:
         return False
 
 
+def trigger_post_workflow(industry: str) -> bool:
+    """Trigger the post workflow via gh CLI (GITHUB_TOKEN push won't fire path triggers)."""
+    workflow_file = f"post_{industry}.yml"
+    try:
+        result = subprocess.run(
+            ["gh", "workflow", "run", workflow_file],
+            capture_output=True, text=True,
+        )
+        if result.returncode == 0:
+            logger.info(f"Triggered {workflow_file} via gh CLI.")
+            return True
+        logger.warning(f"gh workflow run failed: {result.stderr.strip()}")
+        return False
+    except FileNotFoundError:
+        logger.warning("gh CLI not available — post workflow not triggered directly.")
+        return False
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -356,9 +374,11 @@ def main():
     angle   = content.get("facebook", {}).get("content_angle", "—")
     logger.info(f"Generated: {angle}")
 
-    # Write and push
+    # Write, push, and trigger post workflow
     write_pending_file(content, args.industry, post_type)
-    git_commit_and_push(args.industry, post_type)
+    pushed = git_commit_and_push(args.industry, post_type)
+    if pushed:
+        trigger_post_workflow(args.industry)
 
     logger.info("=== Scheduler done ===")
 

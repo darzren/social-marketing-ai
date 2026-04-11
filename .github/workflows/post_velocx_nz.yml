@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'data/content_ready/velocx_nz_*_pending.json'
-  workflow_dispatch:
+  workflow_dispatch:   # allows schedule_velocx_nz.yml to trigger this directly
 
 permissions:
   contents: write

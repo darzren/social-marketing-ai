@@ -12,6 +12,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # needed to trigger post_velocx_nz.yml via gh workflow run
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -29,6 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: pip install requests python-dotenv pillow anthropic pytz
+        # gh CLI is pre-installed on ubuntu-latest runners
 
       - name: Write credentials
         env:
