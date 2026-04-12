@@ -1,0 +1,23 @@
+{
+  "industry": "velocx_nz",
+  "post_type": "image",
+  "researched_at": "20260412_213440",
+  "platform_insights": {
+    "facebook": "Authentic hero images with bold text overlays drive shares and comments in competitive swim communities; gear/equipment detail posts perform well in post-competition periods as athletes reflect on season and gear choices; community-focused content and performance education remain highest-engagement pillars",
+    "instagram": "Dark cinematic product photography with high-contrast chiaroscuro lighting is resonating strongly with performance sports brands in 2026; creator-led storytelling and refined minimal aesthetics outperform generic stock imagery; gear detail shots with dramatic pool lighting stopping the scroll; refined tactile presentation of technical performance fabrics is trending",
+    "tiktok": "April 2026 TikTok favours specificity and self-awareness over high production value; photo carousel formats gaining traction in niche sports communities; gear-detail content combined with performance science hooks performing well in competitive swim circles; short punchy text overlays on moody images driving saves"
+  },
+  "recommended_image_type": "gear_closeup",
+  "recommended_visual_style": "dark cinematic, high contrast chiaroscuro, sleek racing swimsuit submerged in deep teal pool water with dramatic orange-amber overhead spotlights, fabric texture visible",
+  "recommended_overlay_style": "short punchy 4–5 word performance statement matching brand voice overlay examples",
+  "trending_hooks": [
+    "Your gear is either working for you — or against you",
+    "What your suit does when the race is on the line",
+    "The science most swimmers ignore",
+    "0.01 seconds matters"
+  ],
+  "key_insight": "Post-nationals period (NZ Age Groups just concluded April 8–12) is prime timing for race suit quality and performance fabric messaging — athletes are reflecting on their season and evaluating gear; gear_closeup image type pairs perfectly with 2026 product photography trends favouring high-res fabric detail and dramatic chiaroscuro lighting",
+  "previously_used_image_types": ["team", "race_action", "open_water"],
+  "seasonal_context": "NZ Age Group Championships concluded April 8–12 at Hawke's Bay Regional Aquatic Centre; Northern Zone Development Meets scheduled April 19 — post-nationals window ideal for race gear reflection and upgrade messaging",
+  "trending_hashtags": ["#SwimGear", "#JakedSwim", "#PerformanceSwimwear", "#RaceDay", "#SwimmerLife"]
+}
