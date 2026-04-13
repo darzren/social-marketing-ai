@@ -365,6 +365,9 @@ def main():
 
     # Decide post type
     post_type = determine_post_type(post_history, strategy)
+    if not brand_config.get("image_posts_enabled", True) and post_type == "image":
+        post_type = "text"
+        logger.info("Image posts disabled in brand config — falling back to text.")
     logger.info(f"Post type: {post_type}")
 
     # Generate content
