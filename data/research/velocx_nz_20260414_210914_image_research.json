@@ -1,0 +1,23 @@
+{
+  "industry": "velocx_nz",
+  "post_type": "image",
+  "researched_at": "20260414_210914",
+  "platform_insights": {
+    "facebook": "Carousels lead engagement at 6.90%, single images at 4.44%. High-quality dramatic athlete photography with overlay text drives shares and comments. Meta's algorithm rewards genuine conversation signals — strong hooks that invite debate or community response outperform passive posts. Albums also outperform standard single images on reach.",
+    "instagram": "Dark, moody, minimal aesthetics dominating in 2026. Subtle branding performing over heavy logo placement. High-contrast sports and editorial photography stops the scroll. Atmospheric depth and cinematic lighting win over flat or bright lifestyle imagery. Textural detail in athletes and water creates visual interest.",
+    "tiktok": "Educational and technical swim content combined with relatable swimmer POV formats are dominating the swim niche. Short motivational hooks paired with single actionable visual concepts drive high save rates. Open water and endurance athlete content is performing strongly as triathlon season wraps in NZ."
+  },
+  "recommended_image_type": "open_water",
+  "recommended_visual_style": "dark moody coastal New Zealand — deep teal-to-midnight ocean, dramatic overcast sky with light breaking through, athlete in dark racing kit, cinematic high-contrast chiaroscuro, motion blur water",
+  "recommended_overlay_style": "short punchy imperative statement 3-5 words on line 1, brand line 2, website URL line 3",
+  "trending_hooks": [
+    "Northland Triathlon on April 18 — NZ triathlon community highly active and engaged this week",
+    "Post-IRONMAN New Zealand 2026 momentum — open water race performance content resonating strongly",
+    "Mental challenge of open water swimming outperforming pure technique posts in engagement",
+    "Athlete grit and discipline narratives outperforming product-first content across all platforms",
+    "Seasonal transition hook — NZ autumn swim season, training continuing into winter"
+  ],
+  "key_insight": "With the Northland Triathlon on April 18 and strong post-IRONMAN NZ 2026 buzz, open water swim content is the most timely angle this week — and dark cinematic coastal NZ imagery aligns perfectly with Velocx NZ's moody brand aesthetic and the endurance athlete community's current mindset.",
+  "previously_used_image_types": ["race_action", "team", "gear_closeup"],
+  "trending_hashtags": ["#OpenWaterSwimming", "#IRONMANNewZealand", "#NZTriathlon", "#SwimLife", "#TriathlonTraining"]
+}
