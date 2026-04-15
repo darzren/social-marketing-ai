@@ -23,14 +23,16 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests python-dotenv anthropic duckduckgo_search pytz
+        run: pip install requests python-dotenv anthropic pytz
 
       - name: Write credentials
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BRAVE_API_KEY: ${{ secrets.BRAVE_API_KEY }}
         run: |
           mkdir -p config/credentials
-          printf "ANTHROPIC_API_KEY=%s\n" "$ANTHROPIC_API_KEY" \
+          printf "ANTHROPIC_API_KEY=%s\nBRAVE_API_KEY=%s\n" \
+            "$ANTHROPIC_API_KEY" "$BRAVE_API_KEY" \
             > config/credentials/JL_RealEstate.env
 
       - name: Configure git

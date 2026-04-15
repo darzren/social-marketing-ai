@@ -80,36 +80,48 @@ def build_queries(brand_config: dict) -> list[str]:
     return queries[:6]  # cap at 6 to avoid rate limits
 
 
-def run_searches(queries: list[str]) -> list[dict]:
-    """Run DuckDuckGo searches. Returns list of {query, hits} dicts.
-    Gracefully returns empty on any connection or rate-limit error."""
-    try:
-        from duckduckgo_search import DDGS
-    except ImportError:
-        logger.warning("duckduckgo_search not installed — skipping web search.")
+def run_searches(queries: list[str], brave_api_key: str) -> list[dict]:
+    """Search via Brave Search API. Returns list of {query, hits} dicts.
+    Gracefully returns empty on any error."""
+    if not brave_api_key:
+        logger.warning("BRAVE_API_KEY not set — skipping web search.")
         return []
 
+    import requests as req
+
     results = []
-    try:
-        with DDGS() as ddgs:
-            for query in queries:
-                try:
-                    raw_hits = list(ddgs.text(query, max_results=5))
-                    # Sanitise: keep only title + truncated body, strip special chars
-                    hits = [
-                        {
-                            "title": h.get("title", "")[:120],
-                            "body":  h.get("body", "")[:200].replace('"', "'").replace("\n", " ").replace("\\", ""),
-                        }
-                        for h in raw_hits
-                    ]
-                    results.append({"query": query, "hits": hits})
-                    logger.info(f"  '{query[:60]}' → {len(hits)} results")
-                except Exception as e:
-                    logger.warning(f"  Query failed: '{query[:60]}' — {e}")
-                    results.append({"query": query, "hits": [], "error": str(e)})
-    except Exception as e:
-        logger.warning(f"DuckDuckGo connection failed — skipping web search: {e}")
+    headers = {
+        "Accept":               "application/json",
+        "Accept-Encoding":      "gzip",
+        "X-Subscription-Token": brave_api_key,
+    }
+
+    for query in queries:
+        try:
+            resp = req.get(
+                "https://api.search.brave.com/res/v1/web/search",
+                headers=headers,
+                params={"q": query, "count": 5, "country": "NZ", "search_lang": "en"},
+                timeout=10,
+            )
+            resp.raise_for_status()
+            raw = resp.json().get("web", {}).get("results", [])
+            hits = [
+                {
+                    "title": r.get("title", "")[:120],
+                    "body":  r.get("description", "")[:200]
+                                .replace('"', "'")
+                                .replace("\n", " ")
+                                .replace("\\", ""),
+                }
+                for r in raw
+            ]
+            results.append({"query": query, "hits": hits})
+            logger.info(f"  '{query[:60]}' → {len(hits)} results")
+        except Exception as e:
+            logger.warning(f"  Search failed: '{query[:60]}' — {e}")
+            results.append({"query": query, "hits": [], "error": str(e)})
+
     return results
 
 
@@ -218,10 +230,13 @@ def main():
     args = parser.parse_args()
 
     load_dotenv(f"config/credentials/{args.industry}.env", override=True)
-    api_key = os.getenv("ANTHROPIC_API_KEY", "")
+    api_key      = os.getenv("ANTHROPIC_API_KEY", "")
+    brave_key    = os.getenv("BRAVE_API_KEY", "")
     if not api_key:
         logger.error("ANTHROPIC_API_KEY not set.")
         sys.exit(1)
+    if not brave_key:
+        logger.warning("BRAVE_API_KEY not set — web search will be skipped, Claude will use its own knowledge.")
 
     logger.info(f"=== Trend Researcher | {args.industry} ===")
 
@@ -231,7 +246,7 @@ def main():
     # Web search
     queries        = build_queries(brand_config)
     logger.info(f"Running {len(queries)} searches...")
-    search_results = run_searches(queries)
+    search_results = run_searches(queries, brave_key)
     found          = sum(len(r.get("hits", [])) for r in search_results)
     logger.info(f"Total results fetched: {found}")
 
