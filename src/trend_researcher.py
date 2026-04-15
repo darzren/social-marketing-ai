@@ -151,26 +151,26 @@ Produce a structured research brief the content scheduler will use this week.
 Be specific and actionable — every item must directly help write better posts for this brand.
 For trending_hashtags, include both niche-specific and currently popular tags (12–18 total).
 
-Output ONLY valid JSON. No markdown fences. No explanation.
+Output ONLY valid JSON. No markdown fences. No explanation. Keep all string values concise (under 20 words each).
 {{
   "generated_at": "{today}",
   "month": "{month_year}",
   "trending_topics": [
-    {{"topic": "specific topic name", "relevance": "high|medium|low", "content_angle": "how to make a post about this"}}
+    {{"topic": "topic name", "relevance": "high|medium|low", "content_angle": "one post angle"}}
   ],
   "trending_hashtags": ["#Tag1", "#Tag2"],
-  "seasonal_context": "what is happening in NZ swimming / triathlon / fitness this month that content should reflect",
+  "seasonal_context": "one sentence on what is happening this month",
   "content_opportunities": [
-    {{"angle": "specific post idea", "why": "why this is timely right now", "format": "text|image"}}
+    {{"angle": "post idea", "why": "why timely", "format": "text|image"}}
   ],
-  "avoid_this_week": ["topics or angles that feel overdone or irrelevant right now"],
-  "recommended_hook_styles": ["specific hook pattern e.g. 'bold claim + contradiction'"],
-  "news_summary": "1-2 sentences on any relevant recent news or events the brand should acknowledge or reference"
+  "avoid_this_week": ["stale topic 1", "stale topic 2"],
+  "recommended_hook_styles": ["hook pattern 1", "hook pattern 2"],
+  "news_summary": "one sentence on relevant recent news"
 }}"""
 
     response = client.messages.create(
-        model="claude-haiku-4-5-20251001",
-        max_tokens=2000,
+        model="claude-sonnet-4-6",
+        max_tokens=4000,
         messages=[{"role": "user", "content": prompt}],
     )
 
