@@ -94,7 +94,15 @@ def run_searches(queries: list[str]) -> list[dict]:
         with DDGS() as ddgs:
             for query in queries:
                 try:
-                    hits = list(ddgs.text(query, max_results=5))
+                    raw_hits = list(ddgs.text(query, max_results=5))
+                    # Sanitise: keep only title + truncated body, strip special chars
+                    hits = [
+                        {
+                            "title": h.get("title", "")[:120],
+                            "body":  h.get("body", "")[:200].replace('"', "'").replace("\n", " ").replace("\\", ""),
+                        }
+                        for h in raw_hits
+                    ]
                     results.append({"query": query, "hits": hits})
                     logger.info(f"  '{query[:60]}' → {len(hits)} results")
                 except Exception as e:
@@ -151,7 +159,8 @@ Produce a structured research brief the content scheduler will use this week.
 Be specific and actionable — every item must directly help write better posts for this brand.
 For trending_hashtags, include both niche-specific and currently popular tags (12–18 total).
 
-Output ONLY valid JSON. No markdown fences. No explanation. Keep all string values concise (under 20 words each).
+Output ONLY valid JSON. No markdown fences. No explanation.
+Rules: keep ALL string values under 15 words. Do NOT copy or quote text from search results. Write your own words only. Escape any apostrophes as \\u0027.
 {{
   "generated_at": "{today}",
   "month": "{month_year}",
