@@ -1,0 +1,49 @@
+name: Research - VelocX NZ
+
+on:
+  schedule:
+    - cron: '0 20 * * 0,2,4'   # Sun/Tue/Thu 20:00 UTC = Mon/Wed/Fri 8:00am NZST
+  workflow_dispatch:            # manual trigger for testing
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    environment: velocx_nz
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv anthropic duckduckgo_search pytz
+
+      - name: Write credentials
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          mkdir -p config/credentials
+          printf "ANTHROPIC_API_KEY=%s\n" "$ANTHROPIC_API_KEY" \
+            > config/credentials/velocx_nz.env
+
+      - name: Configure git
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      - name: Run trend researcher
+        run: python src/trend_researcher.py --industry velocx_nz
+
+      - name: Commit research file
+        run: |
+          git add data/research/
+          git diff --staged --quiet || git commit -m "research: velocx_nz trend update $(date +'%Y%m%d_%H%M%S')"
+          git push
