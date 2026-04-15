@@ -1,0 +1,49 @@
+name: Health Check - JL RealEstate
+
+on:
+  schedule:
+    - cron: '20 21 * * *'   # 9:20am NZT (20 min after daily post at 9:00am)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    environment: JL_RealEstate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv pillow anthropic
+
+      - name: Write credentials
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          mkdir -p config/credentials
+          printf "FACEBOOK_PAGE_ID=%s\nFACEBOOK_ACCESS_TOKEN=%s\nANTHROPIC_API_KEY=%s\n" \
+            "$FACEBOOK_PAGE_ID" \
+            "$FACEBOOK_ACCESS_TOKEN" \
+            "$ANTHROPIC_API_KEY" \
+            > config/credentials/JL_RealEstate.env
+
+      - name: Run health check
+        run: python src/health_check.py --industry JL_RealEstate
+
+      - name: Commit retry file (if written)
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add data/content_ready/ data/content_posted/
+          git diff --staged --quiet || (git commit -m "health-check: auto-retry JL_RealEstate $(date +'%Y%m%d_%H%M%S')" && git push)

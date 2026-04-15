@@ -9,6 +9,16 @@
       "workflow_health": ".github/workflows/health_velocx_nz.yml",
       "github_environment": "velocx_nz",
       "active": true
+    },
+    {
+      "industry": "JL_RealEstate",
+      "display_name": "Jinny Lee Real Estate",
+      "config": "config/industries/JL_RealEstate.json",
+      "agent_entry": "agents/brands/JL_RealEstate.md",
+      "workflow_post": ".github/workflows/post_JL_RealEstate.yml",
+      "workflow_health": ".github/workflows/health_JL_RealEstate.yml",
+      "github_environment": "JL_RealEstate",
+      "active": true
     }
   ],
 

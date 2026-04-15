@@ -1,0 +1,197 @@
+{
+  "industry": "JL_RealEstate",
+  "display_name": "Jinny Lee Real Estate",
+  "call_to_action": "contact_now",
+  "website": "https://rwbotany.co.nz/agents/jinny-lee/162405",
+  "image_posts_enabled": false,
+
+  "description": "Jinny Lee is a dedicated real estate professional in East Auckland, helping homeowners achieve premium results and guiding buyers to secure the right property with confidence. Backed by Ray White Botany, Jinny combines strong local knowledge, strategic marketing, and a client-first approach.",
+
+  "tone": "warm yet confident, trustworthy, knowledgeable, approachable, community-focused, client-first",
+
+   "brand_positioning": {
+    "jinny_role": "trusted East Auckland real estate advisor",
+    "core_message": "Smarter selling. Better buying.",
+    "differentiation": "local market expertise, strong negotiation skills, personalised service",
+    "content_balance": "70% value/education/community, 30% listings/self-promotion"
+  },
+
+  "target_audience": {
+    "primary": "homeowners in East Auckland looking to sell their property",
+    "secondary": "buyers and families searching for homes in East Auckland",
+    "entry_level": "first-home buyers needing guidance and education",
+    "psychographics": [
+      "wants to maximise property value",
+      "seeks trustworthy and knowledgeable agent",
+      "interested in local market insights",
+      "values clear communication and guidance",
+      "emotionally invested in property decisions"
+    ]
+  },
+
+  "content_pillars": [
+    {
+      "pillar": "Seller Education",
+      "details": "how to sell smarter, pricing strategies, preparing homes, negotiation insights"
+    },
+    {
+      "pillar": "Buyer Guidance",
+      "details": "how to buy better, market tips, open home advice, mistakes to avoid"
+    },
+    {
+      "pillar": "Local Authority (East Auckland)",
+      "details": "suburb insights, schools, lifestyle, amenities, community highlights"
+    },
+    {
+      "pillar": "Listings & Success Stories",
+      "details": "new listings, sold results, behind-the-scenes of deals, case studies"
+    },
+    {
+      "pillar": "Personal Brand & Trust",
+      "details": "day in the life, client interactions, personality-driven content"
+    },
+    {
+      "pillar": "Trends & Short-form Content",
+      "details": "TikTok/IG trends adapted to real estate, relatable POV content"
+    }
+  ],
+
+  "content_types": [
+    {
+      "type": "hook_reel",
+      "description": "strong 1-3 second hook, problem or POV-based real estate scenario"
+    },
+    {
+      "type": "seller_tip",
+      "description": "quick actionable tips for homeowners preparing to sell"
+    },
+    {
+      "type": "buyer_tip",
+      "description": "practical advice for buyers navigating the market"
+    },
+    {
+      "type": "listing_showcase",
+      "description": "highlight property features with lifestyle angle"
+    },
+    {
+      "type": "sold_story",
+      "description": "case study or story behind a successful sale"
+    },
+    {
+      "type": "local_area_feature",
+      "description": "showcase East Auckland suburbs, lifestyle and amenities"
+    },
+    {
+      "type": "trend_reel",
+      "description": "viral or relatable content adapted to real estate"
+    }
+  ],
+
+  "hashtags": {
+    "core": [
+      "#JinnyLeeRealEstate",
+      "#EastAucklandRealEstate",
+      "#AucklandProperty",
+      "#SmarterSelling",
+      "#BetterBuying"
+    ],
+    "facebook": [
+      "#AucklandHomes",
+      "#NZRealEstate",
+      "#PropertyNZ",
+      "#HouseForSaleNZ"
+    ],
+    "instagram": [
+      "#AucklandLiving",
+      "#HomeBuyersNZ",
+      "#PropertyMarketNZ",
+      "#DreamHomeNZ",
+      "#RealEstateNZ"
+    ],
+    "tiktok": [
+      "#RealEstateTips",
+      "#HouseHuntingNZ",
+      "#PropertyTok",
+      "#AucklandHomes",
+      "#FYP"
+    ]
+  },
+
+  "brand_colors": {
+    "primary": "#000000",
+    "secondary": "#FFFFFF",
+    "accent": "#C8102E",
+    "accent_light": "#F5F5F5"
+  },
+
+  "logo_asset": "assets/logos/jinny_lee_realestate_logo.png",
+
+  "platforms": ["facebook", "instagram"],
+  "_note": "TikTok can be added later once content strategy is consistent. Connect Instagram via Meta Business Manager.",
+
+  "social_accounts": {
+    "facebook": "https://www.facebook.com/JinnyLee.RealEstate",
+    "instagram": "https://www.instagram.com/jinnylee.realestate/"
+  },
+
+  "posting_schedule": {
+    "timezone": "Pacific/Auckland",
+    "daily_time": "09:00",
+    "health_check_offset_minutes": 20,
+    "frequency": "daily",
+    "alternating_types": true
+  },
+
+  "voice_guide": {
+    "headline_style": "short punchy, 2–6 words, benefit-driven or curiosity-based",
+    "caption_max_words": 150,
+    "caption_style": "hook first, value or story, then soft CTA — no hashtags in body",
+    "overlay_examples": [
+      "Sell smarter.",
+      "Buy with confidence.",
+      "Don’t overpay.",
+      "Your next move starts here.",
+      "East Auckland living.",
+      "This one won’t last."
+    ]
+  },
+
+  "image_style": {
+    "description": "Clean, modern, premium real estate — lifestyle-driven and aspirational",
+    "photography_style": [
+      "bright natural lighting with soft shadows",
+      "warm and inviting home interiors",
+      "clean compositions with minimal clutter",
+      "lifestyle-focused — not just empty rooms",
+      "wide-angle property shots with depth",
+      "human presence occasionally (agent or homeowners)"
+    ],
+    "avoid": [
+      "dark or overly moody images",
+      "low-quality or blurry listing photos",
+      "overly staged or unrealistic interiors",
+      "generic stock images with no local relevance",
+      "cluttered or messy spaces"
+    ],
+    "composition_rules": [
+      "highlight key selling features (kitchen, living, outdoor flow)",
+      "ensure straight vertical lines for property shots",
+      "use natural framing (doors, windows)",
+      "balance indoor and outdoor lifestyle elements",
+      "leave space for text overlays when needed"
+    ],
+    "color_palette": {
+      "interior": "neutral whites, warm wood tones, soft greys",
+      "exterior": "natural greens, blue skies, suburban streets",
+      "accent": "subtle brand red accents (#C8102E)"
+    },
+    "prompt_base": "bright modern home, natural lighting, clean staging, wide-angle interior photography, inviting and warm atmosphere, premium real estate marketing style",
+    "image_types": {
+      "listing": "hero shots of property interiors and exteriors showcasing lifestyle and space",
+      "lifestyle": "family living moments, indoor-outdoor flow, relaxed home environment",
+      "agent_brand": "Jinny interacting with clients, open homes, professional yet approachable",
+      "local_area": "East Auckland streets, parks, cafes, schools, coastal lifestyle",
+      "sold": "celebration moments, sold stickers, happy client handovers"
+    }
+  }
+}
