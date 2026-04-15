@@ -50,30 +50,39 @@ def load_strategy(industry: str) -> dict:
 
 def build_queries(brand_config: dict) -> list[str]:
     """Build targeted search queries from brand config."""
-    month_year = date.today().strftime("%B %Y")
-    niche      = brand_config.get("description", "")[:120]
-    audience   = brand_config.get("target_audience", {}).get("primary", "")
-    pillars    = brand_config.get("content_pillars", [])
+    month_year   = date.today().strftime("%B %Y")
+    display_name = brand_config.get("display_name", "")
+    audience     = brand_config.get("target_audience", {}).get("primary", "")
+    pillars      = brand_config.get("content_pillars", [])
+    core_tags    = brand_config.get("hashtags", {}).get("core", [])
 
-    # Extract pillar names
+    # Extract first 3 pillar names for targeted queries
     pillar_names = []
-    for p in pillars[:4]:
+    for p in pillars[:3]:
         name = p.get("pillar", p) if isinstance(p, dict) else str(p)
         pillar_names.append(name)
 
-    queries = [
-        f"competitive swimming training tips trends {month_year}",
-        f"swimming technique drills social media content {month_year}",
-        f"New Zealand swimming events news {month_year}",
-        f"swimming hashtags trending Instagram Facebook {month_year}",
-        f"triathlon NZ fitness performance trends {month_year}",
-        f"performance swimwear athlete content ideas {month_year}",
-    ]
-    return queries
+    # Build niche descriptor from audience description
+    niche = audience.split(" in ")[0] if " in " in audience else audience
+
+    queries = []
+    # Pillar-based queries
+    for pillar in pillar_names:
+        queries.append(f"{pillar} social media content ideas {month_year}")
+    # Audience + location trends
+    queries.append(f"{niche} trends tips {month_year}")
+    # Hashtag research
+    tag_seed = core_tags[1] if len(core_tags) > 1 else niche
+    queries.append(f"{tag_seed} trending hashtags Instagram Facebook {month_year}")
+    # Local/news angle
+    queries.append(f"{display_name} industry news New Zealand {month_year}")
+
+    return queries[:6]  # cap at 6 to avoid rate limits
 
 
 def run_searches(queries: list[str]) -> list[dict]:
-    """Run DuckDuckGo searches. Returns list of {query, hits} dicts."""
+    """Run DuckDuckGo searches. Returns list of {query, hits} dicts.
+    Gracefully returns empty on any connection or rate-limit error."""
     try:
         from duckduckgo_search import DDGS
     except ImportError:
@@ -81,15 +90,18 @@ def run_searches(queries: list[str]) -> list[dict]:
         return []
 
     results = []
-    with DDGS() as ddgs:
-        for query in queries:
-            try:
-                hits = list(ddgs.text(query, max_results=5))
-                results.append({"query": query, "hits": hits})
-                logger.info(f"  '{query[:60]}' → {len(hits)} results")
-            except Exception as e:
-                logger.warning(f"  Search failed: '{query[:60]}' — {e}")
-                results.append({"query": query, "hits": [], "error": str(e)})
+    try:
+        with DDGS() as ddgs:
+            for query in queries:
+                try:
+                    hits = list(ddgs.text(query, max_results=5))
+                    results.append({"query": query, "hits": hits})
+                    logger.info(f"  '{query[:60]}' → {len(hits)} results")
+                except Exception as e:
+                    logger.warning(f"  Query failed: '{query[:60]}' — {e}")
+                    results.append({"query": query, "hits": [], "error": str(e)})
+    except Exception as e:
+        logger.warning(f"DuckDuckGo connection failed — skipping web search: {e}")
     return results
 
 
@@ -168,7 +180,23 @@ Output ONLY valid JSON. No markdown fences. No explanation.
     elif "```" in text:
         text = text.split("```")[1].split("```")[0].strip()
 
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as e:
+        logger.error(f"Claude returned invalid JSON: {e}\nRaw: {text[:300]}")
+        # Return a minimal valid structure so the file still saves
+        return {
+            "generated_at": date.today().strftime("%Y-%m-%d"),
+            "month": date.today().strftime("%B %Y"),
+            "trending_topics": [],
+            "trending_hashtags": brand_config.get("hashtags", {}).get("core", []),
+            "seasonal_context": "Research synthesis failed — using brand defaults.",
+            "content_opportunities": [],
+            "avoid_this_week": [],
+            "recommended_hook_styles": [],
+            "news_summary": "",
+            "error": str(e),
+        }
 
 
 # ---------------------------------------------------------------------------
