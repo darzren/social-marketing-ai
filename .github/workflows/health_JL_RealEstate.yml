@@ -1,8 +1,10 @@
 name: Health Check - JL RealEstate
 
 on:
-  schedule:
-    - cron: '20 21 * * *'   # 9:20am NZT (20 min after daily post at 9:00am)
+  # schedule disabled — enable once FACEBOOK_PAGE_ID + FACEBOOK_ACCESS_TOKEN
+  # are added to the JL_RealEstate GitHub Environment
+  # schedule:
+  #   - cron: '20 21 * * *'
   workflow_dispatch:
 
 permissions:
