@@ -1,10 +1,8 @@
 name: Schedule - JL RealEstate
 
 on:
-  # schedule disabled — enable once FACEBOOK_PAGE_ID + FACEBOOK_ACCESS_TOKEN
-  # are added to the JL_RealEstate GitHub Environment
-  # schedule:
-  #   - cron: '0 * * * *'
+  schedule:
+    - cron: '0 * * * *'   # every hour — scheduler decides internally if it's a posting window
   workflow_dispatch:
     inputs:
       force:
