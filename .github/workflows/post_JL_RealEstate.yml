@@ -24,7 +24,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests python-dotenv pillow anthropic
+        run: pip install -r requirements.txt
 
       - name: Write credentials
         env:
