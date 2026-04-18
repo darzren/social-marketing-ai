@@ -14,6 +14,7 @@ import argparse
 import json
 import logging
 import os
+import re
 import subprocess
 import sys
 from datetime import date, datetime, timedelta
@@ -92,19 +93,28 @@ def should_post_now(industry: str, brand_config: dict, strategy: dict) -> tuple:
     except ImportError:
         now = datetime.now()
 
-    today = now.strftime("%Y%m%d")
-    posted_today  = list(DATA_POSTED.glob(f"{industry}_{today}*_posted.json"))
-    pending_today = list(DATA_READY.glob(f"{industry}_{today}*_pending.json"))
+    schedule_cfg   = brand_config.get("posting_schedule", {})
+    post_interval  = schedule_cfg.get("post_interval_days", 1)
 
-    posts_per_day = strategy.get("posting_schedule", {}).get("posts_per_day", 1)
-    total_today   = len(posted_today) + len(pending_today)
+    # --- Interval check: has a post gone out within the last N days? ---
+    cutoff_date = now.date() - timedelta(days=post_interval - 1)
+    recent = []
+    for f in list(DATA_POSTED.glob(f"{industry}_*_posted.json")) + \
+             list(DATA_READY.glob(f"{industry}_*_pending.json")):
+        m = re.search(r'_(\d{8})_', f.name)
+        if m:
+            file_date = datetime.strptime(m.group(1), "%Y%m%d").date()
+            if file_date >= cutoff_date:
+                recent.append(file_date)
 
-    if total_today >= posts_per_day:
-        return False, f"Daily target reached ({total_today}/{posts_per_day})"
+    if recent:
+        days_ago = (now.date() - max(recent)).days
+        next_in  = post_interval - days_ago
+        return False, f"Posted {days_ago}d ago — next post in {next_in}d (every {post_interval}d)"
 
-    # Optimal posting windows (learned takes priority over configured default)
+    # --- Timing window check ---
     learned_times = strategy.get("posting_schedule", {}).get("optimal_times", [])
-    default_time  = brand_config.get("posting_schedule", {}).get("daily_time", "09:00")
+    default_time  = schedule_cfg.get("daily_time", "09:00")
     windows       = learned_times if learned_times else [default_time]
 
     now_min = now.hour * 60 + now.minute

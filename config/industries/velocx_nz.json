@@ -132,7 +132,8 @@
     "timezone": "Pacific/Auckland",
     "daily_time": "09:03",
     "health_check_offset_minutes": 20,
-    "frequency": "daily",
+    "frequency": "every_3_days",
+    "post_interval_days": 3,
     "alternating_types": true
   },
 

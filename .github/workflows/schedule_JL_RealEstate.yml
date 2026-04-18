@@ -2,7 +2,7 @@ name: Schedule - JL RealEstate
 
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour — scheduler decides internally if it's a posting window
+    - cron: '0 */3 * * *'   # every 3 hours — scheduler decides internally if it's a posting window
   workflow_dispatch:
     inputs:
       force:
