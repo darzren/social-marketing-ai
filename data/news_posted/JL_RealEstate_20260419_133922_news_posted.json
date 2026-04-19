@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260419_133922",
+  "posted_at": "2026-04-19T13:39:28.055343",
+  "headline": "Auction activity bounces back despite valuation challenges",
+  "source_url": "https://www.interest.co.nz/property/138132/bounce-back-number-residential-properties-going-auction-sales-rate-little-changed",
+  "original_title": "Buyers still getting their bids accepted at auctions",
+  "image_path": "data/news_images/JL_RealEstate_20260419_133922_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122100744716693087"
+    },
+    "instagram": {
+      "success": false,
+      "skipped": true,
+      "error": "Instagram credentials not set."
+    }
+  }
+}
