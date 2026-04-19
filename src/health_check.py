@@ -10,8 +10,9 @@ Exit codes:
 import argparse
 import json
 import logging
+import re
 import sys
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 logging.basicConfig(
@@ -54,6 +55,38 @@ def _write_retry_pending(content: dict, industry: str, post_type: str) -> Path:
     return path
 
 
+def _load_brand_config(industry: str) -> dict:
+    path = Path(f"config/industries/{industry}.json")
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _is_posting_day(industry: str, brand_config: dict) -> tuple[bool, str]:
+    """Return (is_posting_day, reason) based on post_interval_days config."""
+    interval = brand_config.get("posting_schedule", {}).get("post_interval_days", 1)
+    if interval <= 1:
+        return True, "daily posting — every day is a posting day"
+
+    cutoff = date.today() - timedelta(days=interval - 1)
+    recent = []
+    for f in list(DATA_POSTED.glob(f"{industry}_*_posted.json")) + \
+             list(DATA_READY.glob(f"{industry}_*_pending.json")):
+        m = re.search(r'_(\d{8})_', f.name)
+        if m:
+            file_date = datetime.strptime(m.group(1), "%Y%m%d").date()
+            if file_date >= cutoff:
+                recent.append(file_date)
+
+    if recent:
+        days_ago = (date.today() - max(recent)).days
+        next_in  = interval - days_ago
+        return False, f"not a posting day — last post {days_ago}d ago, next in {next_in}d (interval: every {interval}d)"
+
+    return True, f"posting due — no post in the last {interval} days"
+
+
 def main():
     parser = argparse.ArgumentParser(description="Post health check and auto-retry")
     parser.add_argument("--industry", default="velocx_nz")
@@ -61,6 +94,13 @@ def main():
 
     today = _today()
     logger.info(f"=== Health Check | {args.industry} | {today} ===")
+
+    # Skip gracefully on non-posting days
+    brand_config = _load_brand_config(args.industry)
+    posting_day, reason = _is_posting_day(args.industry, brand_config)
+    if not posting_day:
+        logger.info(f"✅ {reason} — nothing to check.")
+        return 0
 
     pending_files, posted_files = _find_today_files(args.industry, today)
     logger.info(f"Pending : {[f.name for f in pending_files] or 'none'}")
@@ -131,10 +171,10 @@ def main():
         return 0
 
     # -------------------------------------------------------------------------
-    # Case D — no files at all (daily CCR agent never ran)
+    # Case D — posting was due today but nothing was generated
     # -------------------------------------------------------------------------
-    logger.error("❌ No pending or posted files found for today.")
-    logger.error("   The daily CCR agent may not have run. Trigger it manually via claude.ai/code.")
+    logger.error("❌ No pending or posted files found — scheduler may have failed.")
+    logger.error("   Trigger manually: GitHub Actions → Schedule → Run workflow → Force post.")
     sys.exit(1)
 
 
