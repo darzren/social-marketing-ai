@@ -157,6 +157,20 @@
     ]
   },
 
+  "news_template": {
+    "template_path": "assets/templates/JL_RealEstate_news_template.png",
+
+    "box_x_pct": 0.06,
+    "box_y_pct": 0.30,
+    "box_w_pct": 0.88,
+    "box_h_pct": 0.38,
+
+    "headline_color": [30, 30, 30],
+
+    "url_y_pct": 0.91,
+    "url_color": [90, 90, 90]
+  },
+
   "image_style": {
     "description": "Clean, modern, premium real estate — lifestyle-driven and aspirational",
     "photography_style": [

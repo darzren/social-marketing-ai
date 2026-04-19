@@ -1,0 +1,76 @@
+name: News Monitor - JL RealEstate
+
+on:
+  schedule:
+    - cron: '30 */3 * * *'   # :30 past every 3rd hour — offset from main scheduler (:00)
+  workflow_dispatch:           # manual trigger for testing
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    environment: JL_RealEstate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write credentials
+        env:
+          FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+          FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: |
+          mkdir -p config/credentials
+          printf "FACEBOOK_PAGE_ID=%s\nFACEBOOK_ACCESS_TOKEN=%s\nANTHROPIC_API_KEY=%s\nINSTAGRAM_USER_ID=%s\nINSTAGRAM_ACCESS_TOKEN=%s\n" \
+            "$FACEBOOK_PAGE_ID" \
+            "$FACEBOOK_ACCESS_TOKEN" \
+            "$ANTHROPIC_API_KEY" \
+            "$INSTAGRAM_USER_ID" \
+            "$INSTAGRAM_ACCESS_TOKEN" \
+            > config/credentials/JL_RealEstate.env
+
+      - name: Configure git
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      # Phase 1: fetch news, select best article, generate branded image
+      - name: Generate news image
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python src/news_monitor.py --industry JL_RealEstate --phase generate
+
+      # Commit image + pending file so image is publicly accessible via GitHub raw URL
+      - name: Commit generated files
+        run: |
+          git add data/news_images/ data/news_pending/
+          git diff --staged --quiet && echo "No new news — skipping commit." || \
+            (git commit -m "news: JL_RealEstate image $(date +'%Y%m%d_%H%M%S')" && git push)
+
+      # Phase 2: post to Facebook (direct upload) and Instagram (GitHub raw URL)
+      - name: Post to platforms
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        run: python src/news_monitor.py --industry JL_RealEstate --phase post
+
+      # Commit result + updated seen_urls.json
+      - name: Commit posting results
+        run: |
+          git add data/news_posted/
+          git diff --staged --quiet || git commit -m "news: JL_RealEstate posted $(date +'%Y%m%d_%H%M%S')"
+          git push
