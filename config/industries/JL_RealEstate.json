@@ -157,6 +157,8 @@
     ]
   },
 
+  "news_disclaimer": "Disclaimer: This content is based on information from external sources believed to be reliable. It is not independently verified. Please refer to the original source for full details.",
+
   "news_template": {
     "template_path": "assets/templates/JL_RealEstate_news_template.png",
 

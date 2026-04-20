@@ -580,8 +580,14 @@ def phase_post(industry: str, brand_config: dict, env: dict):
     fb_tags   = " ".join(brand_config.get("hashtags", {}).get("facebook", [])[:3])
     ig_tags   = " ".join(brand_config.get("hashtags", {}).get("instagram", [])[:4])
 
-    full_caption = f"{caption_text}\n\nSource: {source_url}\n\n{core_tags} {fb_tags}".strip()
-    ig_caption   = f"{caption_text}\n\nSource: {source_url}\n\n{core_tags} {ig_tags}".strip()
+    disclaimer = brand_config.get(
+        "news_disclaimer",
+        "Disclaimer: This content is based on information from external sources believed to be reliable. "
+        "It is not independently verified. Please refer to the original source for full details.",
+    )
+
+    full_caption = f"{caption_text}\n\nSource: {source_url}\n\n{core_tags} {fb_tags}\n\n{disclaimer}".strip()
+    ig_caption   = f"{caption_text}\n\nSource: {source_url}\n\n{core_tags} {ig_tags}\n\n{disclaimer}".strip()
 
     results = {}
 
