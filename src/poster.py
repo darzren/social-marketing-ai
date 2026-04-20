@@ -2,6 +2,7 @@
 Orchestrator: publishes posts to each platform and archives results.
 """
 
+import json
 import logging
 from datetime import datetime
 from pathlib import Path
@@ -9,6 +10,23 @@ from pathlib import Path
 from src.platforms import facebook, instagram, tiktok
 
 logger = logging.getLogger(__name__)
+
+
+def _load_text_disclaimer(industry: str) -> str:
+    """Return the text_post_disclaimer from brand config, or empty string."""
+    try:
+        cfg = json.loads(
+            Path(f"config/industries/{industry}.json").read_text(encoding="utf-8")
+        )
+        return cfg.get("text_post_disclaimer", "")
+    except Exception:
+        return ""
+
+
+def _append_disclaimer(text: str, disclaimer: str) -> str:
+    if not disclaimer:
+        return text
+    return f"{text}\n\n{disclaimer}"
 
 
 def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) -> dict:
@@ -23,6 +41,10 @@ def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) ->
 
     Returns summary dict.
     """
+    disclaimer = _load_text_disclaimer(industry)
+    if disclaimer:
+        logger.info("Text post disclaimer will be appended to all captions.")
+
     results = {
         "timestamp": datetime.now().strftime("%Y%m%d_%H%M%S"),
         "industry": industry,
@@ -33,7 +55,7 @@ def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) ->
     if "facebook" in posts:
         logger.info("Posting to Facebook...")
         result = facebook.post(
-            message=posts["facebook"],
+            message=_append_disclaimer(posts["facebook"], disclaimer),
             page_id=env.get("FACEBOOK_PAGE_ID", ""),
             access_token=env.get("FACEBOOK_ACCESS_TOKEN", ""),
         )
@@ -45,7 +67,7 @@ def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) ->
     if "instagram" in posts:
         logger.info("Posting to Instagram...")
         result = instagram.post(
-            caption=posts["instagram"],
+            caption=_append_disclaimer(posts["instagram"], disclaimer),
             ig_user_id=env.get("INSTAGRAM_USER_ID", ""),
             access_token=env.get("INSTAGRAM_ACCESS_TOKEN", ""),
             image_url=env.get("INSTAGRAM_DEFAULT_IMAGE_URL"),
@@ -58,7 +80,7 @@ def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) ->
     if "tiktok" in posts:
         logger.info("Posting to TikTok...")
         result = tiktok.post(
-            description=posts["tiktok"],
+            description=_append_disclaimer(posts["tiktok"], disclaimer),
             access_token=env.get("TIKTOK_ACCESS_TOKEN", ""),
             video_url=env.get("TIKTOK_VIDEO_URL"),
         )
