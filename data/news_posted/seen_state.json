@@ -1,6 +1,7 @@
 {
   "urls": {
-    "https://www.interest.co.nz/property/138132/bounce-back-number-residential-properties-going-auction-sales-rate-little-changed": "2026-04-20T08:34:14.947753"
+    "https://www.interest.co.nz/property/138132/bounce-back-number-residential-properties-going-auction-sales-rate-little-changed": "2026-04-20T08:34:14.947753",
+    "https://www.interest.co.nz/personal-finance/138155/first-home-buyers-and-financial-hardship-drove-kiwisaver-early-withdrawals": "2026-04-20T09:19:29.637793"
   },
   "topics": [
     {
@@ -10,6 +11,10 @@
     {
       "headline": "Auction activity bounces back, buyer success rates stable",
       "ts": "2026-04-20T08:34:14.947756"
+    },
+    {
+      "headline": "First-home buyers withdraw record $296m from KiwiSaver",
+      "ts": "2026-04-20T09:19:29.637795"
     }
   ]
 }
