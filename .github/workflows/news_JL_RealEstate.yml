@@ -2,8 +2,9 @@ name: News Monitor - JL RealEstate
 
 on:
   schedule:
-    - cron: '30 */3 * * *'   # :30 past every 3rd hour — offset from main scheduler (:00)
-  workflow_dispatch:           # manual trigger for testing
+    - cron: '30 2 * * *'   # 14:30 NZST (UTC+12) — NB: 1h off during NZDT (Oct–Apr)
+    - cron: '0 6 * * *'    # 18:00 NZST (UTC+12)
+  workflow_dispatch:          # manual trigger for testing
 
 permissions:
   contents: write

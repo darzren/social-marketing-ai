@@ -159,6 +159,9 @@
 
   "text_post_disclaimer": "This post is for general information purposes only and does not constitute financial or property advice.",
 
+  "news_post_interval_days": 2,
+  "news_priority_override_tiers": [1, 2],
+
   "news_disclaimer": "Disclaimer: This content is based on information from external sources believed to be reliable. It is not independently verified. Please refer to the original source for full details.",
 
   "news_template": {

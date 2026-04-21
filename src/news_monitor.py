@@ -24,6 +24,7 @@ import io
 import json
 import logging
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
@@ -100,6 +101,17 @@ def _load_seen_state() -> dict:
         return data
     except Exception:
         return empty
+
+
+def _get_last_news_post_date(industry: str) -> datetime | None:
+    """Return the datetime of the most recent news post, or None."""
+    posted_files = sorted(DATA_NEWS_POSTED.glob(f"{industry}_*_news_posted.json"))
+    if not posted_files:
+        return None
+    m = re.search(r"_(\d{8})_(\d{6})_news_posted", posted_files[-1].name)
+    if m:
+        return datetime.strptime(m.group(1) + m.group(2), "%Y%m%d%H%M%S")
+    return None
 
 
 def _save_seen(url: str, headline: str):
@@ -511,9 +523,25 @@ def phase_generate(industry: str, brand_config: dict, api_key: str):
 
     headline   = selected["headline_10w"]
     source_url = selected["url"]
-    priority   = selected.get("priority_tier", "?")
+    priority   = selected.get("priority_tier", 5)
     logger.info(f"Selected (priority tier {priority}): {headline}")
     logger.info(f"Source: {source_url}")
+
+    # Posting interval check — bypass for high-priority tiers (OCR, govt policy)
+    interval_days      = brand_config.get("news_post_interval_days", 1)
+    override_tiers     = brand_config.get("news_priority_override_tiers", [1, 2])
+    if interval_days > 1 and priority not in override_tiers:
+        last_post = _get_last_news_post_date(industry)
+        if last_post:
+            days_since = (datetime.now() - last_post).total_seconds() / 86400
+            if days_since < interval_days:
+                logger.info(
+                    f"⏭️  Skipping — last news posted {days_since:.1f}d ago "
+                    f"(interval: every {interval_days}d, priority tier {priority} does not override). "
+                    f"Only tier {override_tiers} bypass the interval."
+                )
+                return 0
+        logger.info(f"Interval OK — proceeding (priority tier {priority})")
 
     tmpl_path_str = brand_config.get("news_template", {}).get(
         "template_path", f"assets/templates/{industry}_news_template.png"
