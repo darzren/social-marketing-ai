@@ -425,12 +425,34 @@ def generate_news_image(
         draw.text((text_x, text_y), line, fill=headline_color, font=font)
         text_y += line_h
 
-    # Source URL — small, centered near bottom
+    # Source URL — small, centered, wraps to next line if too long
     url_font = _load_font(max(16, int(width * 0.020)))
-    display_url = source_url if len(source_url) <= 65 else source_url[:62] + "..."
-    url_bbox = draw.textbbox((0, 0), display_url, font=url_font)
-    url_x = (width - (url_bbox[2] - url_bbox[0])) // 2
-    draw.text((url_x, int(height * url_y_pct)), display_url, fill=url_color, font=url_font)
+    url_max_w = int(width * 0.90)
+
+    def _wrap_url(url: str, font, max_w: int) -> list[str]:
+        """Wrap a URL at character boundaries to fit within max_w pixels."""
+        lines, current = [], ""
+        for char in url:
+            test = current + char
+            bbox = draw.textbbox((0, 0), test, font=font)
+            if bbox[2] - bbox[0] <= max_w:
+                current = test
+            else:
+                if current:
+                    lines.append(current)
+                current = char
+        if current:
+            lines.append(current)
+        return lines or [url]
+
+    url_lines  = _wrap_url(source_url, url_font, url_max_w)
+    url_line_h = int(url_font.size * 1.3) if hasattr(url_font, "size") else 20
+    url_y      = int(height * url_y_pct)
+    for url_line in url_lines:
+        url_bbox = draw.textbbox((0, 0), url_line, font=url_font)
+        url_x = (width - (url_bbox[2] - url_bbox[0])) // 2
+        draw.text((url_x, url_y), url_line, fill=url_color, font=url_font)
+        url_y += url_line_h
 
     buf = io.BytesIO()
     img.convert("RGB").save(buf, format="JPEG", quality=93)
