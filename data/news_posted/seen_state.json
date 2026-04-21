@@ -1,7 +1,8 @@
 {
   "urls": {
     "https://www.interest.co.nz/property/138132/bounce-back-number-residential-properties-going-auction-sales-rate-little-changed": "2026-04-20T08:34:14.947753",
-    "https://www.interest.co.nz/personal-finance/138155/first-home-buyers-and-financial-hardship-drove-kiwisaver-early-withdrawals": "2026-04-20T22:08:54.391171"
+    "https://www.interest.co.nz/personal-finance/138155/first-home-buyers-and-financial-hardship-drove-kiwisaver-early-withdrawals": "2026-04-20T22:08:54.391171",
+    "https://www.interest.co.nz/personal-finance/138171/kiwibank-makes-mortgage-rate-changes-staying-competitive-one-year-fixed": "2026-04-21T03:51:19.816027"
   },
   "topics": [
     {
@@ -39,6 +40,10 @@
     {
       "headline": "First-home buyers withdraw record $296m from KiwiSaver",
       "ts": "2026-04-20T22:08:54.391174"
+    },
+    {
+      "headline": "Kiwibank hikes mortgage rates, highest longer-term fixed",
+      "ts": "2026-04-21T03:51:19.816030"
     }
   ]
 }
