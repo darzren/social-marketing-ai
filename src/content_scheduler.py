@@ -120,8 +120,8 @@ def should_post_now(industry: str, brand_config: dict, strategy: dict) -> tuple:
     now_min = now.hour * 60 + now.minute
     for t in windows:
         h, m = map(int, t.split(":"))
-        if abs(now_min - (h * 60 + m)) <= 30:
-            return True, f"Within 30-min window of {t}"
+        if abs(now_min - (h * 60 + m)) <= 90:
+            return True, f"Within 90-min window of {t}"
 
     return False, f"Not in any window {windows} — now {now.strftime('%H:%M')}"
 
