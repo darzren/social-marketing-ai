@@ -3,7 +3,8 @@
     "https://www.interest.co.nz/property/138132/bounce-back-number-residential-properties-going-auction-sales-rate-little-changed": "2026-04-20T08:34:14.947753",
     "https://www.interest.co.nz/personal-finance/138155/first-home-buyers-and-financial-hardship-drove-kiwisaver-early-withdrawals": "2026-04-20T22:08:54.391171",
     "https://www.interest.co.nz/personal-finance/138171/kiwibank-makes-mortgage-rate-changes-staying-competitive-one-year-fixed": "2026-04-21T03:51:19.816027",
-    "https://www.interest.co.nz/economy/138154/annual-inflation-31-march-quarter-electricity-leading-way-rent-rise-lowest-16-years": "2026-04-21T08:17:06.745971"
+    "https://www.interest.co.nz/economy/138154/annual-inflation-31-march-quarter-electricity-leading-way-rent-rise-lowest-16-years": "2026-04-21T08:17:06.745971",
+    "https://www.interest.co.nz/personal-finance/138206/bnz-next-raise-fixed-home-loan-rates-theirs-are-notable-because-they": "2026-04-23T04:28:15.721389"
   },
   "topics": [
     {
@@ -49,6 +50,10 @@
     {
       "headline": "March inflation steady at 3.1%, rent growth slowest in 16 years",
       "ts": "2026-04-21T08:17:06.745973"
+    },
+    {
+      "headline": "BNZ raises mortgage rates, undercuts major bank hikes",
+      "ts": "2026-04-23T04:28:15.721392"
     }
   ]
 }
