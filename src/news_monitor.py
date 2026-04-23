@@ -8,8 +8,8 @@ Deduplication strategy:
   - Age filter: only articles published in the last 24 hours are considered
 
 Priority (highest → lowest):
-  1. OCR decisions and interest rate changes
-  2. New government housing policies or legislation
+  1. New government housing policies or legislation
+  2. OCR decisions and interest rate changes
   3. National property market data (prices, volumes, CoreLogic, REINZ stats)
   4. Auckland/East Auckland market trends
   5. Real estate industry analysis or opinion
@@ -276,8 +276,8 @@ def select_and_summarise(
 Review these NZ real estate news articles (all published in the last 24 hours) and select the ONE most relevant and newsworthy for our Facebook audience (East Auckland homeowners, buyers, and sellers).
 
 PRIORITY ORDER (pick the highest priority you can find):
-1. OCR (Official Cash Rate) decisions and interest rate changes — most impactful
-2. New government housing policies, legislation, or regulatory changes
+1. New government housing policies, legislation, or regulatory changes — most impactful
+2. OCR (Official Cash Rate) decisions and interest rate changes
 3. National property market data: REINZ stats, median prices, sales volumes, CoreLogic reports
 4. Auckland or East Auckland market trends
 5. Real estate industry analysis or opinion pieces
