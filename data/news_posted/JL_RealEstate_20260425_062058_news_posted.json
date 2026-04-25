@@ -1,11 +1,15 @@
 {
   "timestamp": "20260425_062058",
-  "industry": "JL_RealEstate",
+  "posted_at": "2026-04-25T06:21:03.957191",
   "headline": "Residential auction activity cools further as winter develops",
-  "caption": "As we move into the cooler months, fewer properties are hitting the auction block in our region. If you're thinking about selling, understanding these seasonal trends can help you time your move perfectly. Let's chat about what this means for your East Auckland home! 🏡",
   "source_url": "https://www.interest.co.nz/property/138236/houses-brought-auction-still-selling-same-pace-earlier-month-fewer-are-offered-and",
   "original_title": "Residential auction activity cools off further in the back end of April",
   "priority_tier": 4,
   "image_path": "data/news_images/JL_RealEstate_20260425_062058_news.jpg",
-  "image_filename": "JL_RealEstate_20260425_062058_news.jpg"
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122104377470693087"
+    }
+  }
 }
