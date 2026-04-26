@@ -321,6 +321,9 @@ def generate_quote_image(post_text: str, industry: str, brand_config: dict) -> P
         logger.warning("No hook line found in post text — skipping quote image")
         return None
 
+    # Strip emoji — system fonts on Linux don't render them (show as [])
+    hook = re.sub(r'[^\x00-\x7FÀ-ɏḀ-ỿ]', '', hook).strip()
+
     img  = Image.open(template_path).convert("RGB")
     w, h = img.size
     draw = ImageDraw.Draw(img)
