@@ -57,31 +57,8 @@ def fetch_page_posts(page_id: str, access_token: str, days: int) -> list:
 
 
 def fetch_post_insights(post_id: str, access_token: str) -> dict:
-    """Fetch per-post engagement metrics using v21.0 valid metrics only."""
-    # Fetch all valid v21.0 lifetime metrics in one call
+    """Fetch per-post engagement via Graph API fields (post insights endpoint deprecated in v19+)."""
     resp = requests.get(
-        f"{GRAPH_API}/{post_id}/insights",
-        params={
-            "metric":       "post_impressions,post_impressions_unique,"
-                            "post_impressions_organic,post_impressions_paid",
-            "period":       "lifetime",
-            "access_token": access_token,
-        },
-        timeout=30,
-    )
-    result = {}
-    if resp.status_code == 200:
-        for item in resp.json().get("data", []):
-            val = item.get("values", [{}])
-            value = val[-1].get("value", 0) if val else 0
-            if isinstance(value, dict):
-                value = sum(value.values())
-            result[item["name"]] = value
-    else:
-        logger.warning(f"Post insights error {resp.status_code}: {resp.text[:200]}")
-
-    # Fetch reactions separately (returns per-type dict)
-    resp2 = requests.get(
         f"{GRAPH_API}/{post_id}",
         params={
             "fields":       "reactions.summary(total_count),comments.summary(total_count),shares",
@@ -89,13 +66,15 @@ def fetch_post_insights(post_id: str, access_token: str) -> dict:
         },
         timeout=30,
     )
-    if resp2.status_code == 200:
-        data = resp2.json()
-        result["reactions"]  = data.get("reactions",  {}).get("summary", {}).get("total_count", 0)
-        result["comments"]   = data.get("comments",   {}).get("summary", {}).get("total_count", 0)
-        result["shares"]     = data.get("shares", {}).get("count", 0)
-
-    return result
+    if resp.status_code != 200:
+        logger.warning(f"Post fields error {resp.status_code}: {resp.text[:200]}")
+        return {}
+    data = resp.json()
+    return {
+        "reactions": data.get("reactions", {}).get("summary", {}).get("total_count", 0),
+        "comments":  data.get("comments",  {}).get("summary", {}).get("total_count", 0),
+        "shares":    data.get("shares", {}).get("count", 0),
+    }
 
 
 def fetch_facebook_insights(page_id: str, access_token: str, days: int) -> dict:
@@ -111,23 +90,19 @@ def fetch_facebook_insights(page_id: str, access_token: str, days: int) -> dict:
 
         engagement = metrics.get("reactions", 0) + metrics.get("comments", 0) + metrics.get("shares", 0)
         post_data.append({
-            "id":          post["id"],
-            "created":     created,
-            "hour":        hour,
-            "has_image":   bool(post.get("full_picture")),
-            "impressions": metrics.get("post_impressions", 0),
-            "reach":       metrics.get("post_impressions_unique", 0),
-            "engagement":  engagement,
-            "reactions":   metrics.get("reactions", 0),
-            "comments":    metrics.get("comments", 0),
-            "shares":      metrics.get("shares", 0),
+            "id":        post["id"],
+            "created":   created,
+            "hour":      hour,
+            "has_image": bool(post.get("full_picture")),
+            "engagement": engagement,
+            "reactions":  metrics.get("reactions", 0),
+            "comments":   metrics.get("comments", 0),
+            "shares":     metrics.get("shares", 0),
         })
 
     if not post_data:
         return {"posts_analysed": 0, "note": "No posts found in period."}
 
-    # Aggregate metrics
-    avg_reach      = sum(p["reach"] for p in post_data) / len(post_data)
     avg_engagement = sum(p["engagement"] for p in post_data) / len(post_data)
 
     # Best hours by average engagement
@@ -141,7 +116,7 @@ def fetch_facebook_insights(page_id: str, access_token: str, days: int) -> dict:
         reverse=True,
     )[:3]
 
-    # Image vs text posts
+    # Image vs text engagement comparison
     image_posts = [p for p in post_data if p["has_image"]]
     text_posts  = [p for p in post_data if not p["has_image"]]
     avg_img_eng = (sum(p["engagement"] for p in image_posts) / len(image_posts)
@@ -150,12 +125,11 @@ def fetch_facebook_insights(page_id: str, access_token: str, days: int) -> dict:
                    if text_posts else 0)
 
     return {
-        "posts_analysed":       len(post_data),
-        "avg_reach":            round(avg_reach),
-        "avg_engagement":       round(avg_engagement),
-        "best_posting_hours":   [f"{h:02d}:00" for h in best_hours],
-        "image_avg_engagement": round(avg_img_eng),
-        "text_avg_engagement":  round(avg_txt_eng),
+        "posts_analysed":         len(post_data),
+        "avg_engagement":         round(avg_engagement),
+        "best_posting_hours":     [f"{h:02d}:00" for h in best_hours],
+        "image_avg_engagement":   round(avg_img_eng),
+        "text_avg_engagement":    round(avg_txt_eng),
         "image_outperforms_text": avg_img_eng > avg_txt_eng,
         "top_posts": sorted(post_data, key=lambda p: p["engagement"], reverse=True)[:5],
     }
