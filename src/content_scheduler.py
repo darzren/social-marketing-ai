@@ -132,8 +132,10 @@ def determine_post_type(history: list, strategy: dict) -> str:
     if history:
         last_type = history[-1].get("content", {}).get("type", "text")
         # Check if strategy wants to bias the ratio
-        ratio = strategy.get("posting_schedule", {}).get("image_to_text_ratio", "1:1")
-        img_n, txt_n = (int(x) for x in ratio.split(":"))
+        # Extract only the leading "N:N" part — strategy may append explanatory text
+        ratio_raw = strategy.get("posting_schedule", {}).get("image_to_text_ratio", "1:1")
+        ratio_match = re.match(r"(\d+)\s*:\s*(\d+)", str(ratio_raw))
+        img_n, txt_n = (int(ratio_match.group(1)), int(ratio_match.group(2))) if ratio_match else (1, 1)
 
         # Count recent posts
         recent = history[-max(img_n + txt_n, 4):]
