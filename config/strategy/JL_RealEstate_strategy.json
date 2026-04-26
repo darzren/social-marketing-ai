@@ -1,0 +1,135 @@
+{
+  "last_updated": "2026-04-26",
+  "data_period_days": 30,
+  "confidence": "low",
+  "post_template": {
+    "preferred_length_words": "120-150",
+    "hook_style": "Open with a direct seller or buyer question, a bold local market statement, or a surprising East Auckland-specific insight — e.g. 'Thinking of selling this autumn? Here is what most homeowners miss.' or 'The market just shifted. Here is what it means for your home.' Avoid generic openers with no local context.",
+    "structure": "hook → value or education point → local East Auckland relevance → soft CTA",
+    "emoji_density": "2-4 per post",
+    "best_performing_format": "Low confidence — insufficient engagement data from Facebook (all metrics returned zero). Based on trend research and best practices, image posts with lifestyle-driven visuals and education-focused captions are recommended as the primary format. Short-form video is a high-priority emerging format per research briefs. Text-only posts are deprioritised until engagement data confirms viability.",
+    "retired_formats": [
+      "Standalone text-only posts with no image or video — all 4 archived posts were text-only with no measurable differentiation; image and video formats are prioritised based on trend research"
+    ]
+  },
+  "image_strategy": {
+    "top_performing_types": [
+      "listing — hero interior and exterior shots showcasing lifestyle and indoor-outdoor flow (recommended as primary based on brand identity and research; low confidence due to zero image engagement data)",
+      "lifestyle — family living moments, warm home environments, autumn-toned natural light (seasonal alignment with Autumn 2026 context across all research briefs)",
+      "local_area — East Auckland streets, parks, school zones, coastal lifestyle shots (community content noted in research as building local authority and trust consistently)",
+      "sold — celebration moments, sold stickers, happy client handovers (social proof format cited across multiple research briefs as trust-building during active selling season)"
+    ],
+    "deprioritise_types": [
+      "generic stock images with no local East Auckland relevance (flagged in brand identity avoid list and research briefs)",
+      "text-only post cards without supporting visual — no performance data supports this format over image-led posts"
+    ],
+    "overlay_style": "Short punchy headline overlay in brand black (#000000) or white (#FFFFFF) on clean image areas — 2 to 6 words maximum. Subtle brand red (#C8102E) accent used sparingly for emphasis on key words or divider elements. Leave intentional negative space in compositions for overlay placement. Examples: 'Sell smarter.', 'This one won't last.', 'East Auckland living.'",
+    "prompt_patterns_that_work": [
+      "bright modern East Auckland home interior, wide-angle shot, natural light, warm neutral tones, clean staging, lifestyle-focused, premium real estate marketing style",
+      "autumn lifestyle moment inside a warm family home, soft natural light through windows, indoor plants, neutral palette, inviting atmosphere",
+      "East Auckland suburb street scene, clear blue sky, suburban greenery, family-friendly neighbourhood feel, lifestyle aspirational",
+      "sold celebration moment, agent and happy clients at front door, genuine emotion, natural outdoor light, brand red accent detail visible",
+      "open plan kitchen and living area flowing to outdoor deck, wide-angle composition, lifestyle staging, warm tones, space left for text overlay at top or bottom"
+    ]
+  },
+  "hashtags": {
+    "active": [
+      "#JinnyLeeRealEstate",
+      "#EastAucklandRealEstate",
+      "#AucklandProperty",
+      "#SmarterSelling",
+      "#BetterBuying",
+      "#AucklandHomes",
+      "#NZRealEstate",
+      "#PropertyNZ",
+      "#HouseForSaleNZ",
+      "#AucklandLiving",
+      "#HomeBuyersNZ",
+      "#PropertyMarketNZ",
+      "#DreamHomeNZ",
+      "#RealEstateNZ",
+      "#RealEstateTips",
+      "#HouseHuntingNZ",
+      "#PropertyTok",
+      "#FYP",
+      "#RayWhiteBotany",
+      "#EastAuckland",
+      "#HomeSelling",
+      "#HomeSellingTips",
+      "#AucklandMarket",
+      "#FirstHomeBuyer",
+      "#OpenHome",
+      "#AutumnRealEstate"
+    ],
+    "retired": [
+      "No hashtags formally retired at this stage — low confidence period with only 4 archived posts. Insufficient reach or engagement data to confirm any tag as underperforming. All tags carried forward for monitoring over next 30-day period."
+    ],
+    "trending_this_period": [
+      "#AutumnMarket",
+      "#AutumnSelling",
+      "#FirstHomeBuyerNZ",
+      "#BotanyHomes",
+      "#HowickRealEstate",
+      "#SellWithConfidence",
+      "#AucklandRealEstate2026",
+      "#NZPropertyMarket",
+      "#HomeBuyingNZ",
+      "#PropertyTipsNZ",
+      "#BotanyRealEstate",
+      "#EastAucklandLife",
+      "#RayWhiteNZ",
+      "#SellingYourHome",
+      "#NZProperty",
+      "#JustListed",
+      "#HotListing",
+      "#DreamHomeNZ"
+    ]
+  },
+  "content_pillars": {
+    "increase_focus": [
+      "Seller Education — autumn selling season is at peak relevance across all five research briefs; education posts on pricing, staging, and listing preparation are consistently cited as high-engagement formats",
+      "Trends and Short-form Content — short-form video under 30 seconds flagged as highest watch-through format in April 2026 research; TikTok and Instagram Reels should be introduced this period",
+      "Personal Brand and Trust — behind-the-scenes and transparency content cited in research as trust-building during active market conditions; only 4 posts archived with no personal brand content observed"
+    ],
+    "decrease_focus": [
+      "Text-only standalone posts — all 4 archived posts were text-only; no engagement data supports this format over visual content; reduce to no more than 30 percent of output until image performance can be compared",
+      "Generic market commentary — multiple research briefs flag national statistics without local East Auckland context as a content type to avoid"
+    ],
+    "weighting": {
+      "Seller Education": "30%",
+      "Buyer Guidance": "20%",
+      "Local Authority East Auckland": "15%",
+      "Listings and Success Stories": "15%",
+      "Personal Brand and Trust": "10%",
+      "Trends and Short-form Content": "10%"
+    }
+  },
+  "posting_schedule": {
+    "optimal_times": [
+      "21:00 — top performing hour from Facebook insights (appeared in 2 of top 5 posts)",
+      "06:00 — second most common hour from Facebook insights (appeared in 2 of top 5 posts)",
+      "20:00 — most common posting hour from local archive (all 4 archived posts published at this hour)"
+    ],
+    "best_days": [
+      "Tuesday through Thursday recommended as primary posting days based on general real estate social media best practices — low confidence due to insufficient day-level data in current insights",
+      "Saturday morning recommended for open home and listing content to align with weekend buyer activity"
+    ],
+    "posts_per_day": 1,
+    "image_to_text_ratio": "3:1 — increase image and video output significantly; current archive is 4:0 text-to-image which is the inverse of recommended best practice based on research brief guidance and brand image strategy"
+  },
+  "key_insights": [
+    "LOW CONFIDENCE — all Facebook engagement metrics returned zero across 14 posts analysed; this may indicate a data collection or API access issue rather than true zero performance; tactical recommendations are based on trend research and best practices until reliable engagement data is available",
+    "All 4 archived local posts were text-only; no image or video content was recorded in the archive — this represents a significant content gap given the brand's strong visual identity guidelines and research brief recommendations for image-led and video formats",
+    "Autumn 2026 seasonal urgency is the dominant theme across all five research briefs; seller education content tied to listing timing, staging, and pre-winter decision-making should be the primary message focus this period",
+    "Interest rate cuts are a high-relevance topic across all research briefs and represent an opportunity to address both buyer confidence and seller urgency simultaneously in a single content angle",
+    "School zone property demand and East Auckland suburb spotlights are consistently cited as high-performing local authority content for family buyer audiences — this pillar is currently underrepresented in the archive",
+    "Short-form video is flagged as the highest watch-through format in April 2026 research briefs; introducing even one TikTok or Instagram Reel per week would meaningfully diversify the current text-heavy content mix",
+    "Posting time of 21:00 aligns across both Facebook insights top posts and local archive posting pattern at 20:00 — evening scheduling should be maintained as the primary posting window",
+    "Social proof content — sold results, client success stories, celebration moments — is cited across three separate research briefs as a trust-building format that drives seller enquiries; this format is absent from the current archive"
+  ],
+  "reasoning": {
+    "what_worked": "Insufficient engagement data to confirm what worked — all Facebook metrics returned zero. Based on posting time patterns, 21:00 and 06:00 were the hours associated with the top five posts in the Facebook insights, and 20:00 was the consistent posting time across all archived local posts. Evening scheduling appears to be the established habit and should be retained. Core brand hashtags were applied consistently across all 4 archived posts which maintains brand discoverability baseline.",
+    "what_didnt": "All 4 archived posts were text-only with no image or video content. This directly contradicts the brand image strategy, research brief recommendations, and general social media best practices for real estate in 2026. Text-only posts have no visual stopping power in a feed-scroll environment and provide no opportunity to showcase property lifestyle, brand aesthetics, or local East Auckland identity. No personal brand content, no sold stories, no suburb spotlights, and no video were present in the archive — all of which are cited as high-performing formats in the research data.",
+    "main_recommendation": "Immediately shift the content mix to a minimum 3:1 image-to-text ratio by introducing lifestyle property photography and at least one short-form video per week. Prioritise autumn seller education content with local East Auckland hooks published at 21:00, and add one sold success story or suburb spotlight post per week to build social proof and local authority. Collect engagement data over the next 30 days to establish a reliable performance baseline before making further tactical adjustments."
+  }
+}

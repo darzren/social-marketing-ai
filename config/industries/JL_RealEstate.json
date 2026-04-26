@@ -4,18 +4,14 @@
   "call_to_action": "contact_now",
   "website": "https://rwbotany.co.nz/agents/jinny-lee/162405",
   "image_posts_enabled": false,
-
   "description": "Jinny Lee is a dedicated real estate professional in East Auckland, helping homeowners achieve premium results and guiding buyers to secure the right property with confidence. Backed by Ray White Botany, Jinny combines strong local knowledge, strategic marketing, and a client-first approach.",
-
   "tone": "warm yet confident, trustworthy, knowledgeable, approachable, community-focused, client-first",
-
-   "brand_positioning": {
+  "brand_positioning": {
     "jinny_role": "trusted East Auckland real estate advisor",
     "core_message": "Smarter selling. Better buying.",
     "differentiation": "local market expertise, strong negotiation skills, personalised service",
     "content_balance": "70% value/education/community, 30% listings/self-promotion"
   },
-
   "target_audience": {
     "primary": "homeowners in East Auckland looking to sell their property",
     "secondary": "buyers and families searching for homes in East Auckland",
@@ -28,7 +24,6 @@
       "emotionally invested in property decisions"
     ]
   },
-
   "content_pillars": [
     {
       "pillar": "Seller Education",
@@ -55,7 +50,6 @@
       "details": "TikTok/IG trends adapted to real estate, relatable POV content"
     }
   ],
-
   "content_types": [
     {
       "type": "hook_reel",
@@ -86,7 +80,6 @@
       "description": "viral or relatable content adapted to real estate"
     }
   ],
-
   "hashtags": {
     "core": [
       "#JinnyLeeRealEstate",
@@ -116,33 +109,55 @@
       "#FYP"
     ]
   },
-
   "brand_colors": {
     "primary": "#000000",
     "secondary": "#FFFFFF",
     "accent": "#C8102E",
     "accent_light": "#F5F5F5"
   },
-
   "logo_asset": "assets/logos/jinny_lee_realestate_logo.png",
-
-  "platforms": ["facebook", "instagram"],
+  "platforms": [
+    "facebook",
+    "instagram"
+  ],
   "_note": "TikTok can be added later once content strategy is consistent. Connect Instagram via Meta Business Manager.",
-
   "social_accounts": {
     "facebook": "https://www.facebook.com/JinnyLee.RealEstate",
     "instagram": "https://www.instagram.com/jinnylee.realestate/"
   },
-
   "posting_schedule": {
     "timezone": "Pacific/Auckland",
     "daily_time": "09:00",
     "health_check_offset_minutes": 20,
     "frequency": "every_3_days",
     "post_interval_days": 3,
-    "alternating_types": true
+    "alternating_types": true,
+    "learned": {
+      "optimal_times": [
+        "21:00 — top performing hour from Facebook insights (appeared in 2 of top 5 posts)",
+        "06:00 — second most common hour from Facebook insights (appeared in 2 of top 5 posts)",
+        "20:00 — most common posting hour from local archive (all 4 archived posts published at this hour)"
+      ],
+      "best_days": [
+        "Tuesday through Thursday recommended as primary posting days based on general real estate social media best practices — low confidence due to insufficient day-level data in current insights",
+        "Saturday morning recommended for open home and listing content to align with weekend buyer activity"
+      ],
+      "posts_per_day": 1,
+      "image_to_text_ratio": "3:1 — increase image and video output significantly; current archive is 4:0 text-to-image which is the inverse of recommended best practice based on research brief guidance and brand image strategy",
+      "top_content_types": [
+        "listing — hero interior and exterior shots showcasing lifestyle and indoor-outdoor flow (recommended as primary based on brand identity and research; low confidence due to zero image engagement data)",
+        "lifestyle — family living moments, warm home environments, autumn-toned natural light (seasonal alignment with Autumn 2026 context across all research briefs)",
+        "local_area — East Auckland streets, parks, school zones, coastal lifestyle shots (community content noted in research as building local authority and trust consistently)",
+        "sold — celebration moments, sold stickers, happy client handovers (social proof format cited across multiple research briefs as trust-building during active selling season)"
+      ],
+      "top_pillars": [
+        "Seller Education — autumn selling season is at peak relevance across all five research briefs; education posts on pricing, staging, and listing preparation are consistently cited as high-engagement formats",
+        "Trends and Short-form Content — short-form video under 30 seconds flagged as highest watch-through format in April 2026 research; TikTok and Instagram Reels should be introduced this period",
+        "Personal Brand and Trust — behind-the-scenes and transparency content cited in research as trust-building during active market conditions; only 4 posts archived with no personal brand content observed"
+      ],
+      "last_updated": "2026-04-26"
+    }
   },
-
   "voice_guide": {
     "headline_style": "short punchy, 2–6 words, benefit-driven or curiosity-based",
     "caption_max_words": 150,
@@ -156,28 +171,31 @@
       "This one won’t last."
     ]
   },
-
   "text_post_disclaimer": "This post is for general information purposes only and does not constitute financial or property advice.",
-
   "news_post_interval_days": 2,
-  "news_priority_override_tiers": [1, 2],
-
+  "news_priority_override_tiers": [
+    1,
+    2
+  ],
   "news_disclaimer": "Disclaimer: This content is based on information from external sources believed to be reliable. It is not independently verified. Please refer to the original source for full details.",
-
   "news_template": {
     "template_path": "assets/templates/JL_RealEstate_news_template.png",
-
     "box_x_pct": 0.05,
     "box_y_pct": 0.22,
-    "box_w_pct": 0.90,
+    "box_w_pct": 0.9,
     "box_h_pct": 0.35,
-
-    "headline_color": [20, 30, 60],
-
+    "headline_color": [
+      20,
+      30,
+      60
+    ],
     "url_y_pct": 0.57,
-    "url_color": [100, 100, 100]
+    "url_color": [
+      100,
+      100,
+      100
+    ]
   },
-
   "image_style": {
     "description": "Clean, modern, premium real estate — lifestyle-driven and aspirational",
     "photography_style": [
