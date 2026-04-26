@@ -49,6 +49,9 @@ jobs:
           git config user.name "GitHub Actions"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
+      - name: Wait for GitHub CDN propagation
+        run: sleep 30
+
       - name: Post to platforms
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
