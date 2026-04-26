@@ -182,6 +182,15 @@
     2
   ],
   "news_disclaimer": "Disclaimer: This content is based on information from external sources believed to be reliable. It is not independently verified. Please refer to the original source for full details.",
+  "quote_template": {
+    "template_path": "assets/templates/JL_RealEstate_quote_template.png",
+    "box_x_pct": 0.02,
+    "box_y_pct": 0.155,
+    "box_w_pct": 0.96,
+    "box_h_pct": 0.415,
+    "text_color": [20, 30, 60],
+    "accent_color": [200, 16, 46]
+  },
   "news_template": {
     "template_path": "assets/templates/JL_RealEstate_news_template.png",
     "box_x_pct": 0.05,

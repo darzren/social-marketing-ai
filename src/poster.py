@@ -4,6 +4,7 @@ Orchestrator: publishes posts to each platform and archives results.
 
 import json
 import logging
+import os
 from datetime import datetime
 from pathlib import Path
 
@@ -66,11 +67,23 @@ def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) ->
     # --- Instagram ---
     if "instagram" in posts:
         logger.info("Posting to Instagram...")
+        image_url = env.get("INSTAGRAM_DEFAULT_IMAGE_URL", "")
+        # If this text post has a quote card, build its GitHub raw URL
+        instagram_image = raw.get("instagram_image", "")
+        if instagram_image:
+            repo   = os.getenv("GITHUB_REPOSITORY", "")
+            branch = os.getenv("GITHUB_REF_NAME", "main")
+            if repo:
+                image_url = (
+                    f"https://raw.githubusercontent.com/{repo}/{branch}"
+                    f"/data/content_ready/{instagram_image}"
+                )
+                logger.info(f"Using quote image for Instagram: {image_url}")
         result = instagram.post(
             caption=_append_disclaimer(posts["instagram"], disclaimer),
             ig_user_id=env.get("INSTAGRAM_USER_ID", ""),
             access_token=env.get("INSTAGRAM_ACCESS_TOKEN", ""),
-            image_url=env.get("INSTAGRAM_DEFAULT_IMAGE_URL"),
+            image_url=image_url,
         )
         results["platforms"]["instagram"] = result
         status = "OK" if result["success"] else f"FAILED: {result.get('error')}"

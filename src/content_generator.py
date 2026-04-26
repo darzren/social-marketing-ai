@@ -82,6 +82,11 @@ def load_pending_posts(industry: str) -> tuple[dict, Path]:
     # Compose final strings for each platform, skipping non-platform keys like "type"
     PLATFORM_KEYS = {"facebook", "instagram", "tiktok"}
     composed = {k: _compose_post(v) for k, v in raw.items() if k in PLATFORM_KEYS}
+
+    # Text posts with a quote card image: synthesise an instagram caption from facebook content
+    if "instagram_image" in raw and "instagram" not in composed and "facebook" in composed:
+        composed["instagram"] = composed["facebook"]
+
     return composed, pending_path, raw
 
 

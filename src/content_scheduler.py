@@ -17,6 +17,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -298,6 +299,114 @@ def write_pending_file(content: dict, industry: str, post_type: str) -> Path:
     return path
 
 
+def generate_quote_image(post_text: str, industry: str, brand_config: dict) -> Path | None:
+    """Render the hook line of a text post onto the quote card template for Instagram."""
+    qt = brand_config.get("quote_template")
+    if not qt:
+        return None
+    template_path = Path(qt["template_path"])
+    if not template_path.exists():
+        logger.warning(f"Quote template not found: {template_path}")
+        return None
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError:
+        logger.warning("Pillow not available — skipping quote image generation")
+        return None
+
+    hook = post_text.split("\n\n")[0].strip() if post_text else ""
+    if not hook:
+        logger.warning("No hook line found in post text — skipping quote image")
+        return None
+
+    img  = Image.open(template_path).convert("RGB")
+    w, h = img.size
+    draw = ImageDraw.Draw(img)
+
+    bx = int(qt.get("box_x_pct", 0.02) * w)
+    by = int(qt.get("box_y_pct", 0.155) * h)
+    bw = int(qt.get("box_w_pct", 0.96) * w)
+    bh = int(qt.get("box_h_pct", 0.415) * h)
+    text_color   = tuple(qt.get("text_color",   [20, 30, 60]))
+    accent_color = tuple(qt.get("accent_color", [200, 16, 46]))
+
+    # Red accent line at top of box
+    accent_h = max(5, int(h * 0.006))
+    draw.rectangle([bx, by, bx + bw, by + accent_h], fill=accent_color)
+
+    # Font — try bold system fonts, fall back to default
+    font_paths = [
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+        "/System/Library/Fonts/Helvetica.ttc",
+        "C:/Windows/Fonts/arialbd.ttf",
+        "C:/Windows/Fonts/arial.ttf",
+    ]
+    font_size = int(h * 0.048)
+    font = None
+    for fp in font_paths:
+        if Path(fp).exists():
+            try:
+                font = ImageFont.truetype(fp, font_size)
+                break
+            except Exception:
+                pass
+    if font is None:
+        font = ImageFont.load_default()
+
+    # Word-wrap hook into lines that fit the box width
+    padding  = int(bw * 0.05)
+    max_tw   = bw - padding * 2
+
+    def wrap(text, fnt):
+        words, lines, current = text.split(), [], ""
+        for word in words:
+            test = f"{current} {word}".strip()
+            if draw.textbbox((0, 0), test, font=fnt)[2] <= max_tw:
+                current = test
+            else:
+                if current:
+                    lines.append(current)
+                current = word
+        if current:
+            lines.append(current)
+        return lines
+
+    lines = wrap(hook, font)
+
+    # Shrink font until lines fit vertically in box (max 5 lines)
+    min_size = int(h * 0.028)
+    while len(lines) > 5 and font_size > min_size:
+        font_size = max(min_size, int(font_size * 0.88))
+        for fp in font_paths:
+            if Path(fp).exists():
+                try:
+                    font = ImageFont.truetype(fp, font_size)
+                    break
+                except Exception:
+                    pass
+        lines = wrap(hook, font)
+
+    # Centre text block vertically within box (below accent line)
+    line_h   = draw.textbbox((0, 0), "Ag", font=font)[3] + int(font_size * 0.35)
+    total_h  = line_h * len(lines)
+    usable_y = by + accent_h
+    text_y   = usable_y + ((bh - accent_h) - total_h) // 2
+
+    for line in lines:
+        lw     = draw.textbbox((0, 0), line, font=font)[2]
+        text_x = bx + (bw - lw) // 2
+        draw.text((text_x, text_y), line, font=font, fill=text_color)
+        text_y += line_h
+
+    DATA_READY.mkdir(parents=True, exist_ok=True)
+    ts       = datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_path = DATA_READY / f"{industry}_{ts}_quote.jpg"
+    img.save(out_path, "JPEG", quality=92)
+    logger.info(f"Quote image written: {out_path.name}")
+    return out_path
+
+
 def git_commit_and_push(industry: str, post_type: str) -> bool:
     try:
         subprocess.run(["git", "add", "data/content_ready/"], check=True)
@@ -387,10 +496,23 @@ def main():
     angle   = content.get("facebook", {}).get("content_angle", "—")
     logger.info(f"Generated: {angle}")
 
+    # For text posts on Instagram-enabled brands, generate a quote card image
+    needs_cdn_wait = False
+    if post_type == "text" and "instagram" in brand_config.get("platforms", []):
+        post_text = content.get("facebook", {}).get("post_text", "")
+        quote_path = generate_quote_image(post_text, args.industry, brand_config)
+        if quote_path:
+            content["instagram_image"] = quote_path.name
+            needs_cdn_wait = True
+            logger.info(f"Quote image queued for Instagram: {quote_path.name}")
+
     # Write, push, and trigger post workflow
     write_pending_file(content, args.industry, post_type)
     pushed = git_commit_and_push(args.industry, post_type)
     if pushed:
+        if needs_cdn_wait:
+            logger.info("Waiting 15s for GitHub CDN to propagate quote image...")
+            time.sleep(15)
         trigger_post_workflow(args.industry)
 
     logger.info("=== Scheduler done ===")
