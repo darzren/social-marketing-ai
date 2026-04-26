@@ -64,16 +64,22 @@ def fetch_post_insights(post_id: str, access_token: str) -> dict:
             "metric":       "post_impressions,post_impressions_unique,"
                             "post_engaged_users,post_clicks,"
                             "post_reactions_by_type_total",
+            "period":       "lifetime",
             "access_token": access_token,
         },
         timeout=30,
     )
     if resp.status_code != 200:
+        logger.warning(f"Post insights error {resp.status_code}: {resp.text[:200]}")
         return {}
     result = {}
     for item in resp.json().get("data", []):
         val = item.get("values", [{}])
-        result[item["name"]] = val[-1].get("value", 0) if val else 0
+        value = val[-1].get("value", 0) if val else 0
+        # post_reactions_by_type_total returns a dict — sum all reaction counts
+        if isinstance(value, dict):
+            value = sum(value.values())
+        result[item["name"]] = value
     return result
 
 
