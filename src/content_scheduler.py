@@ -332,9 +332,7 @@ def generate_quote_image(post_text: str, industry: str, brand_config: dict) -> P
     text_color   = tuple(qt.get("text_color",   [20, 30, 60]))
     accent_color = tuple(qt.get("accent_color", [200, 16, 46]))
 
-    # Red accent line at top of box
-    accent_h = max(5, int(h * 0.006))
-    draw.rectangle([bx, by, bx + bw, by + accent_h], fill=accent_color)
+    accent_h = 0  # no accent line — template already provides visual framing
 
     # Font — try bold system fonts, fall back to default
     font_paths = [
