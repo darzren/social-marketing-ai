@@ -1,0 +1,161 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "2026-04-26T18:52:32.186794",
+  "period_days": 30,
+  "facebook_insights": {
+    "posts_analysed": 15,
+    "avg_engagement": 1,
+    "best_posting_hours": [
+      "08:00",
+      "10:00",
+      "21:00"
+    ],
+    "image_avg_engagement": 1,
+    "text_avg_engagement": 1,
+    "image_outperforms_text": true,
+    "top_posts": [
+      {
+        "id": "1057881790747803_122100567458693087",
+        "created": "2026-04-19T08:54:31+0000",
+        "hour": 8,
+        "has_image": true,
+        "engagement": 3,
+        "reactions": 3,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122095151246693087",
+        "created": "2026-04-13T10:24:13+0000",
+        "hour": 10,
+        "has_image": true,
+        "engagement": 2,
+        "reactions": 2,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122104654400693087",
+        "created": "2026-04-26T08:25:58+0000",
+        "hour": 8,
+        "has_image": true,
+        "engagement": 1,
+        "reactions": 1,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122104561340693087",
+        "created": "2026-04-25T21:36:51+0000",
+        "hour": 21,
+        "has_image": false,
+        "engagement": 1,
+        "reactions": 1,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122104377494693087",
+        "created": "2026-04-25T06:20:59+0000",
+        "hour": 6,
+        "has_image": true,
+        "engagement": 1,
+        "reactions": 1,
+        "comments": 0,
+        "shares": 0
+      }
+    ]
+  },
+  "local_archive": {
+    "total_posts": 9,
+    "by_type": {
+      "text": 9
+    },
+    "by_image_type": {},
+    "most_used_hashtags": [
+      [
+        "#JinnyLeeRealEstate",
+        9
+      ],
+      [
+        "#EastAucklandRealEstate",
+        9
+      ],
+      [
+        "#AucklandProperty",
+        9
+      ],
+      [
+        "#SmarterSelling",
+        9
+      ],
+      [
+        "#BetterBuying",
+        9
+      ],
+      [
+        "#AucklandHomes",
+        9
+      ],
+      [
+        "#NZRealEstate",
+        9
+      ],
+      [
+        "#PropertyNZ",
+        9
+      ],
+      [
+        "#RayWhiteBotany",
+        9
+      ],
+      [
+        "#EastAuckland",
+        9
+      ],
+      [
+        "#HouseForSaleNZ",
+        8
+      ],
+      [
+        "#AutumnRealEstate",
+        8
+      ],
+      [
+        "#HomeSellingTips",
+        8
+      ],
+      [
+        "#AucklandMarket",
+        8
+      ],
+      [
+        "#HomeSelling",
+        7
+      ]
+    ],
+    "recent_angles": [
+      "Three mistakes East Auckland sellers make in autumn that cost them money",
+      "Why autumn is actually the smartest time to list your East Auckland home",
+      "How home staging lifts your East Auckland sale price this autumn",
+      "Why school zones drive property value and demand in East Auckland for family buyers",
+      "How East Auckland buyers are gaining the upper hand right now as lending conditions improve — and what sellers need to know about it",
+      "What serious buyers are actually looking for at open homes in East Auckland right now — and how sellers can use this to their advantage",
+      "How to price your East Auckland home right the first time — why the wrong starting price costs sellers more than they realise",
+      "Why waiting until spring to sell your East Auckland home could cost you more than you think",
+      "How to negotiate confidently as a buyer in East Auckland's active autumn market without overpaying or missing out"
+    ],
+    "posting_hours": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "most_common_hour": 20
+  }
+}
