@@ -64,6 +64,10 @@ jobs:
           git diff --staged --quiet && echo "No new news — skipping commit." || \
             (git commit -m "news: JL_RealEstate image $(date +'%Y%m%d_%H%M%S')" && git push)
 
+      # Wait for GitHub CDN to propagate the committed image before Instagram can access it
+      - name: Wait for CDN propagation
+        run: sleep 15
+
       # Phase 2: post to Facebook (direct upload) and Instagram (GitHub raw URL)
       - name: Post to platforms
         env:
