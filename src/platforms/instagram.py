@@ -8,15 +8,15 @@ This module posts as a text-only "caption" using a placeholder image approach,
 or you can provide image_url for a real image post.
 """
 
+import time
 import requests
+
+GRAPH = "https://graph.facebook.com/v21.0"
 
 
 def post(caption: str, ig_user_id: str, access_token: str, image_url: str = None) -> dict:
     """
     Post to Instagram. Requires an image URL for feed posts.
-
-    If no image_url is provided, the post will be skipped with an explanation.
-    For production use, provide a relevant image URL per industry.
 
     Returns:
         dict with 'success' bool and 'post_id' or 'error'
@@ -29,13 +29,11 @@ def post(caption: str, ig_user_id: str, access_token: str, image_url: str = None
         }
 
     # Step 1: Create media container
-    container_url = f"https://graph.facebook.com/v21.0/{ig_user_id}/media"
-    container_payload = {
-        "image_url": image_url,
-        "caption": caption,
-        "access_token": access_token,
-    }
-    container_resp = requests.post(container_url, data=container_payload, timeout=30)
+    container_resp = requests.post(
+        f"{GRAPH}/{ig_user_id}/media",
+        data={"image_url": image_url, "caption": caption, "access_token": access_token},
+        timeout=30,
+    )
     container_data = container_resp.json()
 
     if container_resp.status_code != 200 or "id" not in container_data:
@@ -44,13 +42,28 @@ def post(caption: str, ig_user_id: str, access_token: str, image_url: str = None
 
     creation_id = container_data["id"]
 
-    # Step 2: Publish the container
-    publish_url = f"https://graph.facebook.com/v21.0/{ig_user_id}/media_publish"
-    publish_payload = {
-        "creation_id": creation_id,
-        "access_token": access_token,
-    }
-    publish_resp = requests.post(publish_url, data=publish_payload, timeout=30)
+    # Step 2: Poll until container status is FINISHED (Instagram processes the image async)
+    for attempt in range(12):  # up to ~60 seconds
+        time.sleep(5)
+        status_resp = requests.get(
+            f"{GRAPH}/{creation_id}",
+            params={"fields": "status_code", "access_token": access_token},
+            timeout=30,
+        )
+        status = status_resp.json().get("status_code", "")
+        if status == "FINISHED":
+            break
+        if status == "ERROR":
+            return {"success": False, "error": "Container processing failed (status ERROR)"}
+    else:
+        return {"success": False, "error": "Container not ready after 60s — timed out"}
+
+    # Step 3: Publish the ready container
+    publish_resp = requests.post(
+        f"{GRAPH}/{ig_user_id}/media_publish",
+        data={"creation_id": creation_id, "access_token": access_token},
+        timeout=30,
+    )
     publish_data = publish_resp.json()
 
     if publish_resp.status_code == 200 and "id" in publish_data:
