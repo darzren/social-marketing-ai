@@ -4,18 +4,14 @@
   "call_to_action": "shop_now",
   "website": "https://www.velocx.co.nz",
   "image_posts_enabled": false,
-
   "description": "Velocx NZ is a performance swimwear retailer bringing elite global brands to New Zealand swimmers. Featuring Jaked, a premium Italian swimwear brand trusted by competitive athletes, Velocx helps swimmers train harder, race faster, and perform at their best.",
-
   "tone": "authoritative yet energetic, performance-driven, confident, aspirational, community-focused, athlete-first mindset",
-
   "brand_positioning": {
     "velocx_role": "trusted curator and performance authority in NZ swimwear",
     "hero_brand": "Jaked",
     "jaked_positioning": "elite Italian performance swimwear designed for competitive swimmers and race performance",
     "content_balance": "70% value/education/entertainment, 30% product (Jaked integration)"
   },
-
   "target_audience": {
     "primary": "competitive swimmers and triathletes in New Zealand aged 16–40",
     "secondary": "fitness swimmers and aspiring athletes who want high-performance gear",
@@ -27,7 +23,6 @@
       "cares about quality gear and progression"
     ]
   },
-
   "content_pillars": [
     {
       "pillar": "Swim Performance & Training",
@@ -54,7 +49,6 @@
       "details": "adapt TikTok/IG trends into swimming niche"
     }
   ],
-
   "content_types": [
     {
       "type": "hook_reel",
@@ -85,7 +79,6 @@
       "description": "performance vs regular swimwear"
     }
   ],
-
   "hashtags": {
     "core": [
       "#VelocxNZ",
@@ -115,28 +108,48 @@
       "#FYP"
     ]
   },
-
   "brand_colors": {
     "primary": "#000000",
     "secondary": "#FFFFFF",
     "accent": "#F8A30E",
     "accent_light": "#A3CEF1"
   },
-
   "logo_asset": "assets/logos/velocx_nz_logo.png",
-
-  "platforms": ["facebook"],
+  "platforms": [
+    "facebook"
+  ],
   "_note": "Instagram and TikTok are in platforms config but credentials not yet configured. Update 'platforms' array and add credentials to config/credentials/velocx_nz.env when ready.",
-
   "posting_schedule": {
     "timezone": "Pacific/Auckland",
     "daily_time": "09:03",
     "health_check_offset_minutes": 20,
     "frequency": "every_3_days",
     "post_interval_days": 3,
-    "alternating_types": true
+    "alternating_types": true,
+    "learned": {
+      "optimal_times": [
+        "03:00 NZST — top-performing post in the analysis period (engagement 4) was published at this hour; likely catching early morning swimmers and night-before scrollers; use for highest-priority image posts",
+        "23:00 NZST — second-best performing hour in Facebook insights; second-ranked top post published at 22:48; evening wind-down browsing window for athletes post-training",
+        "22:00 NZST — third-best performing hour in Facebook insights; consistent with post-training evening engagement window"
+      ],
+      "best_days": [
+        "Sunday to Thursday evenings — aligns with optimal posting hours identified; training days drive scroll behaviour in recovery windows; insufficient day-level data to rank precisely, low confidence on day preference specifically"
+      ],
+      "posts_per_day": 1,
+      "image_to_text_ratio": "4:1",
+      "top_content_types": [
+        "race_action — used twice in archive, present in top-performing posts; cinematic dive starts, mid-stroke butterfly or freestyle, underwater dolphin kick with water exploding; Jaked cap visible; aligns with highest-engagement post types",
+        "gear_closeup — sleek Jaked racing suit submerged in deep teal pool water with dramatic orange-amber overhead spotlights; fabric texture detail visible; recommended by April 2026 trend research as highest-traction format for performance sports brands; post-nationals timing makes race suit quality messaging highly relevant to NZ competitive swimmers right now",
+        "lifestyle — athlete poolside post-session, towel around shoulders, focused expression, warm stadium lighting; autumn training mood resonates strongly with seasonal content angle confirmed by multiple research briefs"
+      ],
+      "top_pillars": [
+        "Swim Performance and Training — stat-backed educational tip posts with surprising data hooks (e.g. six-beat kick 10% improvement, flip turn 1-2 second loss) are the highest-engagement content type on Facebook in 2026 and drive saves and shares; this pillar should anchor at least 2 posts per week",
+        "Jaked Product Integration — post-nationals period confirmed by trend research as prime window for race suit quality and performance fabric messaging; gear_closeup format is both underused in archive (1 use) and highly recommended by 2026 platform trend data; increase to at least 1 dedicated product post per week using cinematic fabric detail imagery",
+        "Trends and Viral Formats — TikTok and Instagram favouring specificity and self-awareness in April 2026; photo carousel formats gaining traction in niche sports communities; this pillar is currently underutilised in the archive and offers the highest growth lever on Instagram and TikTok"
+      ],
+      "last_updated": "2026-04-26"
+    }
   },
-
   "voice_guide": {
     "headline_style": "short punchy, 2–5 words, imperative or bold statement",
     "caption_max_words": 150,
@@ -149,7 +162,6 @@
       "Own the wall."
     ]
   },
-
   "image_style": {
     "description": "Dark, moody, cinematic — professional sports/editorial photography quality",
     "photography_style": [

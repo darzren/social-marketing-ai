@@ -1,0 +1,183 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "2026-04-26T18:36:01.220178",
+  "period_days": 30,
+  "facebook_insights": {
+    "posts_analysed": 22,
+    "avg_engagement": 0,
+    "best_posting_hours": [
+      "03:00",
+      "23:00",
+      "22:00"
+    ],
+    "image_avg_engagement": 1,
+    "text_avg_engagement": 0,
+    "image_outperforms_text": true,
+    "top_posts": [
+      {
+        "id": "721525974381276_122159923232977604",
+        "created": "2026-04-03T03:34:29+0000",
+        "hour": 3,
+        "has_image": true,
+        "engagement": 4,
+        "reactions": 3,
+        "comments": 0,
+        "shares": 1
+      },
+      {
+        "id": "721525974381276_122159126306977604",
+        "created": "2026-03-29T22:48:45+0000",
+        "hour": 22,
+        "has_image": true,
+        "engagement": 3,
+        "reactions": 2,
+        "comments": 0,
+        "shares": 1
+      },
+      {
+        "id": "721525974381276_122160366890977604",
+        "created": "2026-04-05T23:14:13+0000",
+        "hour": 23,
+        "has_image": false,
+        "engagement": 2,
+        "reactions": 2,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "721525974381276_122160515750977604",
+        "created": "2026-04-06T21:28:17+0000",
+        "hour": 21,
+        "has_image": false,
+        "engagement": 1,
+        "reactions": 1,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "721525974381276_122160195368977604",
+        "created": "2026-04-04T21:01:00+0000",
+        "hour": 21,
+        "has_image": true,
+        "engagement": 1,
+        "reactions": 1,
+        "comments": 0,
+        "shares": 0
+      }
+    ]
+  },
+  "local_archive": {
+    "total_posts": 24,
+    "by_type": {
+      "text": 18,
+      "image": 6
+    },
+    "by_image_type": {
+      "race_action": 2,
+      "unknown": 2,
+      "team": 1,
+      "gear_closeup": 1
+    },
+    "most_used_hashtags": [
+      [
+        "#VelocxNZ",
+        24
+      ],
+      [
+        "#SwimFast",
+        24
+      ],
+      [
+        "#SwimNZ",
+        24
+      ],
+      [
+        "#Jaked",
+        20
+      ],
+      [
+        "#TrainToWin",
+        20
+      ],
+      [
+        "#CompetitiveSwimming",
+        20
+      ],
+      [
+        "#NZSwimmers",
+        20
+      ],
+      [
+        "#SwimTraining",
+        17
+      ],
+      [
+        "#SwimTechnique",
+        12
+      ],
+      [
+        "#SwimDrills",
+        9
+      ],
+      [
+        "#SwimmingTips",
+        8
+      ],
+      [
+        "#PoolTraining",
+        6
+      ],
+      [
+        "#CompetitiveSwimwear",
+        4
+      ],
+      [
+        "#ItalianSwimwear",
+        4
+      ],
+      [
+        "#EliteSwimwear",
+        4
+      ]
+    ],
+    "recent_angles": [
+      "Race day intensity — swimmer launching off the blocks, cinematic dark pool atmosphere",
+      "Turns in the pool — the race-within-the-race that most club swimmers treat as a rest break instead of a weapon",
+      "Post-NZ Age Group Champs squad recognition — the collective effort, club identity, and team culture that defines competitive swimming, timely after Nationals just wrapped at Hawke's Bay",
+      "Pacing strategy — how most club swimmers go out too hard in the first 50m and blow up, versus the negative split approach elite swimmers use to finish faster than they start",
+      "Jaked performance fabric science — gear_closeup chosen to avoid recently used team/race_action/open_water types, and post-nationals timing makes race suit quality messaging highly relevant to NZ competitive swimmers assessing their gear",
+      "Stroke rate vs stroke length — the trade-off most club swimmers never consciously think about, and how finding your optimal combination unlocks faster times without extra fitness",
+      "Six-beat kick training — the measurable speed gain most club swimmers default away from, with a stat-backed drill breakdown showing 10%+ improvement in 50m times over four weeks",
+      "Hip rotation — the hidden power source most club swimmers underuse, and how unlocking even 10 degrees more rotation translates directly into longer stroke, less drag, and faster splits",
+      "Breathing pattern optimisation — how most club swimmers default to every-stroke breathing and bleed speed, versus the controlled bilateral and reduced breathing patterns elite swimmers use to maintain power through fatigue",
+      "Turns in the pool — how most club swimmers lose 1–2 seconds per lap at the wall through a weak, slow flip turn, and the three-step drill to fix it fast"
+    ],
+    "posting_hours": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "most_common_hour": 20
+  }
+}
