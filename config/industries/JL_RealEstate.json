@@ -134,26 +134,29 @@
     "alternating_types": true,
     "learned": {
       "optimal_times": [
-        "21:00 — top performing hour from Facebook insights (appeared in 2 of top 5 posts)",
-        "06:00 — second most common hour from Facebook insights (appeared in 2 of top 5 posts)",
-        "20:00 — most common posting hour from local archive (all 4 archived posts published at this hour)"
+        "21:00 — top performing hour from Facebook insights, appearing in 2 of the top 5 posts; also aligns closely with the 20:00 consistent posting hour across all 4 archived local posts, suggesting evening scheduling is the established and preferred window",
+        "06:00 — second confirmed hour from Facebook insights top 5 posts, appearing in 2 of 5; suitable for morning commute reach on educational and market update content",
+        "20:00 — most common posting hour across all 4 archived local posts; retained as a fallback evening window closely aligned with the 21:00 insights peak"
       ],
       "best_days": [
-        "Tuesday through Thursday recommended as primary posting days based on general real estate social media best practices — low confidence due to insufficient day-level data in current insights",
-        "Saturday morning recommended for open home and listing content to align with weekend buyer activity"
+        "Tuesday through Thursday recommended as primary posting days for education and market content based on general real estate social media best practices — low confidence due to insufficient day-level performance data in current insights period",
+        "Saturday morning at 09:00 to 10:00 recommended for listing and open home content to align with weekend buyer browsing and open home activity in East Auckland",
+        "Sunday evening at 20:00 to 21:00 recommended for seller education and week-ahead market content targeting homeowners in a relaxed planning mindset"
       ],
       "posts_per_day": 1,
-      "image_to_text_ratio": "3:1 — increase image and video output significantly; current archive is 4:0 text-to-image which is the inverse of recommended best practice based on research brief guidance and brand image strategy",
+      "image_to_text_ratio": "3:1 — minimum three image or video posts for every one text-only post per week; current archive is effectively 0:4 in favour of text which is the inverse of recommended best practice per brand identity guidelines and all five research briefs; this ratio shift is the most urgent tactical change required this period",
       "top_content_types": [
-        "listing — hero interior and exterior shots showcasing lifestyle and indoor-outdoor flow (recommended as primary based on brand identity and research; low confidence due to zero image engagement data)",
-        "lifestyle — family living moments, warm home environments, autumn-toned natural light (seasonal alignment with Autumn 2026 context across all research briefs)",
-        "local_area — East Auckland streets, parks, school zones, coastal lifestyle shots (community content noted in research as building local authority and trust consistently)",
-        "sold — celebration moments, sold stickers, happy client handovers (social proof format cited across multiple research briefs as trust-building during active selling season)"
+        "listing — hero interior and exterior shots showcasing lifestyle, indoor-outdoor flow, and premium East Auckland homes (recommended as primary based on brand identity and research; low confidence due to zero image engagement data in current period)",
+        "lifestyle — family living moments, warm autumn-toned interiors, soft natural light through windows, indoor-outdoor connection (seasonal alignment with Autumn 2026 context confirmed across all five research briefs)",
+        "sold — celebration moments, sold sticker overlays, happy client handovers at front door with genuine emotion (social proof format cited across three separate research briefs as a trust-building driver of seller enquiries; absent from current archive and a priority gap to fill)",
+        "local_area — East Auckland streets, parks, school zones, suburban greenery, coastal lifestyle shots (community and suburb spotlight content noted across multiple research briefs as building local authority and trust consistently; currently absent from archive)",
+        "agent_brand — Jinny interacting with clients at open homes, behind-the-scenes of listing process, professional yet warm and approachable moments (transparency and personal brand content cited in April 23 research brief as trust-building during active market conditions)"
       ],
       "top_pillars": [
-        "Seller Education — autumn selling season is at peak relevance across all five research briefs; education posts on pricing, staging, and listing preparation are consistently cited as high-engagement formats",
-        "Trends and Short-form Content — short-form video under 30 seconds flagged as highest watch-through format in April 2026 research; TikTok and Instagram Reels should be introduced this period",
-        "Personal Brand and Trust — behind-the-scenes and transparency content cited in research as trust-building during active market conditions; only 4 posts archived with no personal brand content observed"
+        "Seller Education — autumn selling season is at peak relevance across all five research briefs; education posts on pricing, staging, listing preparation, and the cost of waiting are consistently cited as high-engagement save-and-share formats; this pillar should lead the weekly content mix",
+        "Trends and Short-form Content — short-form video under 30 seconds is flagged as the highest watch-through format in April 2026 across multiple research briefs; introducing at least one TikTok or Instagram Reel per week is the single highest-priority format gap to close given the current text-only archive",
+        "Personal Brand and Trust — behind-the-scenes listing process content and transparency posts cited in April 23 research brief as trust-building during active market conditions; sold celebration stories and client handover moments are absent from the current archive and should be introduced immediately",
+        "Listings and Success Stories — sold results and client success case studies cited across three research briefs as social proof drivers of seller enquiries; this format is entirely absent from the current 4-post archive and represents the most significant missed opportunity for trust conversion"
       ],
       "last_updated": "2026-04-26"
     }

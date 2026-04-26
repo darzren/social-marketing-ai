@@ -1,0 +1,157 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "2026-04-26T06:32:19.910477",
+  "period_days": 30,
+  "facebook_insights": {
+    "posts_analysed": 14,
+    "avg_reach": 0,
+    "avg_engagement": 0,
+    "best_posting_hours": [
+      "21:00",
+      "06:00",
+      "04:00"
+    ],
+    "image_avg_engagement": 0,
+    "text_avg_engagement": 0,
+    "image_outperforms_text": false,
+    "top_posts": [
+      {
+        "id": "1057881790747803_122104561340693087",
+        "created": "2026-04-25T21:36:51+0000",
+        "hour": 21,
+        "has_image": false,
+        "impressions": 0,
+        "reach": 0,
+        "engagement": 0,
+        "clicks": 0,
+        "reactions": 0
+      },
+      {
+        "id": "1057881790747803_122104377494693087",
+        "created": "2026-04-25T06:20:59+0000",
+        "hour": 6,
+        "has_image": true,
+        "impressions": 0,
+        "reach": 0,
+        "engagement": 0,
+        "clicks": 0,
+        "reactions": 0
+      },
+      {
+        "id": "1057881790747803_122104063676693087",
+        "created": "2026-04-23T21:45:46+0000",
+        "hour": 21,
+        "has_image": false,
+        "impressions": 0,
+        "reach": 0,
+        "engagement": 0,
+        "clicks": 0,
+        "reactions": 0
+      },
+      {
+        "id": "1057881790747803_122103818852693087",
+        "created": "2026-04-23T06:14:50+0000",
+        "hour": 6,
+        "has_image": true,
+        "impressions": 0,
+        "reach": 0,
+        "engagement": 0,
+        "clicks": 0,
+        "reactions": 0
+      },
+      {
+        "id": "1057881790747803_122103810404693087",
+        "created": "2026-04-23T04:28:10+0000",
+        "hour": 4,
+        "has_image": true,
+        "impressions": 0,
+        "reach": 0,
+        "engagement": 0,
+        "clicks": 0,
+        "reactions": 0
+      }
+    ]
+  },
+  "local_archive": {
+    "total_posts": 4,
+    "by_type": {
+      "text": 4
+    },
+    "by_image_type": {},
+    "most_used_hashtags": [
+      [
+        "#JinnyLeeRealEstate",
+        4
+      ],
+      [
+        "#EastAucklandRealEstate",
+        4
+      ],
+      [
+        "#AucklandProperty",
+        4
+      ],
+      [
+        "#SmarterSelling",
+        4
+      ],
+      [
+        "#BetterBuying",
+        4
+      ],
+      [
+        "#AucklandHomes",
+        4
+      ],
+      [
+        "#NZRealEstate",
+        4
+      ],
+      [
+        "#PropertyNZ",
+        4
+      ],
+      [
+        "#HouseForSaleNZ",
+        4
+      ],
+      [
+        "#RayWhiteBotany",
+        4
+      ],
+      [
+        "#EastAuckland",
+        4
+      ],
+      [
+        "#AutumnRealEstate",
+        3
+      ],
+      [
+        "#HomeSelling",
+        3
+      ],
+      [
+        "#HomeSellingTips",
+        3
+      ],
+      [
+        "#AucklandMarket",
+        3
+      ]
+    ],
+    "recent_angles": [
+      "Three mistakes East Auckland sellers make in autumn that cost them money",
+      "Why autumn is actually the smartest time to list your East Auckland home",
+      "How home staging lifts your East Auckland sale price this autumn",
+      "Why school zones drive property value and demand in East Auckland for family buyers"
+    ],
+    "posting_hours": [
+      20,
+      20,
+      20,
+      20
+    ],
+    "most_common_hour": 20
+  }
+}
