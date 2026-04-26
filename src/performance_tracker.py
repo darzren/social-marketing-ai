@@ -57,29 +57,44 @@ def fetch_page_posts(page_id: str, access_token: str, days: int) -> list:
 
 
 def fetch_post_insights(post_id: str, access_token: str) -> dict:
-    """Fetch per-post engagement metrics."""
+    """Fetch per-post engagement metrics using v21.0 valid metrics only."""
+    # Fetch all valid v21.0 lifetime metrics in one call
     resp = requests.get(
         f"{GRAPH_API}/{post_id}/insights",
         params={
             "metric":       "post_impressions,post_impressions_unique,"
-                            "post_engaged_users,post_clicks,"
-                            "post_reactions_by_type_total",
+                            "post_impressions_organic,post_impressions_paid",
             "period":       "lifetime",
             "access_token": access_token,
         },
         timeout=30,
     )
-    if resp.status_code != 200:
-        logger.warning(f"Post insights error {resp.status_code}: {resp.text[:200]}")
-        return {}
     result = {}
-    for item in resp.json().get("data", []):
-        val = item.get("values", [{}])
-        value = val[-1].get("value", 0) if val else 0
-        # post_reactions_by_type_total returns a dict — sum all reaction counts
-        if isinstance(value, dict):
-            value = sum(value.values())
-        result[item["name"]] = value
+    if resp.status_code == 200:
+        for item in resp.json().get("data", []):
+            val = item.get("values", [{}])
+            value = val[-1].get("value", 0) if val else 0
+            if isinstance(value, dict):
+                value = sum(value.values())
+            result[item["name"]] = value
+    else:
+        logger.warning(f"Post insights error {resp.status_code}: {resp.text[:200]}")
+
+    # Fetch reactions separately (returns per-type dict)
+    resp2 = requests.get(
+        f"{GRAPH_API}/{post_id}",
+        params={
+            "fields":       "reactions.summary(total_count),comments.summary(total_count),shares",
+            "access_token": access_token,
+        },
+        timeout=30,
+    )
+    if resp2.status_code == 200:
+        data = resp2.json()
+        result["reactions"]  = data.get("reactions",  {}).get("summary", {}).get("total_count", 0)
+        result["comments"]   = data.get("comments",   {}).get("summary", {}).get("total_count", 0)
+        result["shares"]     = data.get("shares", {}).get("count", 0)
+
     return result
 
 
@@ -94,16 +109,18 @@ def fetch_facebook_insights(page_id: str, access_token: str, days: int) -> dict:
         created = post.get("created_time", "")
         hour    = int(created[11:13]) if len(created) >= 13 else None
 
+        engagement = metrics.get("reactions", 0) + metrics.get("comments", 0) + metrics.get("shares", 0)
         post_data.append({
-            "id":         post["id"],
-            "created":    created,
-            "hour":       hour,
-            "has_image":  bool(post.get("full_picture")),
+            "id":          post["id"],
+            "created":     created,
+            "hour":        hour,
+            "has_image":   bool(post.get("full_picture")),
             "impressions": metrics.get("post_impressions", 0),
             "reach":       metrics.get("post_impressions_unique", 0),
-            "engagement":  metrics.get("post_engaged_users", 0),
-            "clicks":      metrics.get("post_clicks", 0),
-            "reactions":   metrics.get("post_reactions_by_type_total", 0),
+            "engagement":  engagement,
+            "reactions":   metrics.get("reactions", 0),
+            "comments":    metrics.get("comments", 0),
+            "shares":      metrics.get("shares", 0),
         })
 
     if not post_data:
