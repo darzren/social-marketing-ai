@@ -6,7 +6,12 @@ on:
     - cron: '30 2 * * *'   # 14:30 NZST (UTC+12, Apr–Sep)
     - cron: '0 5 * * *'    # 18:00 NZDT (UTC+13, Sep–Apr)
     - cron: '0 6 * * *'    # 18:00 NZST (UTC+12, Apr–Sep)
-  workflow_dispatch:          # manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force post (skip interval and dedup checks)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -55,7 +60,12 @@ jobs:
       - name: Generate news image
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python src/news_monitor.py --industry JL_RealEstate --phase generate
+        run: |
+          if [ "${{ inputs.force }}" = "true" ]; then
+            python src/news_monitor.py --industry JL_RealEstate --phase generate --force
+          else
+            python src/news_monitor.py --industry JL_RealEstate --phase generate
+          fi
 
       # Commit image + pending file so image is publicly accessible via GitHub raw URL
       - name: Commit generated files

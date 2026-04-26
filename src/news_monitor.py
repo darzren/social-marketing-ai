@@ -517,11 +517,16 @@ def _post_instagram_photo(image_url: str, caption: str, env: dict) -> dict:
 # Phase 1 — generate
 # ---------------------------------------------------------------------------
 
-def phase_generate(industry: str, brand_config: dict, api_key: str):
+def phase_generate(industry: str, brand_config: dict, api_key: str, force: bool = False):
     """Fetch → filter → select → generate image → write pending file."""
     state = _load_seen_state()
     seen_urls        = set(state["urls"].keys())
     recent_headlines = [t["headline"] for t in state.get("topics", [])]
+
+    if force:
+        logger.info("⚡ --force mode: skipping dedup and interval checks.")
+        seen_urls        = set()
+        recent_headlines = []
 
     logger.info(f"Seen URLs (14 days): {len(seen_urls)}  |  Recent topics (7 days): {len(recent_headlines)}")
 
@@ -549,10 +554,10 @@ def phase_generate(industry: str, brand_config: dict, api_key: str):
     logger.info(f"Selected (priority tier {priority}): {headline}")
     logger.info(f"Source: {source_url}")
 
-    # Posting interval check — bypass for high-priority tiers (OCR, govt policy)
+    # Posting interval check — bypass for high-priority tiers (OCR, govt policy) or --force
     interval_days      = brand_config.get("news_post_interval_days", 1)
     override_tiers     = brand_config.get("news_priority_override_tiers", [1, 2])
-    if interval_days > 1 and priority not in override_tiers:
+    if not force and interval_days > 1 and priority not in override_tiers:
         last_post = _get_last_news_post_date(industry)
         if last_post:
             days_since = (datetime.now() - last_post).total_seconds() / 86400
@@ -697,6 +702,11 @@ def main():
         choices=["generate", "post"],
         default="generate",
     )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Skip interval and dedup checks — for testing only",
+    )
     args = parser.parse_args()
 
     logger.info(f"=== News Monitor | {args.industry} | phase={args.phase} | {datetime.now().strftime('%Y%m%d_%H%M%S')} ===")
@@ -716,7 +726,7 @@ def main():
         if not api_key:
             logger.error("ANTHROPIC_API_KEY not set.")
             sys.exit(1)
-        return phase_generate(args.industry, brand_config, api_key)
+        return phase_generate(args.industry, brand_config, api_key, force=args.force)
 
     else:  # post
         env = {
