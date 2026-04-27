@@ -45,9 +45,10 @@ def post(description: str, access_token: str, video_path: str = None) -> dict:
         "Content-Type":   "application/json; charset=UTF-8",
     }
 
-    video_size  = Path(video_path).stat().st_size
-    chunk_size  = min(video_size, 10 * 1024 * 1024)  # 10 MB max per chunk
-    total_chunks = math.ceil(video_size / chunk_size)
+    video_size   = Path(video_path).stat().st_size
+    # Upload as a single chunk if file fits within TikTok's 64MB chunk limit
+    chunk_size   = min(video_size, 64 * 1024 * 1024)
+    total_chunks = 1
 
     # Step 1: Initialise upload
     init_resp = requests.post(
