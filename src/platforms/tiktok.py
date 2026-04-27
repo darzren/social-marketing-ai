@@ -34,7 +34,7 @@ def post(description: str, access_token: str, video_path: str = None) -> dict:
     description = description[:2200]
     post_info = {
         "title":           description,
-        "privacy_level":   "PUBLIC_TO_EVERYONE",
+        "privacy_level":   "SELF_ONLY",  # sandbox requirement; change to PUBLIC_TO_EVERYONE in production
         "disable_duet":    False,
         "disable_comment": False,
         "disable_stitch":  False,
