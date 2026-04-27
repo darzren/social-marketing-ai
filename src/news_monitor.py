@@ -485,11 +485,13 @@ def _post_facebook_photo(image_bytes: bytes, caption: str, env: dict) -> dict:
 
 
 def _post_instagram_photo(image_url: str, caption: str, env: dict) -> dict:
+    import time as _time
     ig_user_id   = env.get("INSTAGRAM_USER_ID", "")
     access_token = env.get("INSTAGRAM_ACCESS_TOKEN", "")
     if not ig_user_id or not access_token:
         return {"success": False, "skipped": True, "error": "Instagram credentials not set."}
     try:
+        # Step 1: Create container
         c_resp = requests.post(
             f"https://graph.facebook.com/v21.0/{ig_user_id}/media",
             data={"image_url": image_url, "caption": caption, "access_token": access_token},
@@ -499,9 +501,28 @@ def _post_instagram_photo(image_url: str, caption: str, env: dict) -> dict:
         if "id" not in c_data:
             error = c_data.get("error", {}).get("message", c_resp.text)
             return {"success": False, "error": f"Container failed: {error}"}
+        creation_id = c_data["id"]
+
+        # Step 2: Poll until container is FINISHED
+        for _ in range(12):
+            _time.sleep(5)
+            s_resp = requests.get(
+                f"https://graph.facebook.com/v21.0/{creation_id}",
+                params={"fields": "status_code", "access_token": access_token},
+                timeout=30,
+            )
+            status = s_resp.json().get("status_code", "")
+            if status == "FINISHED":
+                break
+            if status == "ERROR":
+                return {"success": False, "error": "Container processing error"}
+        else:
+            return {"success": False, "error": "Container not ready after 60s"}
+
+        # Step 3: Publish
         p_resp = requests.post(
             f"https://graph.facebook.com/v21.0/{ig_user_id}/media_publish",
-            data={"creation_id": c_data["id"], "access_token": access_token},
+            data={"creation_id": creation_id, "access_token": access_token},
             timeout=30,
         )
         p_data = p_resp.json()
@@ -721,8 +742,10 @@ def phase_post(industry: str, brand_config: dict, env: dict):
             logger.info(f"  TikTok: {'OK' if tt['success'] else ('Skipped' if tt.get('skipped') else 'FAILED')} — {tt.get('publish_id') or tt.get('error', '')}")
         else:
             logger.info("  TikTok: skipped (video file not found)")
+    elif not tiktok_token:
+        logger.info("  TikTok: skipped (TIKTOK_ACCESS_TOKEN not set)")
     else:
-        logger.info("  TikTok: skipped (no token or no video generated)")
+        logger.info("  TikTok: skipped (no video generated — ffmpeg may not be installed)")
 
     # Always mark seen — prevents reposting even on posting failure
     _save_seen(source_url, headline)
@@ -793,6 +816,7 @@ def main():
             "FACEBOOK_ACCESS_TOKEN":  os.getenv("FACEBOOK_ACCESS_TOKEN", ""),
             "INSTAGRAM_USER_ID":      os.getenv("INSTAGRAM_USER_ID", ""),
             "INSTAGRAM_ACCESS_TOKEN": os.getenv("INSTAGRAM_ACCESS_TOKEN", ""),
+            "TIKTOK_ACCESS_TOKEN":    os.getenv("TIKTOK_ACCESS_TOKEN", ""),
         }
         return phase_post(args.industry, brand_config, env)
 
