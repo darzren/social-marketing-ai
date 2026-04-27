@@ -584,6 +584,12 @@ def phase_generate(industry: str, brand_config: dict, api_key: str, force: bool 
     image_path.write_bytes(image_bytes)
     logger.info(f"Image saved: {image_path}")
 
+    # Generate short video from image for TikTok
+    video_filename = None
+    video_path = _generate_news_video(image_path, industry, ts)
+    if video_path:
+        video_filename = video_path.name
+
     DATA_NEWS_PENDING.mkdir(parents=True, exist_ok=True)
     pending = {
         "timestamp":      ts,
@@ -595,12 +601,43 @@ def phase_generate(industry: str, brand_config: dict, api_key: str, force: bool 
         "priority_tier":  priority,
         "image_path":     str(image_path),
         "image_filename": image_filename,
+        "video_filename": video_filename,
     }
     pending_path = DATA_NEWS_PENDING / f"{industry}_{ts}_news_pending.json"
     with open(pending_path, "w", encoding="utf-8") as f:
         json.dump(pending, f, indent=2, ensure_ascii=False)
     logger.info(f"Pending file written: {pending_path.name}")
     return 0
+
+
+# ---------------------------------------------------------------------------
+# News video generation (image → MP4 for TikTok)
+# ---------------------------------------------------------------------------
+
+def _generate_news_video(image_path: Path, industry: str, ts: str) -> Path | None:
+    """Convert a static news image to a 6-second MP4 using ffmpeg for TikTok."""
+    import subprocess
+    video_path = DATA_NEWS_IMAGES / f"{industry}_{ts}_news.mp4"
+    cmd = [
+        "ffmpeg", "-y",
+        "-loop", "1",
+        "-i", str(image_path),
+        "-c:v", "libx264",
+        "-t", "6",
+        "-pix_fmt", "yuv420p",
+        "-vf", "scale=trunc(iw/2)*2:trunc(ih/2)*2",  # ensure even dimensions
+        str(video_path),
+    ]
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        if result.returncode == 0:
+            logger.info(f"News video generated: {video_path.name}")
+            return video_path
+        logger.warning(f"ffmpeg failed: {result.stderr[-300:]}")
+        return None
+    except (FileNotFoundError, subprocess.TimeoutExpired) as e:
+        logger.warning(f"ffmpeg not available: {e}")
+        return None
 
 
 # ---------------------------------------------------------------------------
@@ -623,6 +660,7 @@ def phase_post(industry: str, brand_config: dict, env: dict):
     source_url     = pending["source_url"]
     image_path     = Path(pending["image_path"])
     image_filename = pending["image_filename"]
+    video_filename = pending.get("video_filename")
     ts             = pending["timestamp"]
 
     if not image_path.exists():
@@ -664,6 +702,27 @@ def phase_post(industry: str, brand_config: dict, env: dict):
         logger.info(f"  Instagram: {'OK' if ig['success'] else ('Skipped' if ig.get('skipped') else 'FAILED')} — {ig.get('post_id') or ig.get('error', '')}")
     else:
         logger.info("  Instagram: skipped (credentials not set or GITHUB_REPOSITORY missing)")
+
+    # TikTok — upload generated video if available
+    tiktok_token = env.get("TIKTOK_ACCESS_TOKEN", "")
+    if tiktok_token and video_filename:
+        video_path = DATA_NEWS_IMAGES / video_filename
+        if video_path.exists():
+            from src.platforms import tiktok as tiktok_platform
+            tt_tags = " ".join(brand_config.get("hashtags", {}).get("tiktok", [])[:5])
+            tt_caption = f"{caption_text}\n\nSource: {source_url}\n\n{core_tags} {tt_tags}\n\n{disclaimer}".strip()
+            logger.info("Posting to TikTok...")
+            results["tiktok"] = tiktok_platform.post(
+                description=tt_caption,
+                access_token=tiktok_token,
+                video_path=str(video_path),
+            )
+            tt = results["tiktok"]
+            logger.info(f"  TikTok: {'OK' if tt['success'] else ('Skipped' if tt.get('skipped') else 'FAILED')} — {tt.get('publish_id') or tt.get('error', '')}")
+        else:
+            logger.info("  TikTok: skipped (video file not found)")
+    else:
+        logger.info("  TikTok: skipped (no token or no video generated)")
 
     # Always mark seen — prevents reposting even on posting failure
     _save_seen(source_url, headline)

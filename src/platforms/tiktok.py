@@ -6,7 +6,6 @@ Uses FILE_UPLOAD to avoid domain ownership verification required by PULL_FROM_UR
 The video file is read from the local filesystem (checked out in the runner).
 """
 
-import logging
 import math
 import time
 from pathlib import Path
@@ -14,7 +13,6 @@ from pathlib import Path
 import requests
 
 GRAPH = "https://open.tiktokapis.com/v2"
-logger = logging.getLogger(__name__)
 
 
 def post(description: str, access_token: str, video_path: str = None) -> dict:
@@ -49,25 +47,21 @@ def post(description: str, access_token: str, video_path: str = None) -> dict:
     chunk_size   = min(video_size, 64 * 1024 * 1024)
     total_chunks = 1
 
-    payload = {
-        "post_info": post_info,
-        "source_info": {
-            "source":            "FILE_UPLOAD",
-            "video_size":        video_size,
-            "chunk_size":        chunk_size,
-            "total_chunk_count": total_chunks,
-        },
-    }
-    logger.info(f"TikTok init payload: {payload}")
-
     # Step 1: Initialise upload
     init_resp = requests.post(
         f"{GRAPH}/post/publish/video/init/",
         headers=headers,
-        json=payload,
+        json={
+            "post_info": post_info,
+            "source_info": {
+                "source":            "FILE_UPLOAD",
+                "video_size":        video_size,
+                "chunk_size":        chunk_size,
+                "total_chunk_count": total_chunks,
+            },
+        },
         timeout=30,
     )
-    logger.info(f"TikTok init response {init_resp.status_code}: {init_resp.text}")
     init_data = init_resp.json()
     if init_resp.status_code != 200 or init_data.get("error", {}).get("code") != "ok":
         error = init_data.get("error", {}).get("message", init_resp.text)
