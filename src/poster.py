@@ -92,20 +92,18 @@ def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) ->
     # --- TikTok ---
     if "tiktok" in posts:
         logger.info("Posting to TikTok...")
-        # Fall back to tiktok_video_url in brand config if env var not set
-        video_url = env.get("TIKTOK_VIDEO_URL", "")
-        if not video_url:
-            try:
-                cfg = json.loads(
-                    Path(f"config/industries/{industry}.json").read_text(encoding="utf-8")
-                )
-                video_url = cfg.get("tiktok_video_url", "")
-            except Exception:
-                pass
+        video_path = None
+        try:
+            cfg = json.loads(
+                Path(f"config/industries/{industry}.json").read_text(encoding="utf-8")
+            )
+            video_path = cfg.get("tiktok_video_path", "")
+        except Exception:
+            pass
         result = tiktok.post(
             description=_append_disclaimer(posts["tiktok"], disclaimer),
             access_token=env.get("TIKTOK_ACCESS_TOKEN", ""),
-            video_url=video_url or None,
+            video_path=video_path or None,
         )
         results["platforms"]["tiktok"] = result
         status = "OK" if result["success"] else f"FAILED: {result.get('error')}"
