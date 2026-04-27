@@ -6,6 +6,7 @@ Uses FILE_UPLOAD to avoid domain ownership verification required by PULL_FROM_UR
 The video file is read from the local filesystem (checked out in the runner).
 """
 
+import logging
 import math
 import time
 from pathlib import Path
@@ -13,6 +14,7 @@ from pathlib import Path
 import requests
 
 GRAPH = "https://open.tiktokapis.com/v2"
+logger = logging.getLogger(__name__)
 
 
 def post(description: str, access_token: str, video_path: str = None) -> dict:
@@ -31,40 +33,41 @@ def post(description: str, access_token: str, video_path: str = None) -> dict:
             "skipped": True,
         }
 
-    description = description[:2200]
+    # TikTok title (caption) max 150 chars; full text goes as description via hashtags
+    title = description[:150].rsplit(" ", 1)[0] if len(description) > 150 else description
     post_info = {
-        "title":           description,
-        "privacy_level":   "SELF_ONLY",  # sandbox requirement; change to PUBLIC_TO_EVERYONE in production
-        "disable_duet":    False,
-        "disable_comment": False,
-        "disable_stitch":  False,
+        "title":         title,
+        "privacy_level": "SELF_ONLY",  # sandbox only; use PUBLIC_TO_EVERYONE in production
     }
 
     headers = {
-        "Authorization":  f"Bearer {access_token}",
-        "Content-Type":   "application/json; charset=UTF-8",
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type":  "application/json; charset=UTF-8",
     }
 
     video_size   = Path(video_path).stat().st_size
-    # Upload as a single chunk if file fits within TikTok's 64MB chunk limit
     chunk_size   = min(video_size, 64 * 1024 * 1024)
     total_chunks = 1
+
+    payload = {
+        "post_info": post_info,
+        "source_info": {
+            "source":            "FILE_UPLOAD",
+            "video_size":        video_size,
+            "chunk_size":        chunk_size,
+            "total_chunk_count": total_chunks,
+        },
+    }
+    logger.info(f"TikTok init payload: {payload}")
 
     # Step 1: Initialise upload
     init_resp = requests.post(
         f"{GRAPH}/post/publish/video/init/",
         headers=headers,
-        json={
-            "post_info": post_info,
-            "source_info": {
-                "source":            "FILE_UPLOAD",
-                "video_size":        video_size,
-                "chunk_size":        chunk_size,
-                "total_chunk_count": total_chunks,
-            },
-        },
+        json=payload,
         timeout=30,
     )
+    logger.info(f"TikTok init response {init_resp.status_code}: {init_resp.text}")
     init_data = init_resp.json()
     if init_resp.status_code != 200 or init_data.get("error", {}).get("code") != "ok":
         error = init_data.get("error", {}).get("message", init_resp.text)
