@@ -6,13 +6,9 @@
     "https://www.interest.co.nz/economy/138154/annual-inflation-31-march-quarter-electricity-leading-way-rent-rise-lowest-16-years": "2026-04-21T08:17:06.745971",
     "https://www.interest.co.nz/personal-finance/138206/bnz-next-raise-fixed-home-loan-rates-theirs-are-notable-because-they": "2026-04-23T04:28:15.721389",
     "https://www.interest.co.nz/personal-finance/138198/wholesale-swap-rates-jumping-recently-do-banks-have-good-case-raise": "2026-04-23T05:14:55.362648",
-    "https://www.interest.co.nz/property/138236/houses-brought-auction-still-selling-same-pace-earlier-month-fewer-are-offered-and": "2026-04-27T08:32:26.680103"
+    "https://www.interest.co.nz/property/138236/houses-brought-auction-still-selling-same-pace-earlier-month-fewer-are-offered-and": "2026-04-27T08:43:04.114810"
   },
   "topics": [
-    {
-      "headline": "Auction activity bounces back, buyer success rates stable",
-      "ts": "2026-04-20T08:34:14.947756"
-    },
     {
       "headline": "First-home buyers withdraw record $296m from KiwiSaver",
       "ts": "2026-04-20T09:19:29.637795"
@@ -76,6 +72,10 @@
     {
       "headline": "Auction activity cools as winter season develops",
       "ts": "2026-04-27T08:32:26.680105"
+    },
+    {
+      "headline": "Residential auction activity cools further into winter",
+      "ts": "2026-04-27T08:43:04.114813"
     }
   ]
 }
