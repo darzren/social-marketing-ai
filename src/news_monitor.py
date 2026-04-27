@@ -31,6 +31,10 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
+# Ensure project root is in sys.path so 'src.*' imports work when the script
+# is run directly (python src/news_monitor.py) rather than as a package.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import requests
 from dotenv import load_dotenv
 
