@@ -118,9 +118,10 @@
   "logo_asset": "assets/logos/jinny_lee_realestate_logo.png",
   "platforms": [
     "facebook",
-    "instagram"
+    "instagram",
+    "tiktok"
   ],
-  "_note": "TikTok can be added later once content strategy is consistent. Connect Instagram via Meta Business Manager.",
+  "tiktok_video_url": "https://raw.githubusercontent.com/darzren/social-marketing-ai/main/assets/videos/91%20Meadway.mp4",
   "social_accounts": {
     "facebook": "https://www.facebook.com/JinnyLee.RealEstate",
     "instagram": "https://www.instagram.com/jinnylee.realestate/"

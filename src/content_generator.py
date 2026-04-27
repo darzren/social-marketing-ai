@@ -87,6 +87,10 @@ def load_pending_posts(industry: str) -> tuple[dict, Path]:
     if "instagram_image" in raw and "instagram" not in composed and "facebook" in composed:
         composed["instagram"] = composed["facebook"]
 
+    # Synthesise tiktok from facebook if not explicitly generated
+    if "tiktok" not in composed and "facebook" in composed:
+        composed["tiktok"] = composed["facebook"]
+
     return composed, pending_path, raw
 
 
