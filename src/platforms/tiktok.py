@@ -15,11 +15,13 @@ import requests
 GRAPH = "https://open.tiktokapis.com/v2"
 
 
-def post(description: str, access_token: str, video_path: str = None) -> dict:
+def post(description: str, access_token: str, video_path: str = None, title: str = None) -> dict:
     """
     Post a video to TikTok using FILE_UPLOAD method.
 
     video_path — local path to the .mp4 file (e.g. assets/videos/brand.mp4)
+    title      — optional short title shown as the TikTok caption (max 150 chars).
+                 If omitted, falls back to the first 150 chars of description.
 
     Returns:
         dict with 'success' bool and 'publish_id' or 'error'
@@ -31,10 +33,15 @@ def post(description: str, access_token: str, video_path: str = None) -> dict:
             "skipped": True,
         }
 
-    # TikTok title (caption) max 150 chars; full text goes as description via hashtags
-    title = description[:150].rsplit(" ", 1)[0] if len(description) > 150 else description
+    if title:
+        # Caller provided a clean title — enforce 150-char hard limit
+        caption = title[:150].rsplit(" ", 1)[0] if len(title) > 150 else title
+    else:
+        # Fall back to truncating description
+        caption = description[:150].rsplit(" ", 1)[0] if len(description) > 150 else description
+
     post_info = {
-        "title":         title,
+        "title":         caption,
         "privacy_level": "SELF_ONLY",  # sandbox only; use PUBLIC_TO_EVERYONE in production
     }
 

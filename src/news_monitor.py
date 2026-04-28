@@ -739,9 +739,16 @@ def phase_post(industry: str, brand_config: dict, env: dict):
             from src.platforms import tiktok as tiktok_platform
             tt_tags = " ".join(brand_config.get("hashtags", {}).get("tiktok", [])[:5])
             tt_caption = f"{caption_text}\n\nSource: {source_url}\n\n{core_tags} {tt_tags}\n\n{disclaimer}".strip()
+            # Build a clean TikTok title: headline + hashtags if they fit within 150 chars
+            tt_title_base = headline
+            tt_tags_short = " ".join(brand_config.get("hashtags", {}).get("tiktok", [])[:3])
+            tt_title = f"{tt_title_base} {tt_tags_short}".strip()
+            if len(tt_title) > 150:
+                tt_title = tt_title_base[:150].rsplit(" ", 1)[0]
             logger.info("Posting to TikTok...")
             results["tiktok"] = tiktok_platform.post(
                 description=tt_caption,
+                title=tt_title,
                 access_token=tiktok_token,
                 video_path=str(video_path),
             )
