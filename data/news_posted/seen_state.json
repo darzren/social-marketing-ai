@@ -10,7 +10,8 @@
     "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQzRCWFF2MmVsVzlnS2pqRHFQVXhQNFFDVGtkSm5UU1BFRVZXX0k0dGp6MGNiWGpwX01NWS00RnpOQk8wblJSVG1mMzV4YmhLVVN3cFhGRE14ei1sSzZLZG40T3hpaGtFOFBPeEl0aGJrdDJlTmpsaEtuWDFvYjNjbE9WNS1nR0MyT0dlTk13MTYtV1dPNFgyZnlVOXE4ZUJzV1d1Sk5hV3cyOF92QXRzdTVEZ3RZQlJvUi1GUnJNWmNYSHpZSzAxYlpneGo2S01DcGN5UDlKNko2aElTNWw0NHBXSlpkZEJ3WlpwZA?oc=5": "2026-04-28T05:27:55.274467",
     "https://www.rnz.co.nz/news/business/593544/here-s-how-much-sellers-are-cutting-house-prices": "2026-04-28T05:50:24.954924",
     "https://www.rnz.co.nz/news/business/593612/how-to-cut-your-mortgage-interest-bill-in-half": "2026-04-28T05:55:15.066591",
-    "https://www.rnz.co.nz/news/business/593532/auckland-industrial-commercial-land-shortage-pushing-prices-to-record-high-levels": "2026-04-28T06:10:08.358016"
+    "https://www.rnz.co.nz/news/business/593532/auckland-industrial-commercial-land-shortage-pushing-prices-to-record-high-levels": "2026-04-28T06:10:08.358016",
+    "https://www.rnz.co.nz/news/regions_auckland/593535/concerns-legal-loophole-is-allowing-landlords-to-run-underground-boarding-houses": "2026-04-28T06:17:20.649672"
   },
   "topics": [
     {
@@ -68,6 +69,10 @@
     {
       "headline": "Auckland industrial, commercial land shortage pushing record prices",
       "ts": "2026-04-28T06:10:08.358020"
+    },
+    {
+      "headline": "Auckland landlords operating illegal boarding houses undetected",
+      "ts": "2026-04-28T06:17:20.649674"
     }
   ]
 }
