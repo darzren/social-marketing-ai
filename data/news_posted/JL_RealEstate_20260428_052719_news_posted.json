@@ -1,12 +1,23 @@
 {
   "timestamp": "20260428_052719",
-  "industry": "JL_RealEstate",
+  "posted_at": "2026-04-28T05:27:55.274763",
   "headline": "Q1 property market shows $54m value shift, pricing normalises",
-  "caption": "Great news for East Auckland buyers and sellers! New data shows the property market is finding its feet, with sellers pricing more realistically to match what buyers are actually willing to pay. This means less negotiation drama and clearer market signals for your next move. 🏡",
   "source_url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQzRCWFF2MmVsVzlnS2pqRHFQVXhQNFFDVGtkSm5UU1BFRVZXX0k0dGp6MGNiWGpwX01NWS00RnpOQk8wblJSVG1mMzV4YmhLVVN3cFhGRE14ei1sSzZLZG40T3hpaGtFOFBPeEl0aGJrdDJlTmpsaEtuWDFvYjNjbE9WNS1nR0MyT0dlTk13MTYtV1dPNFgyZnlVOXE4ZUJzV1d1Sk5hV3cyOF92QXRzdTVEZ3RZQlJvUi1GUnJNWmNYSHpZSzAxYlpneGo2S01DcGN5UDlKNko2aElTNWw0NHBXSlpkZEJ3WlpwZA?oc=5",
   "original_title": "More Than $54m Wiped From Property Market In Q1, But Sellers Are Pricing Closer To What Buyers Expect To Pay - Scoop - New Zealand News",
   "priority_tier": 3,
   "image_path": "data/news_images/JL_RealEstate_20260428_052719_news.jpg",
-  "image_filename": "JL_RealEstate_20260428_052719_news.jpg",
-  "video_filename": "JL_RealEstate_20260428_052719_news.mp4"
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122105093996693087"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "18323847085254060"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: The access token is invalid or not found in the request."
+    }
+  }
 }
