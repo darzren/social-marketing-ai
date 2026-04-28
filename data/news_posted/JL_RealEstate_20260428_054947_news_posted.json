@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260428_054947",
+  "posted_at": "2026-04-28T05:50:24.955359",
+  "headline": "Sellers cutting house prices amid uncertainty and rising rates",
+  "source_url": "https://www.rnz.co.nz/news/business/593544/here-s-how-much-sellers-are-cutting-house-prices",
+  "original_title": "Here's how much sellers are cutting house prices",
+  "priority_tier": 4,
+  "image_path": "data/news_images/JL_RealEstate_20260428_054947_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122105096240693087"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "17918530968142568"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Please review our integration guidelines at https://developers.tiktok.com/doc/content-sharing-guidelines/"
+    }
+  }
+}
