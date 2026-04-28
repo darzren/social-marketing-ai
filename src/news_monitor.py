@@ -549,8 +549,7 @@ def phase_generate(industry: str, brand_config: dict, api_key: str, force: bool 
     recent_headlines = [t["headline"] for t in state.get("topics", [])]
 
     if force:
-        logger.info("⚡ --force mode: skipping dedup and interval checks.")
-        seen_urls        = set()
+        logger.info("⚡ --force mode: skipping interval check (URL dedup still active).")
         recent_headlines = []
 
     logger.info(f"Seen URLs (14 days): {len(seen_urls)}  |  Recent topics (7 days): {len(recent_headlines)}")
