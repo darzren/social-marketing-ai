@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260427_083832",
+  "posted_at": "2026-04-28T04:52:14.361234",
+  "headline": "Residential auction activity cools further as winter approaches",
+  "source_url": "https://www.interest.co.nz/property/138236/houses-brought-auction-still-selling-same-pace-earlier-month-fewer-are-offered-and",
+  "original_title": "Residential auction activity cools off further in the back end of April",
+  "priority_tier": 4,
+  "image_path": "data/news_images/JL_RealEstate_20260427_083832_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122105090222693087"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "18026496209808801"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: The access token is invalid or not found in the request."
+    }
+  }
+}
