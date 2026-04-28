@@ -56,16 +56,20 @@ NEWS_SOURCES = [
         "rss":  "https://www.interest.co.nz/rss",
     },
     {
-        "name": "REINZ",
-        "rss":  "https://www.reinz.co.nz/reinz-news/category/media-releases/feed",
+        "name": "Google News — NZ Property",
+        "rss":  "https://news.google.com/rss/search?q=New+Zealand+property+real+estate&hl=en-NZ&gl=NZ&ceid=NZ:en",
     },
     {
-        "name": "RBNZ",
-        "rss":  "https://www.rbnz.govt.nz/hub/news/feed",
+        "name": "Google News — NZ Housing Market",
+        "rss":  "https://news.google.com/rss/search?q=New+Zealand+housing+market+mortgage&hl=en-NZ&gl=NZ&ceid=NZ:en",
     },
     {
-        "name": "NZ Herald Property",
-        "rss":  "https://www.nzherald.co.nz/arc/outboundfeeds/rss/property/",
+        "name": "Google News — Auckland Real Estate",
+        "rss":  "https://news.google.com/rss/search?q=Auckland+real+estate+property&hl=en-NZ&gl=NZ&ceid=NZ:en",
+    },
+    {
+        "name": "Google News — OCR Interest Rates NZ",
+        "rss":  "https://news.google.com/rss/search?q=OCR+interest+rate+RBNZ+New+Zealand&hl=en-NZ&gl=NZ&ceid=NZ:en",
     },
 ]
 
