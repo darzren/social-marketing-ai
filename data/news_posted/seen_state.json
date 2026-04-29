@@ -13,7 +13,8 @@
     "https://www.rnz.co.nz/news/business/593532/auckland-industrial-commercial-land-shortage-pushing-prices-to-record-high-levels": "2026-04-28T06:10:08.358016",
     "https://www.rnz.co.nz/news/regions_auckland/593535/concerns-legal-loophole-is-allowing-landlords-to-run-underground-boarding-houses": "2026-04-28T06:17:20.649672",
     "https://www.interest.co.nz/personal-finance/138258/rising-inflation-pressure-underpins-rising-wholesale-interest-rates-and": "2026-04-28T06:22:06.434754",
-    "https://www.interest.co.nz/personal-finance/138271/asb-moves-home-loan-rates-wholesale-rises-bite-they-also-raise-td-rates-few": "2026-04-29T04:47:29.736580"
+    "https://www.interest.co.nz/personal-finance/138271/asb-moves-home-loan-rates-wholesale-rises-bite-they-also-raise-td-rates-few": "2026-04-29T04:47:29.736580",
+    "https://www.interest.co.nz/property/138278/anz-nz-economists-say-small-decline-house-prices-year-most-likely-scenario": "2026-04-29T07:25:54.350441"
   },
   "topics": [
     {
@@ -79,6 +80,10 @@
     {
       "headline": "ASB raises home loan rates as wholesale costs bite",
       "ts": "2026-04-29T04:47:29.736582"
+    },
+    {
+      "headline": "ANZ forecasts small house price decline this year",
+      "ts": "2026-04-29T07:25:54.350443"
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260429_072517",
+  "posted_at": "2026-04-29T07:25:54.350761",
+  "headline": "ANZ forecasts small house price decline this year",
+  "source_url": "https://www.interest.co.nz/property/138278/anz-nz-economists-say-small-decline-house-prices-year-most-likely-scenario",
+  "original_title": "ANZ economists forecast ongoing mortgage rate increases this year",
+  "priority_tier": 2,
+  "image_path": "data/news_images/JL_RealEstate_20260429_072517_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122105606228693087"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "17926578489296567"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: The access token is invalid or not found in the request."
+    }
+  }
+}
