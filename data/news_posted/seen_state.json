@@ -12,13 +12,10 @@
     "https://www.rnz.co.nz/news/business/593612/how-to-cut-your-mortgage-interest-bill-in-half": "2026-04-28T05:55:15.066591",
     "https://www.rnz.co.nz/news/business/593532/auckland-industrial-commercial-land-shortage-pushing-prices-to-record-high-levels": "2026-04-28T06:10:08.358016",
     "https://www.rnz.co.nz/news/regions_auckland/593535/concerns-legal-loophole-is-allowing-landlords-to-run-underground-boarding-houses": "2026-04-28T06:17:20.649672",
-    "https://www.interest.co.nz/personal-finance/138258/rising-inflation-pressure-underpins-rising-wholesale-interest-rates-and": "2026-04-28T06:22:06.434754"
+    "https://www.interest.co.nz/personal-finance/138258/rising-inflation-pressure-underpins-rising-wholesale-interest-rates-and": "2026-04-28T06:22:06.434754",
+    "https://www.interest.co.nz/personal-finance/138271/asb-moves-home-loan-rates-wholesale-rises-bite-they-also-raise-td-rates-few": "2026-04-29T04:47:29.736580"
   },
   "topics": [
-    {
-      "headline": "March inflation steady at 3.1%, rent growth slowest in 16 years",
-      "ts": "2026-04-21T08:17:06.745973"
-    },
     {
       "headline": "BNZ raises mortgage rates, undercuts major bank hikes",
       "ts": "2026-04-23T04:28:15.721392"
@@ -78,6 +75,10 @@
     {
       "headline": "Banks offer varying mortgage rates — shop around now",
       "ts": "2026-04-28T06:22:06.434756"
+    },
+    {
+      "headline": "ASB raises home loan rates as wholesale costs bite",
+      "ts": "2026-04-29T04:47:29.736582"
     }
   ]
 }
