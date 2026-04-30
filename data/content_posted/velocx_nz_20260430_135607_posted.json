@@ -1,0 +1,41 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260430_135607",
+  "posted_at": "20260430_135641",
+  "content": {
+    "facebook": {
+      "content_angle": "Pull buoy dependency — how leaning on pull buoys masks a broken body position and weak kick timing, leaving swimmers slower when the buoy comes off",
+      "post_text": "Your pull buoy is lying to you. 🎯\n\nMost swimmers feel faster with a pull buoy — and they are. But that speed is borrowed. The moment it comes off, the drag returns, the hips drop, and the times reflect it.\n\nHere's what's actually happening:\n👉 The buoy artificially lifts your hips, masking a body position you haven't earned\n👉 Your legs stop contributing — and your kick timing slowly deteriorates\n👉 Race day arrives and your stroke falls apart in the back half\n\nThe pull buoy isn't the problem. Over-relying on it is. 💥\n\nElite swimmers use it as a specific tool — not a comfort blanket. If you can't hold your stroke shape without it, that's the training gap to close first.\n\n✔️ Limit pull sets to 20% of total yardage\n✔️ Film your body position with and without the buoy — the difference will surprise you\n✔️ Add kick-focused sets specifically to rebuild the leg timing the buoy has been hiding\n\nHow much of your current training relies on the pull buoy?",
+      "engagement_bait": "Drop your pull buoy set percentage below — are you training with it or hiding behind it?",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#SwimTraining",
+        "#SwimTips",
+        "#SwimPerformance",
+        "#PBChasing",
+        "#AutumnTraining",
+        "#LaneLife",
+        "#SwimMindset",
+        "#TrainLikeAnAthlete"
+      ],
+      "call_to_action": "How much of your current training relies on the pull buoy?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122164684508977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
