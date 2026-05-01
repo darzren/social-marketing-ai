@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260501_072650",
+  "posted_at": "2026-05-01T07:27:32.899286",
+  "headline": "NZ median value up 0.1% April, Auckland still declining",
+  "source_url": "https://www.interest.co.nz/property/138295/nzs-median-dwelling-value-inched-01-april-auckland-and-wellington-values-still",
+  "original_title": "Cotality sees a sluggish housing market for the rest of 2026",
+  "priority_tier": 3,
+  "image_path": "data/news_images/JL_RealEstate_20260501_072650_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122106019790693087"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "18071950832289209"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: The access token is invalid or not found in the request."
+    }
+  }
+}
