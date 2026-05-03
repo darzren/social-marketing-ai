@@ -1,0 +1,170 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "2026-05-03T18:57:34.074550",
+  "period_days": 30,
+  "facebook_insights": {
+    "posts_analysed": 23,
+    "avg_engagement": 1,
+    "best_posting_hours": [
+      "08:00",
+      "11:00",
+      "10:00"
+    ],
+    "image_avg_engagement": 1,
+    "text_avg_engagement": 0,
+    "image_outperforms_text": true,
+    "top_posts": [
+      {
+        "id": "1057881790747803_122100567458693087",
+        "created": "2026-04-19T08:54:31+0000",
+        "hour": 8,
+        "has_image": true,
+        "engagement": 3,
+        "reactions": 3,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122105638544693087",
+        "created": "2026-04-29T11:05:39+0000",
+        "hour": 11,
+        "has_image": true,
+        "engagement": 2,
+        "reactions": 2,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122105151464693087",
+        "created": "2026-04-28T10:12:10+0000",
+        "hour": 10,
+        "has_image": true,
+        "engagement": 2,
+        "reactions": 2,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122104654400693087",
+        "created": "2026-04-26T08:25:58+0000",
+        "hour": 8,
+        "has_image": true,
+        "engagement": 2,
+        "reactions": 2,
+        "comments": 0,
+        "shares": 0
+      },
+      {
+        "id": "1057881790747803_122095151246693087",
+        "created": "2026-04-13T10:24:13+0000",
+        "hour": 10,
+        "has_image": true,
+        "engagement": 2,
+        "reactions": 2,
+        "comments": 0,
+        "shares": 0
+      }
+    ]
+  },
+  "local_archive": {
+    "total_posts": 17,
+    "by_type": {
+      "text": 17
+    },
+    "by_image_type": {},
+    "most_used_hashtags": [
+      [
+        "#JinnyLeeRealEstate",
+        17
+      ],
+      [
+        "#EastAucklandRealEstate",
+        17
+      ],
+      [
+        "#AucklandProperty",
+        17
+      ],
+      [
+        "#SmarterSelling",
+        17
+      ],
+      [
+        "#BetterBuying",
+        17
+      ],
+      [
+        "#AucklandHomes",
+        17
+      ],
+      [
+        "#NZRealEstate",
+        17
+      ],
+      [
+        "#PropertyNZ",
+        17
+      ],
+      [
+        "#RayWhiteBotany",
+        17
+      ],
+      [
+        "#EastAuckland",
+        17
+      ],
+      [
+        "#HouseForSaleNZ",
+        16
+      ],
+      [
+        "#AutumnRealEstate",
+        16
+      ],
+      [
+        "#HomeSellingTips",
+        16
+      ],
+      [
+        "#AucklandMarket",
+        16
+      ],
+      [
+        "#HomeSelling",
+        15
+      ]
+    ],
+    "recent_angles": [
+      "Why waiting until spring to sell your East Auckland home could cost you more than you think",
+      "How to negotiate confidently as a buyer in East Auckland's active autumn market without overpaying or missing out",
+      "How to choose the right real estate agent when selling your East Auckland home — what most homeowners overlook during the selection process",
+      "How home staging transforms buyer perception and lifts final sale results in East Auckland's autumn market",
+      "Why the first two weeks after listing your East Auckland home are the most critical — and how to make them count",
+      "Why East Auckland homeowners who prepare their home for sale in the final weeks of autumn consistently achieve stronger results than those who rush to list without a plan",
+      "Three things East Auckland buyers notice within the first 60 seconds of an open home — and how sellers can use this to their advantage",
+      "Why pricing your East Auckland home correctly from day one matters more than most sellers realise",
+      "Why waiting until spring to sell your East Auckland home could cost you more than you think — the case for acting before winter arrives",
+      "What East Auckland buyers are actually looking for in May 2026 — and how sellers can use this insight to position their home ahead of the winter slowdown"
+    ],
+    "posting_hours": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20
+    ],
+    "most_common_hour": 20
+  }
+}
