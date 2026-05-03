@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260503_022622",
+  "posted_at": "2026-05-03T02:27:02.547764",
+  "headline": "Auction sales drop below one-third for first time",
+  "source_url": "https://www.interest.co.nz/property/138313/auction-rooms-much-quieter-fewer-properties-offer-and-less-third-selling-under",
+  "original_title": "Auction sales rate falls below a third for the first time in over a year",
+  "priority_tier": 4,
+  "image_path": "data/news_images/JL_RealEstate_20260503_022622_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122106349250693087"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "17869979322611057"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Please review our integration guidelines at https://developers.tiktok.com/doc/content-sharing-guidelines/"
+    }
+  }
+}

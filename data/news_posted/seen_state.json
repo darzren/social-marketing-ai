@@ -16,7 +16,8 @@
     "https://www.interest.co.nz/personal-finance/138271/asb-moves-home-loan-rates-wholesale-rises-bite-they-also-raise-td-rates-few": "2026-04-29T04:47:29.736580",
     "https://www.interest.co.nz/property/138278/anz-nz-economists-say-small-decline-house-prices-year-most-likely-scenario": "2026-04-29T07:25:54.350441",
     "https://www.interest.co.nz/property/138295/nzs-median-dwelling-value-inched-01-april-auckland-and-wellington-values-still": "2026-05-01T07:27:32.898876",
-    "https://www.interest.co.nz/property/138303/housing-stock-sale-april-12-year-high-and-asking-prices-declining-realestateconz": "2026-05-03T02:21:35.372371"
+    "https://www.interest.co.nz/property/138303/housing-stock-sale-april-12-year-high-and-asking-prices-declining-realestateconz": "2026-05-03T02:21:35.372371",
+    "https://www.interest.co.nz/property/138313/auction-rooms-much-quieter-fewer-properties-offer-and-less-third-selling-under": "2026-05-03T02:27:02.547372"
   },
   "topics": [
     {
@@ -82,6 +83,10 @@
     {
       "headline": "Housing stock at 12-year high, asking prices declining",
       "ts": "2026-05-03T02:21:35.372373"
+    },
+    {
+      "headline": "Auction sales drop below one-third for first time",
+      "ts": "2026-05-03T02:27:02.547374"
     }
   ]
 }
