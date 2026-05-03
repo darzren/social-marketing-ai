@@ -1,0 +1,23 @@
+{
+  "timestamp": "20260503_022053",
+  "posted_at": "2026-05-03T02:21:35.372888",
+  "headline": "Housing stock at 12-year high, asking prices declining",
+  "source_url": "https://www.interest.co.nz/property/138303/housing-stock-sale-april-12-year-high-and-asking-prices-declining-realestateconz",
+  "original_title": "Asking prices down, stock levels high on Realestate.co.nz",
+  "priority_tier": 3,
+  "image_path": "data/news_images/JL_RealEstate_20260503_022053_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122106348554693087"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "18092916787946769"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Please review our integration guidelines at https://developers.tiktok.com/doc/content-sharing-guidelines/"
+    }
+  }
+}

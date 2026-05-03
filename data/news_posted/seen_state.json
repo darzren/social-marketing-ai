@@ -15,13 +15,10 @@
     "https://www.interest.co.nz/personal-finance/138258/rising-inflation-pressure-underpins-rising-wholesale-interest-rates-and": "2026-04-28T06:22:06.434754",
     "https://www.interest.co.nz/personal-finance/138271/asb-moves-home-loan-rates-wholesale-rises-bite-they-also-raise-td-rates-few": "2026-04-29T04:47:29.736580",
     "https://www.interest.co.nz/property/138278/anz-nz-economists-say-small-decline-house-prices-year-most-likely-scenario": "2026-04-29T07:25:54.350441",
-    "https://www.interest.co.nz/property/138295/nzs-median-dwelling-value-inched-01-april-auckland-and-wellington-values-still": "2026-05-01T07:27:32.898876"
+    "https://www.interest.co.nz/property/138295/nzs-median-dwelling-value-inched-01-april-auckland-and-wellington-values-still": "2026-05-01T07:27:32.898876",
+    "https://www.interest.co.nz/property/138303/housing-stock-sale-april-12-year-high-and-asking-prices-declining-realestateconz": "2026-05-03T02:21:35.372371"
   },
   "topics": [
-    {
-      "headline": "Residential auction activity cools further as winter develops",
-      "ts": "2026-04-25T06:21:03.956739"
-    },
     {
       "headline": "Autumn auction activity cools as winter season develops",
       "ts": "2026-04-26T05:14:53.899623"
@@ -81,6 +78,10 @@
     {
       "headline": "NZ median value up 0.1% April, Auckland still declining",
       "ts": "2026-05-01T07:27:32.898878"
+    },
+    {
+      "headline": "Housing stock at 12-year high, asking prices declining",
+      "ts": "2026-05-03T02:21:35.372373"
     }
   ]
 }
