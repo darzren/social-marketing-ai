@@ -71,8 +71,7 @@ def post(description: str, access_token: str, video_path: str = None, title: str
     )
     init_data = init_resp.json()
     if init_resp.status_code != 200 or init_data.get("error", {}).get("code") != "ok":
-        err = init_data.get("error", {})
-        error = f"code={err.get('code')} message={err.get('message')} log_id={err.get('log_id')} http={init_resp.status_code} body={init_resp.text[:300]}"
+        error = init_data.get("error", {}).get("message", init_resp.text)
         return {"success": False, "error": f"Upload init failed: {error}"}
 
     upload_url = init_data["data"]["upload_url"]
