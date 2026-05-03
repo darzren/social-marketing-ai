@@ -113,6 +113,12 @@ def should_post_now(industry: str, brand_config: dict, strategy: dict) -> tuple:
         next_in  = post_interval - days_ago
         return False, f"Posted {days_ago}d ago — next post in {next_in}d (every {post_interval}d)"
 
+    # --- Same-day check: skip if a news post already went out today ---
+    today_str = now.strftime("%Y%m%d")
+    news_posted_dir = Path("data/news_posted")
+    if any(today_str in f.name for f in news_posted_dir.glob(f"{industry}_*_news_posted.json")):
+        return False, f"News post already published today ({today_str}) — skipping text post"
+
     # --- Timing window check ---
     learned_times = strategy.get("posting_schedule", {}).get("optimal_times", [])
     default_time  = schedule_cfg.get("daily_time", "09:00")

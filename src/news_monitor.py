@@ -581,6 +581,18 @@ def phase_generate(industry: str, brand_config: dict, api_key: str, force: bool 
     # Posting interval check — bypass for high-priority tiers (OCR, govt policy) or --force
     interval_days      = brand_config.get("news_post_interval_days", 1)
     override_tiers     = brand_config.get("news_priority_override_tiers", [1, 2])
+
+    # Same-day check: skip if a text post already went out today (priority tiers still override)
+    if not force and priority not in override_tiers:
+        today_str = datetime.now().strftime("%Y%m%d")
+        text_posted_today = any(
+            today_str in f.name
+            for f in DATA_NEWS_POSTED.parent.parent.joinpath("content_posted").glob(f"{industry}_*_posted.json")
+        )
+        if text_posted_today:
+            logger.info(f"⏭️  Skipping — text post already published today ({today_str}). Only tier {override_tiers} override.")
+            return 0
+
     if not force and interval_days > 1 and priority not in override_tiers:
         last_post = _get_last_news_post_date(industry)
         if last_post:
