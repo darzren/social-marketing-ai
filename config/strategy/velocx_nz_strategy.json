@@ -1,33 +1,35 @@
 {
-  "last_updated": "2026-04-26",
+  "last_updated": "2026-05-03",
   "data_period_days": 30,
   "confidence": "low",
-  "confidence_note": "Only 22 Facebook posts analysed with near-zero average engagement; 24 local archive posts with 75% text format. Sample size insufficient for high-confidence pattern recognition. All tactical recommendations are data-informed but supplemented with trend research and platform best practices. Confidence will increase after 60+ posts with consistent image posting.",
+  "confidence_note": "27 Facebook posts analysed with near-zero average engagement (avg 0, image avg 1); 27 local archive posts with 78% text format (21 of 27). Sample size and engagement volume remain insufficient for high-confidence pattern recognition. All recommendations are data-informed and supplemented with trend research and platform best practices. Confidence will increase after 60+ posts with consistent image-first, optimally-timed publishing.",
   "post_template": {
     "preferred_length_words": "80-120",
-    "hook_style": "Open with a specific surprising stat or a bold challenge to a common swimmer assumption — e.g. '10% faster in 4 weeks. One drill.' or 'Most swimmers lose 2 seconds at the wall and never fix it.' Data-backed hooks from trend research are outperforming generic motivational openers on Facebook in 2026.",
-    "structure": "hook → performance insight or relatable problem → actionable tip or brand connection → soft CTA",
+    "hook_style": "Open with a specific surprising stat or a bold challenge to a common swimmer assumption — e.g. '10% faster in 4 weeks. One drill.' or 'Most swimmers lose 2 seconds at the wall and never fix it.' Data-backed hooks from trend research are outperforming generic motivational openers on Facebook in 2026. Save-worthy step-by-step drill breakdowns with a clear stat anchor in the first line are driving the highest saves and shares in the competitive swimming niche per April–May 2026 research briefs.",
+    "structure": "hook → performance insight or relatable swimmer problem → actionable tip or brand connection → soft CTA",
     "emoji_density": "1-3 per post",
-    "best_performing_format": "Image posts with bold short text overlays (4-6 words, brand voice) are the clear format winner — image posts averaged 1 engagement vs 0 for text-only posts across 22 Facebook posts analysed. Top post (engagement 4) was an image post. Research confirms dark cinematic gear and race action images with punchy overlays are stopping the scroll in competitive swim communities in 2026. Short educational tip posts with surprising data hooks are driving saves and shares as top Facebook engagement signals this period.",
+    "best_performing_format": "Image posts with bold short text overlays (4-6 words, brand voice) remain the clear format winner — image posts averaged 1 engagement vs 0 for text-only across 27 Facebook posts analysed. The top post (engagement 4, published 03:00) was an image post. All meaningful engagement in the 30-day period originated from image posts. Short educational tip posts with surprising data hooks continue to drive saves and shares as the top Facebook engagement signals per May 2026 trend research. Photo carousel format is gaining traction in niche sports communities on Instagram and should be tested this period.",
     "retired_formats": [
-      "Standalone text posts with no image — averaged 0 engagement across the analysis period; 18 of 24 local archive posts were text format yet drove near-zero results. Text-only should not be used as a primary format going forward."
+      "Standalone text posts with no image — averaged 0 engagement across the full analysis period; 21 of 27 local archive posts were text format yet drove near-zero results. Text-only should not be used as a primary format. The format imbalance (78% text vs 22% image) is the most significant structural problem to correct in this period."
     ]
   },
   "image_strategy": {
     "top_performing_types": [
-      "race_action — used twice in archive, present in top-performing posts; cinematic dive starts, mid-stroke butterfly or freestyle, underwater dolphin kick with water exploding; Jaked cap visible; aligns with highest-engagement post types",
-      "gear_closeup — sleek Jaked racing suit submerged in deep teal pool water with dramatic orange-amber overhead spotlights; fabric texture detail visible; recommended by April 2026 trend research as highest-traction format for performance sports brands; post-nationals timing makes race suit quality messaging highly relevant to NZ competitive swimmers right now",
-      "lifestyle — athlete poolside post-session, towel around shoulders, focused expression, warm stadium lighting; autumn training mood resonates strongly with seasonal content angle confirmed by multiple research briefs"
+      "race_action — used twice in archive and present in top-performing posts; cinematic dive starts, mid-stroke butterfly or freestyle, underwater dolphin kick with water exploding, Jaked cap visible; aligns with highest-engagement post types in archive and confirmed by May 2026 trend research as top-performing visual format in competitive swim niche; prioritise as primary image type",
+      "training — early morning empty pool with single swimmer, coach on deck, athlete drilling in lane; post-nationals training block now underway per NZ swim event calendar; autumn/winter indoor training focus confirmed as high-relevance seasonal angle across multiple research briefs; cinematic underwater action viewed from below with crepuscular light rays is the specific trending visual variant per April 2026 visual research brief",
+      "gear_closeup — sleek Jaked racing suit submerged in deep teal pool water with dramatic orange-amber overhead spotlights; fabric texture and compression panelling detail visible; used only once in archive (underutilised) and recommended as highest-traction format for performance sports brands in 2026 trend research; post-nationals period remains a high-purchase-intent window for race suit quality messaging; increase to at least one dedicated post per week",
+      "lifestyle — athlete poolside post-session, towel around shoulders, focused intense expression, warm stadium lighting, wet hair; autumn training mood resonates with seasonal content confirmed across multiple research briefs; portrait composition with subject in upper 60% of frame per brand composition rules"
     ],
     "deprioritise_types": [
-      "team — already used once in archive; avoid repeating in the near term per recent_angles history; rotate back in after 4+ weeks",
-      "open_water — seasonal context confirms NZ autumn shift moves audience indoors; open water lifestyle content flagged as avoid in multiple April 2026 research briefs; hold until spring"
+      "team — used once in archive; avoid repeating in the near term per recent_angles history; rotate back in after 4+ weeks to avoid content repetition",
+      "open_water — NZ autumn season shift moves audience indoors; open water lifestyle content flagged as seasonally misaligned in multiple April–May 2026 research briefs; hold until spring 2026"
     ],
-    "overlay_style": "4-6 word punchy performance statement in brand voice; high contrast white or amber text against dark lower portion of image; examples: 'Built to race.' / '0.01 seconds matters.' / 'Own the wall.' / 'Race day ready.' — bottom-centre area intentionally dark per brand image composition rules to accommodate VelocX logo and text overlay",
+    "overlay_style": "4-6 word punchy performance statement in brand voice; high contrast white or amber (#F8A30E) text against dark lower portion of image; bottom-centre area intentionally dark per brand image composition rules to accommodate VelocX logo and text overlay; examples: 'Built to race.' / '0.01 seconds matters.' / 'Own the wall.' / 'Race day ready.' / 'Train like you mean it.'",
     "prompt_patterns_that_work": [
-      "dark cinematic indoor pool, dramatic orange-amber overhead spotlights, deep teal water #007B8A to midnight blue #001F3F, high contrast chiaroscuro lighting, athlete mid-stroke or launching off blocks, Jaked swim cap visible, water droplets frozen in motion, shallow depth of field, bottom-centre area dark for text overlay, no competing brand logos, professional sports editorial photography quality",
-      "sleek Jaked racing swimsuit submerged in deep teal pool water, dramatic orange-amber overhead spotlight raking across fabric, visible fabric texture and compression panelling detail, high contrast chiaroscuro, no competing logos, dark bottom-centre for overlay text, professional product photography quality",
-      "competitive swimmer poolside post-session, towel over shoulders, focused intense expression, wet hair, warm amber stadium overhead lighting, dark moody background, shallow depth of field, portrait composition subject in upper 60% frame, pool water fills lower portion"
+      "dark cinematic indoor pool, dramatic orange-amber overhead spotlights, deep teal water #007B8A to midnight blue #001F3F, high contrast chiaroscuro lighting, athlete mid-stroke freestyle or butterfly launching off blocks, Jaked swim cap visible, water droplets frozen in motion, shallow depth of field, bottom-centre area dark for text overlay, no competing brand logos, professional sports editorial photography quality, 8K resolution",
+      "cinematic underwater action, competitive swimmer viewed from directly below mid-freestyle pull, crepuscular light rays penetrating from pool surface above, deep dark pool fading to black #001F3F, subtle orange-amber accent glow #F8A30E, ultra-high contrast chiaroscuro, Jaked swim cap visible, bottom-centre area dark for text overlay, no competing brand logos, professional underwater sports photography quality — trending visual format confirmed April 2026 visual research",
+      "sleek Jaked racing swimsuit submerged in deep teal pool water, dramatic orange-amber overhead spotlight raking across fabric, visible fabric texture and compression panelling detail, high contrast chiaroscuro, no competing logos, dark bottom-centre for overlay text, professional product photography quality, deep teal #007B8A to midnight blue #001F3F water background",
+      "competitive swimmer poolside post-session, towel over shoulders, focused intense expression, wet hair, warm amber stadium overhead lighting #F8A30E, dark moody background, shallow depth of field, portrait composition subject in upper 60% of frame, pool water fills lower portion, no competing brand logos, professional sports editorial photography quality"
     ]
   },
   "hashtags": {
@@ -53,74 +55,88 @@
       "#FYP",
       "#SwimTechnique",
       "#SwimDrills",
-      "#SwimmingTips"
+      "#SwimmingTips",
+      "#SixBeatKick",
+      "#FreestyleKick",
+      "#PBChasing",
+      "#AutumnTraining",
+      "#PerformanceGear",
+      "#SwimMindset",
+      "#RaceReady",
+      "#LaneLife",
+      "#SwimSquad",
+      "#PerformanceSwimwear"
     ],
     "retired": [
-      "#PoolTraining — present in archive but no pattern of high-reach posts; generic and low differentiation; drop in favour of more specific performance hashtags",
-      "#CompetitiveSwimwear — 4 uses in archive, zero traceable engagement lift; too niche without audience traction",
-      "#ItalianSwimwear — 4 uses in archive, zero traceable engagement lift; overly category-specific without clear NZ audience resonance",
-      "#EliteSwimwear — 4 uses in archive, zero traceable engagement lift; replaced by more specific and trending alternatives"
+      "#PoolTraining — present in archive (6 uses) but no pattern of high-reach posts; generic and low differentiation; dropped in favour of more specific performance hashtags per previous strategy",
+      "#CompetitiveSwimwear — 4 uses in archive, zero traceable engagement lift; too niche without audience traction; retired previous period",
+      "#ItalianSwimwear — 4 uses in archive, zero traceable engagement lift; overly category-specific without clear NZ audience resonance; retired previous period",
+      "#EliteSwimwear — 4 uses in archive, zero traceable engagement lift; replaced by more specific and trending alternatives including #PerformanceSwimwear and #PerformanceGear"
     ],
     "trending_this_period": [
-      "#SixBeatKick — emerging in swim social with strong stat-backed educational content driving saves; recommended by April 2026 trend research",
-      "#FreestyleKick — paired with six-beat kick content performing in competitive swim communities",
-      "#PBChasing — strong relevance with NZ club swimmers entering autumn training blocks focused on time improvement",
-      "#AutumnTraining — seasonal hashtag with confirmed high relevance across multiple April 2026 research briefs for NZ swim audience",
-      "#PerformanceGear — resonating with gear-conscious swimmers post-nationals evaluating suit upgrades",
-      "#SwimMindset — gaining traction alongside mental toughness content angle confirmed as high-relevance topic",
-      "#RaceReady — timely with Northern Zone Development Meets and winter championship season approaching",
-      "#LaneLife — community and relatable content hashtag with growing use in NZ swim communities this period",
-      "#SwimSquad — community-focused tag performing in youth and club swim content; confirmed trending in April 2026 research",
-      "#PerformanceSwimwear — product education hashtag with traction in post-nationals gear reflection period"
+      "#SixBeatKick — emerging strongly in swim social with stat-backed educational content driving saves; 10.21% 50m improvement stat confirmed as scroll-stopping hook in April 2026 trend research; undeployed in archive to date — high priority",
+      "#FreestyleKick — paired with six-beat kick content performing in competitive swim communities per April 2026 research; complement to #SixBeatKick posts",
+      "#PBChasing — strong relevance with NZ club swimmers in autumn training blocks focused on time improvement; aligns with performance tip content pillar",
+      "#AutumnTraining — seasonal hashtag with confirmed high relevance across multiple April–May 2026 research briefs for NZ swim audience entering winter base-building phase",
+      "#PerformanceGear — resonating with gear-conscious swimmers post-nationals evaluating suit upgrades; aligns with Jaked product integration pillar",
+      "#SwimMindset — gaining traction alongside mental toughness content confirmed as high-relevance topic in April 2026 research; pairs with athlete mindset pillar",
+      "#RaceReady — timely with Northern Zone Development Meets and approaching winter championship season; aligns with race motivation content",
+      "#LaneLife — community and relatable content hashtag with growing use in NZ swim communities; supports swimmer lifestyle pillar",
+      "#SwimSquad — community-focused tag performing in youth and club swim content; confirmed trending April 2026 research; supports community and NZ swim scene pillar",
+      "#PerformanceSwimwear — product education hashtag with traction in post-nationals gear reflection period; pairs with Jaked gear content",
+      "#HipRotation — technique-specific tag aligned with hip rotation drill angle in recent_angles archive; undeployed and relevant for performance tip posts",
+      "#SwimEfficiency — trending alongside SWOLF and stroke optimisation content per April 2026 research; strong fit for performance tip posts this period"
     ]
   },
   "content_pillars": {
     "increase_focus": [
-      "Swim Performance and Training — stat-backed educational tip posts with surprising data hooks (e.g. six-beat kick 10% improvement, flip turn 1-2 second loss) are the highest-engagement content type on Facebook in 2026 and drive saves and shares; this pillar should anchor at least 2 posts per week",
-      "Jaked Product Integration — post-nationals period confirmed by trend research as prime window for race suit quality and performance fabric messaging; gear_closeup format is both underused in archive (1 use) and highly recommended by 2026 platform trend data; increase to at least 1 dedicated product post per week using cinematic fabric detail imagery",
-      "Trends and Viral Formats — TikTok and Instagram favouring specificity and self-awareness in April 2026; photo carousel formats gaining traction in niche sports communities; this pillar is currently underutilised in the archive and offers the highest growth lever on Instagram and TikTok"
+      "Swim Performance and Training — stat-backed educational tip posts with surprising data hooks are the highest-engagement content type on Facebook in 2026 per all five research briefs; save-worthy step-by-step drill breakdowns with bullet structure are driving saves and shares above all other formats; undeployed high-priority angles include six-beat kick (10.21% 50m improvement stat), hip rotation (10 degrees = longer stroke and less drag), and pull buoy dependency; this pillar should anchor at least 2 posts per week with image format",
+      "Jaked Product Integration — post-nationals period confirmed by multiple research briefs as prime window for race suit quality and performance fabric messaging; gear_closeup format remains underused in archive (1 use of 27 posts) and is highly recommended by 2026 platform trend data; suit compression science and hydrodynamics framing outperforms pure product showcase per April 2026 research; increase to at least 1 dedicated product post per week using cinematic fabric detail imagery",
+      "Athlete Mindset and Motivation — sports psychology and mental performance content confirmed outperforming technique-only posts for competitive swimming audiences in 2025–2026 per April 2026 research; mental toughness in the final 50m and taper mindset angles are undeployed and high-relevance; must be anchored to a specific technique, stat, or NZ swim context to avoid low-performing generic motivational format",
+      "Trends and Viral Formats — photo carousel formats gaining traction in niche sports communities on Instagram in 2026; challenge-based viral swimming content driving team participation and exponential sharing per April 2026 research; this pillar remains underutilised in the archive and represents the highest growth lever on Instagram and TikTok; test one carousel or trend-adapted post per week"
     ],
     "decrease_focus": [
-      "Standalone text posts under any pillar — text-only format averaged 0 engagement across 22 posts analysed; all pillars should be delivered primarily through image or video formats going forward",
-      "Generic motivational content without swim-specific data hook — flagged explicitly as low-performer in April 2026 research briefs; all motivational content must be anchored to a specific technique, stat, or NZ swim context"
+      "Standalone text posts under any pillar — text-only format averaged 0 engagement across all 27 posts analysed in the period; 21 of 27 archive posts were text format yet drove near-zero results; all pillars must be delivered through image or video formats going forward; text-only is retired as a primary format",
+      "Generic motivational content without swim-specific data hook — flagged explicitly as low-performing in multiple April–May 2026 research briefs; all motivational content must be anchored to a specific technique, stat, or NZ swim event context to differentiate from zero-engagement text posts",
+      "Community and NZ Swim Scene as standalone pillar — low posting frequency and near-zero engagement base make this a secondary support pillar rather than a primary content driver at this stage of account growth; integrate community angles into performance and product posts rather than publishing as standalone community-only content"
     ],
     "weighting": {
       "Swim Performance and Training": "35%",
       "Jaked Product Integration": "20%",
       "Athlete Mindset and Motivation": "15%",
       "Swimmer Lifestyle and Relatable Content": "15%",
-      "Community and NZ Swim Scene": "10%",
-      "Trends and Viral Formats": "5%"
+      "Trends and Viral Formats": "10%",
+      "Community and NZ Swim Scene": "5%"
     }
   },
   "posting_schedule": {
     "optimal_times": [
-      "03:00 NZST — top-performing post in the analysis period (engagement 4) was published at this hour; likely catching early morning swimmers and night-before scrollers; use for highest-priority image posts",
-      "23:00 NZST — second-best performing hour in Facebook insights; second-ranked top post published at 22:48; evening wind-down browsing window for athletes post-training",
-      "22:00 NZST — third-best performing hour in Facebook insights; consistent with post-training evening engagement window"
+      "03:00 NZST — top-performing post in the full analysis period (engagement 4, image post) was published at this exact hour; confirmed as the highest-engagement posting window in Facebook insights best_posting_hours data; likely catching early morning swimmers pre-training and late-night scrollers; use for highest-priority image posts each week",
+      "23:00 NZST — second-best performing hour in Facebook insights best_posting_hours data; second-ranked top post (engagement 2) published at 23:14; evening wind-down browsing window for athletes post-training; use for secondary image posts",
+      "21:00 NZST — third-best performing hour in Facebook insights best_posting_hours data; third and fourth ranked posts (engagement 1 each) published at 21:28 and 21:01; consistent with post-training evening engagement window; use for supporting content when 03:00 and 23:00 slots are filled"
     ],
     "best_days": [
-      "Sunday to Thursday evenings — aligns with optimal posting hours identified; training days drive scroll behaviour in recovery windows; insufficient day-level data to rank precisely, low confidence on day preference specifically"
+      "Sunday to Thursday evenings — aligns with optimal posting hours identified from Facebook insights; training days drive scroll behaviour in recovery windows; insufficient day-level data to rank with confidence; low confidence on specific day preference — review after 4 additional weeks of varied-day publishing to establish day-level signal"
     ],
-    "frequency_note": "All 24 archive posts were published at 20:00 NZST with zero variation. The two highest-engagement posts were published at 03:00 and 22:48 respectively — strongly suggesting current 20:00 blanket scheduling is suboptimal. Immediate shift to 23:00 or 03:00 posting times recommended for Facebook as the single highest-impact scheduling change available.",
+    "frequency_note": "All 27 archive posts were published at 20:00 NZST with zero variation — confirmed again this period. The top-performing posts were published at 03:00 and 23:00 respectively. Blanket 20:00 scheduling is actively suppressing reach and remains the single most impactful scheduling error to correct. Immediate shift to 23:00 or 03:00 primary posting times is the highest-priority change available. The 15:00 post (engagement 0) confirms midday/afternoon scheduling is not effective for this audience.",
     "posts_per_week": 3,
     "posts_per_day": 1,
     "image_to_text_ratio": "4:1",
-    "image_to_text_ratio_note": "Image posts averaged 1 engagement vs 0 for text posts across the analysis period. Current archive ratio is 1:3 in favour of text — this is the most significant format imbalance to correct immediately. Target 4 image posts for every 1 text post going forward."
+    "image_to_text_ratio_note": "Image posts averaged 1 engagement vs 0 for text posts across the full 27-post analysis period. Current archive ratio is approximately 1:3.5 in favour of text (6 image posts vs 21 text posts) — this format imbalance is the most significant structural problem to correct. Target a minimum of 4 image posts for every 1 text post going forward. Text posts should only be used when paired with a compelling data hook and tested sparingly."
   },
   "key_insights": [
-    "CRITICAL: All 24 local archive posts were scheduled at 20:00 NZST — the top two performing posts were at 03:00 and 22:48 respectively. A blanket 20:00 schedule is actively suppressing reach. Shift primary posting to 23:00 or 03:00 immediately.",
-    "Image posts (6 of 24 posts, 25% of content) generated all meaningful engagement in the period. Text posts (18 of 24 posts, 75% of content) averaged zero engagement. The format mix is inverted — image posting must become the default.",
-    "Only 6 image posts were published in 30 days despite image posts clearly outperforming. Increasing image post frequency from roughly 1 per 5 posts to 4 per 5 posts is the single biggest volume lever available.",
-    "Post-nationals period (NZ Age Groups concluded April 8-12, Northern Zone Development Meets April 19) creates a high-purchase-intent window for Jaked gear content. This window is active now and should be maximised with gear_closeup and race suit messaging before it passes.",
-    "Six-beat kick technique content with the 10.21% 50m improvement stat is undeployed despite being the top recommended angle from trend research. This data hook is scroll-stopping and saves-worthy — publish as a priority educational post this week.",
-    "Autumn seasonal context is consistently flagged as high-relevance across all April 2026 research briefs. Content framing training as a winter weapon, base-building season, or autumn grind is resonating strongly with NZ competitive swimmers right now.",
-    "Hashtag variety is adequate but several tags (#PoolTraining, #ItalianSwimwear, #CompetitiveSwimwear, #EliteSwimwear) showed no engagement correlation and should be retired in favour of trending alternatives like #SixBeatKick, #PBChasing, and #AutumnTraining.",
-    "Low overall confidence caveat: with near-zero average engagement across the period, the data reflects early-stage account growth rather than mature performance signals. These recommendations are directionally correct but should be reviewed and updated after 4 weeks of image-first, optimally-timed posting to establish a real performance baseline."
+    "CRITICAL — SCHEDULING: All 27 local archive posts continue to be scheduled at 20:00 NZST with zero variation. The top-performing post (engagement 4) was published at 03:00 and the second-best (engagement 2) at 23:00. A blanket 20:00 schedule is confirmed as actively suppressing reach. Shift primary posting to 23:00 or 03:00 immediately — this is the single highest-impact change available and has not been actioned since identified in the previous strategy.",
+    "CRITICAL — FORMAT: 21 of 27 archive posts (78%) are text-only, yet text posts averaged zero engagement across the entire period. All 6 image posts generated all meaningful engagement. The format mix remains inverted. Achieving the target 4:1 image-to-text ratio requires publishing at minimum 3 image posts per week until the ratio is corrected.",
+    "UNDEPLOYED PRIORITY ANGLES: Six-beat kick (10.21% 50m improvement stat), hip rotation drill, pull buoy dependency, and hand entry and catch position are all confirmed high-relevance angles identified in recent_angles archive and trend research but not yet published. These represent immediate ready-to-publish content with proven scroll-stopping hooks.",
+    "POST-NATIONALS WINDOW STILL ACTIVE: The high-purchase-intent window following NZ Age Group Champs (April 8–12) and Northern Zone Development Meets (April 19) extends into May. Gear_closeup and race suit performance messaging remain highly relevant. This window will close — Jaked product integration content must be prioritised in the next 2 weeks.",
+    "AUTUMN TRAINING BLOCK FRAMING: Multiple research briefs confirm NZ competitive swimmers are now entering the autumn/winter base-building phase. Content framing training as a winter weapon, PB-building season, or early-morning grind is resonating strongly. All performance tip content should carry an autumn training context signal this period.",
+    "MENTAL PERFORMANCE GAP: Sports psychology and mental toughness content (final 50m pain management, taper anxiety, race-day mindset) is confirmed outperforming technique-only content in 2025–2026 competitive swim niche per April 2026 research. No mental performance posts appear in the archive to date. This is an unmet audience demand.",
+    "CINEMATIC UNDERWATER VISUAL: Competitive swimmer viewed from directly below mid-stroke with crepuscular light rays from pool surface is the trending visual format identified in April 2026 visual research brief and not yet used in the archive. This specific composition style is outperforming standard poolside and deck-level content in the swim niche in 2026.",
+    "LOW CONFIDENCE CAVEAT: With an average engagement of 0 across 27 posts (image average 1), the account remains in early-stage growth. These recommendations are directionally correct based on available data and trend research but should be reviewed after 4 weeks of image-first, optimally-timed publishing to establish a real performance baseline. Confidence will be upgraded to medium once 10+ image posts are published at 23:00 or 03:00 with measurable engagement variance."
   ],
   "reasoning": {
-    "what_worked": "Image posts with images drove all meaningful engagement in the 30-day period — the top post (engagement 4, published 03:00) and second post (engagement 3, published 22:48) were both image posts. Race action and gear closeup image types were present in top posts. Posts published outside the blanket 20:00 schedule consistently outperformed those within it. Stat-backed educational hooks and performance technique content are confirmed by April 2026 trend research as the highest-saving and sharing content type in competitive swim communities on Facebook.",
-    "what_didnt": "Text-only posts (18 of 24 posts published) averaged zero engagement across the entire period. Blanket 20:00 scheduling suppressed all posts relative to the 22:00-03:00 window where top performers landed. Generic motivational content without swim-specific data hooks is explicitly flagged as low-performing in multiple research briefs. Open water content and summer lifestyle content are seasonally misaligned with the NZ autumn audience right now.",
-    "main_recommendation": "Immediately shift from text-dominant, 20:00-blanket-scheduled posting to a minimum 4:1 image-to-text ratio with posts scheduled at 23:00 or 03:00 NZST — this single combined change directly addresses both the format and timing gaps responsible for near-zero engagement in the current period, and should be implemented before any other content or hashtag optimisation."
+    "what_worked": "Image posts continued to drive all meaningful engagement in the period — the top post (engagement 4, image, 03:00) and second post (engagement 2, text, 23:00) confirm both the image format advantage and the 23:00-03:00 posting window superiority. Race_action image type present in top-performing posts. Posts published outside the blanket 20:00 schedule (03:00, 23:00, 21:00) account for all top-5 performing posts. Stat-backed educational hooks and performance technique content remain confirmed by all five research briefs as the highest-saving and sharing content type in competitive swim communities on Facebook in 2026.",
+    "what_didnt": "Text-only posts (21 of 27 archive posts, 78% of content) averaged zero engagement across the entire period — this is unchanged from the previous strategy period and the format imbalance has not been corrected. Blanket 20:00 scheduling persists across all 27 archive posts despite the previous strategy identifying this as the single highest-impact fix. The 15:00 post from May 2 received zero engagement, confirming afternoon scheduling is ineffective. Generic content without swim-specific data hooks continues to underperform per all research briefs. Six image types — training, lifestyle, open_water — remain entirely unused in the archive despite being confirmed effective formats.",
+    "main_recommendation": "Immediately correct the two confirmed suppression factors that have persisted unchanged from the previous strategy period: (1) shift all primary post scheduling from 20:00 NZST to 23:00 or 03:00 NZST, and (2) publish a minimum of 3 image posts in the next 7 days to begin correcting the 4:1 image-to-text ratio target — starting with the undeployed six-beat kick stat-backed educational post (10.21% 50m improvement hook) as an image post scheduled at 03:00 NZST, which combines every confirmed high-performance signal in a single execution."
   }
 }

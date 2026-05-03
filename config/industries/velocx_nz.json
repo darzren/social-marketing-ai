@@ -128,26 +128,28 @@
     "alternating_types": true,
     "learned": {
       "optimal_times": [
-        "03:00 NZST — top-performing post in the analysis period (engagement 4) was published at this hour; likely catching early morning swimmers and night-before scrollers; use for highest-priority image posts",
-        "23:00 NZST — second-best performing hour in Facebook insights; second-ranked top post published at 22:48; evening wind-down browsing window for athletes post-training",
-        "22:00 NZST — third-best performing hour in Facebook insights; consistent with post-training evening engagement window"
+        "03:00 NZST — top-performing post in the full analysis period (engagement 4, image post) was published at this exact hour; confirmed as the highest-engagement posting window in Facebook insights best_posting_hours data; likely catching early morning swimmers pre-training and late-night scrollers; use for highest-priority image posts each week",
+        "23:00 NZST — second-best performing hour in Facebook insights best_posting_hours data; second-ranked top post (engagement 2) published at 23:14; evening wind-down browsing window for athletes post-training; use for secondary image posts",
+        "21:00 NZST — third-best performing hour in Facebook insights best_posting_hours data; third and fourth ranked posts (engagement 1 each) published at 21:28 and 21:01; consistent with post-training evening engagement window; use for supporting content when 03:00 and 23:00 slots are filled"
       ],
       "best_days": [
-        "Sunday to Thursday evenings — aligns with optimal posting hours identified; training days drive scroll behaviour in recovery windows; insufficient day-level data to rank precisely, low confidence on day preference specifically"
+        "Sunday to Thursday evenings — aligns with optimal posting hours identified from Facebook insights; training days drive scroll behaviour in recovery windows; insufficient day-level data to rank with confidence; low confidence on specific day preference — review after 4 additional weeks of varied-day publishing to establish day-level signal"
       ],
       "posts_per_day": 1,
       "image_to_text_ratio": "4:1",
       "top_content_types": [
-        "race_action — used twice in archive, present in top-performing posts; cinematic dive starts, mid-stroke butterfly or freestyle, underwater dolphin kick with water exploding; Jaked cap visible; aligns with highest-engagement post types",
-        "gear_closeup — sleek Jaked racing suit submerged in deep teal pool water with dramatic orange-amber overhead spotlights; fabric texture detail visible; recommended by April 2026 trend research as highest-traction format for performance sports brands; post-nationals timing makes race suit quality messaging highly relevant to NZ competitive swimmers right now",
-        "lifestyle — athlete poolside post-session, towel around shoulders, focused expression, warm stadium lighting; autumn training mood resonates strongly with seasonal content angle confirmed by multiple research briefs"
+        "race_action — used twice in archive and present in top-performing posts; cinematic dive starts, mid-stroke butterfly or freestyle, underwater dolphin kick with water exploding, Jaked cap visible; aligns with highest-engagement post types in archive and confirmed by May 2026 trend research as top-performing visual format in competitive swim niche; prioritise as primary image type",
+        "training — early morning empty pool with single swimmer, coach on deck, athlete drilling in lane; post-nationals training block now underway per NZ swim event calendar; autumn/winter indoor training focus confirmed as high-relevance seasonal angle across multiple research briefs; cinematic underwater action viewed from below with crepuscular light rays is the specific trending visual variant per April 2026 visual research brief",
+        "gear_closeup — sleek Jaked racing suit submerged in deep teal pool water with dramatic orange-amber overhead spotlights; fabric texture and compression panelling detail visible; used only once in archive (underutilised) and recommended as highest-traction format for performance sports brands in 2026 trend research; post-nationals period remains a high-purchase-intent window for race suit quality messaging; increase to at least one dedicated post per week",
+        "lifestyle — athlete poolside post-session, towel around shoulders, focused intense expression, warm stadium lighting, wet hair; autumn training mood resonates with seasonal content confirmed across multiple research briefs; portrait composition with subject in upper 60% of frame per brand composition rules"
       ],
       "top_pillars": [
-        "Swim Performance and Training — stat-backed educational tip posts with surprising data hooks (e.g. six-beat kick 10% improvement, flip turn 1-2 second loss) are the highest-engagement content type on Facebook in 2026 and drive saves and shares; this pillar should anchor at least 2 posts per week",
-        "Jaked Product Integration — post-nationals period confirmed by trend research as prime window for race suit quality and performance fabric messaging; gear_closeup format is both underused in archive (1 use) and highly recommended by 2026 platform trend data; increase to at least 1 dedicated product post per week using cinematic fabric detail imagery",
-        "Trends and Viral Formats — TikTok and Instagram favouring specificity and self-awareness in April 2026; photo carousel formats gaining traction in niche sports communities; this pillar is currently underutilised in the archive and offers the highest growth lever on Instagram and TikTok"
+        "Swim Performance and Training — stat-backed educational tip posts with surprising data hooks are the highest-engagement content type on Facebook in 2026 per all five research briefs; save-worthy step-by-step drill breakdowns with bullet structure are driving saves and shares above all other formats; undeployed high-priority angles include six-beat kick (10.21% 50m improvement stat), hip rotation (10 degrees = longer stroke and less drag), and pull buoy dependency; this pillar should anchor at least 2 posts per week with image format",
+        "Jaked Product Integration — post-nationals period confirmed by multiple research briefs as prime window for race suit quality and performance fabric messaging; gear_closeup format remains underused in archive (1 use of 27 posts) and is highly recommended by 2026 platform trend data; suit compression science and hydrodynamics framing outperforms pure product showcase per April 2026 research; increase to at least 1 dedicated product post per week using cinematic fabric detail imagery",
+        "Athlete Mindset and Motivation — sports psychology and mental performance content confirmed outperforming technique-only posts for competitive swimming audiences in 2025–2026 per April 2026 research; mental toughness in the final 50m and taper mindset angles are undeployed and high-relevance; must be anchored to a specific technique, stat, or NZ swim context to avoid low-performing generic motivational format",
+        "Trends and Viral Formats — photo carousel formats gaining traction in niche sports communities on Instagram in 2026; challenge-based viral swimming content driving team participation and exponential sharing per April 2026 research; this pillar remains underutilised in the archive and represents the highest growth lever on Instagram and TikTok; test one carousel or trend-adapted post per week"
       ],
-      "last_updated": "2026-04-26"
+      "last_updated": "2026-05-03"
     }
   },
   "voice_guide": {
