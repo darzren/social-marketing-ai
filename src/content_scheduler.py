@@ -419,6 +419,43 @@ def generate_quote_image(post_text: str, industry: str, brand_config: dict) -> P
     return out_path
 
 
+GDRIVE_TO_POST_FOLDERS = {
+    "JL_RealEstate": "1Q6slJrkqtQI5-EBrLSGz8WSJ24QJyzF4",
+}
+
+
+def upload_to_google_drive(file_path: Path, industry: str) -> None:
+    """Upload a quote image to the industry's Google Drive 'To Post' folder (best-effort)."""
+    folder_id = GDRIVE_TO_POST_FOLDERS.get(industry)
+    if not folder_id:
+        return
+
+    sa_json = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+    if not sa_json:
+        logger.info("GOOGLE_SERVICE_ACCOUNT_JSON not set — skipping Google Drive upload")
+        return
+
+    try:
+        import json as _json
+        from google.oauth2.service_account import Credentials
+        from googleapiclient.discovery import build
+        from googleapiclient.http import MediaFileUpload
+
+        creds = Credentials.from_service_account_info(
+            _json.loads(sa_json),
+            scopes=["https://www.googleapis.com/auth/drive.file"],
+        )
+        service = build("drive", "v3", credentials=creds, cache_discovery=False)
+        media = MediaFileUpload(str(file_path), mimetype="image/jpeg")
+        service.files().create(
+            body={"name": file_path.name, "parents": [folder_id]},
+            media_body=media,
+        ).execute()
+        logger.info(f"Uploaded to Google Drive (To Post): {file_path.name}")
+    except Exception as e:
+        logger.warning(f"Google Drive upload failed (non-blocking): {e}")
+
+
 def git_commit_and_push(industry: str, post_type: str) -> bool:
     try:
         subprocess.run(["git", "add", "data/content_ready/"], check=True)
@@ -517,6 +554,7 @@ def main():
             content["instagram_image"] = quote_path.name
             needs_cdn_wait = True
             logger.info(f"Quote image queued for Instagram: {quote_path.name}")
+            upload_to_google_drive(quote_path, args.industry)
 
     # Write, push, and trigger post workflow
     write_pending_file(content, args.industry, post_type)

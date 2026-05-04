@@ -53,6 +53,7 @@ jobs:
       - name: Run content scheduler
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: |
           if [ "${{ inputs.force }}" = "true" ]; then
             python src/content_scheduler.py --industry JL_RealEstate --force
