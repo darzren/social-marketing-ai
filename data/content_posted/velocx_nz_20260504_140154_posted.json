@@ -1,0 +1,46 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260504_140154",
+  "posted_at": "20260504_140222",
+  "content": {
+    "facebook": {
+      "content_angle": "Stroke rate vs stroke length — the speed equation most club swimmers get backwards, and how finding your personal optimal balance unlocks faster splits without more effort",
+      "post_text": "Stroke faster and you'll swim faster. Right? ⚡\n\nWrong. Most club swimmers crank up their stroke rate when they want to go harder — and bleed speed doing it.\n\nHere's what's actually happening:\n\n👉 Higher stroke rate without matching distance-per-stroke means shorter, weaker pulls and more energy burned per metre\n👉 Elite 100m freestyle swimmers average 85–95cm of distance per stroke — most club swimmers sit 15–20cm below that\n👉 The fastest split isn't found by churning harder — it's found by holding length under fatigue\n\nThat 15–20cm gap? Over 100m it costs you 10–14 additional strokes. That's energy you didn't have to spend. 💥\n\nThis is the stroke equation worth obsessing over:\n\n✔️ Drill for length first — use a tempo trainer set slow and hold your distance per stroke\n✔️ Then gradually increase rate while protecting that length\n✔️ Find the crossover point where both are high — that's your personal speed ceiling\n\nAre you training stroke rate, stroke length — or have you found your balance?",
+      "engagement_bait": "Drop your event below — 50m sprinter or distance swimmer, the balance point is different for everyone.",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#SwimTraining",
+        "#SwimTips",
+        "#SwimTechnique",
+        "#SwimDrills",
+        "#SwimmingTips",
+        "#PBChasing",
+        "#AutumnTraining",
+        "#SwimEfficiency",
+        "#LaneLife",
+        "#TrainLikeAnAthlete",
+        "#SwimPerformance",
+        "#NZSwimmer",
+        "#SwimFaster"
+      ],
+      "call_to_action": "Are you training stroke rate, stroke length — or have you found your balance?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122165278172977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
