@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260506_045028",
+  "posted_at": "2026-05-06T04:51:12.152696",
+  "headline": "Middle East conflict threatens borrowers' ability repay debt",
+  "source_url": "https://www.rnz.co.nz/news/business/594393/middle-east-conflict-warning-over-kiwis-ability-to-pay-back-debt",
+  "original_title": "Middle East conflict: Warning over Kiwis' ability to pay back debt",
+  "priority_tier": 2,
+  "image_path": "data/news_images/JL_RealEstate_20260506_045028_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": false,
+      "error": "Please reduce the amount of data you're asking for, then retry your request"
+    },
+    "instagram": {
+      "success": true,
+      "post_id": "18151859458476210"
+    }
+  }
+}

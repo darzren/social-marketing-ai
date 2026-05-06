@@ -1,9 +1,5 @@
 {
   "urls": {
-    "https://www.interest.co.nz/property/138132/bounce-back-number-residential-properties-going-auction-sales-rate-little-changed": "2026-04-20T08:34:14.947753",
-    "https://www.interest.co.nz/personal-finance/138155/first-home-buyers-and-financial-hardship-drove-kiwisaver-early-withdrawals": "2026-04-20T22:08:54.391171",
-    "https://www.interest.co.nz/personal-finance/138171/kiwibank-makes-mortgage-rate-changes-staying-competitive-one-year-fixed": "2026-04-21T03:51:19.816027",
-    "https://www.interest.co.nz/economy/138154/annual-inflation-31-march-quarter-electricity-leading-way-rent-rise-lowest-16-years": "2026-04-21T08:17:06.745971",
     "https://www.interest.co.nz/personal-finance/138206/bnz-next-raise-fixed-home-loan-rates-theirs-are-notable-because-they": "2026-04-23T04:28:15.721389",
     "https://www.interest.co.nz/personal-finance/138198/wholesale-swap-rates-jumping-recently-do-banks-have-good-case-raise": "2026-04-23T05:14:55.362648",
     "https://www.interest.co.nz/property/138236/houses-brought-auction-still-selling-same-pace-earlier-month-fewer-are-offered-and": "2026-04-28T04:52:14.360870",
@@ -18,61 +14,10 @@
     "https://www.interest.co.nz/property/138295/nzs-median-dwelling-value-inched-01-april-auckland-and-wellington-values-still": "2026-05-01T07:27:32.898876",
     "https://www.interest.co.nz/property/138303/housing-stock-sale-april-12-year-high-and-asking-prices-declining-realestateconz": "2026-05-03T02:21:35.372371",
     "https://www.interest.co.nz/property/138313/auction-rooms-much-quieter-fewer-properties-offer-and-less-third-selling-under": "2026-05-03T02:27:02.547372",
-    "https://www.interest.co.nz/economy/138310/review-things-you-need-know-you-sign-friday-consumers-turn-negative-dwelling": "2026-05-03T02:32:26.275752"
+    "https://www.interest.co.nz/economy/138310/review-things-you-need-know-you-sign-friday-consumers-turn-negative-dwelling": "2026-05-03T02:32:26.275752",
+    "https://www.rnz.co.nz/news/business/594393/middle-east-conflict-warning-over-kiwis-ability-to-pay-back-debt": "2026-05-06T04:51:12.152301"
   },
   "topics": [
-    {
-      "headline": "Autumn auction activity cools as winter season develops",
-      "ts": "2026-04-26T05:14:53.899623"
-    },
-    {
-      "headline": "Residential auction activity cools further as winter develops",
-      "ts": "2026-04-26T06:03:03.115194"
-    },
-    {
-      "headline": "Auction activity cools as winter season develops further",
-      "ts": "2026-04-27T08:22:09.500878"
-    },
-    {
-      "headline": "Auction activity cools as winter season develops",
-      "ts": "2026-04-27T08:32:26.680105"
-    },
-    {
-      "headline": "Residential auction activity cools further into winter",
-      "ts": "2026-04-27T08:43:04.114813"
-    },
-    {
-      "headline": "Residential auction activity cools further as winter approaches",
-      "ts": "2026-04-28T04:52:14.360873"
-    },
-    {
-      "headline": "Q1 property market shows $54m value shift, pricing normalises",
-      "ts": "2026-04-28T05:27:55.274469"
-    },
-    {
-      "headline": "Sellers cutting house prices amid uncertainty and rising rates",
-      "ts": "2026-04-28T05:50:24.954927"
-    },
-    {
-      "headline": "42.9% of homeowners paying more than minimum repayments",
-      "ts": "2026-04-28T05:55:15.066593"
-    },
-    {
-      "headline": "Auckland industrial, commercial land shortage pushing record prices",
-      "ts": "2026-04-28T06:10:08.358020"
-    },
-    {
-      "headline": "Auckland landlords operating illegal boarding houses undetected",
-      "ts": "2026-04-28T06:17:20.649674"
-    },
-    {
-      "headline": "Banks offer varying mortgage rates — shop around now",
-      "ts": "2026-04-28T06:22:06.434756"
-    },
-    {
-      "headline": "ASB raises home loan rates as wholesale costs bite",
-      "ts": "2026-04-29T04:47:29.736582"
-    },
     {
       "headline": "ANZ forecasts small house price decline this year",
       "ts": "2026-04-29T07:25:54.350443"
@@ -92,6 +37,10 @@
     {
       "headline": "Housing market stalls as dwelling consents remain strong",
       "ts": "2026-05-03T02:32:26.275754"
+    },
+    {
+      "headline": "Middle East conflict threatens borrowers' ability repay debt",
+      "ts": "2026-05-06T04:51:12.152304"
     }
   ]
 }
