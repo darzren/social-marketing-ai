@@ -15,13 +15,10 @@
     "https://www.interest.co.nz/property/138303/housing-stock-sale-april-12-year-high-and-asking-prices-declining-realestateconz": "2026-05-03T02:21:35.372371",
     "https://www.interest.co.nz/property/138313/auction-rooms-much-quieter-fewer-properties-offer-and-less-third-selling-under": "2026-05-03T02:27:02.547372",
     "https://www.interest.co.nz/economy/138310/review-things-you-need-know-you-sign-friday-consumers-turn-negative-dwelling": "2026-05-03T02:32:26.275752",
-    "https://www.rnz.co.nz/news/business/594393/middle-east-conflict-warning-over-kiwis-ability-to-pay-back-debt": "2026-05-06T04:51:12.152301"
+    "https://www.rnz.co.nz/news/business/594393/middle-east-conflict-warning-over-kiwis-ability-to-pay-back-debt": "2026-05-06T04:51:12.152301",
+    "https://www.interest.co.nz/economy/138366/nz-likely-see-slower-recovery-affecting-job-growth-and-debt-servicing-banks-and": "2026-05-06T07:37:13.827250"
   },
   "topics": [
-    {
-      "headline": "ANZ forecasts small house price decline this year",
-      "ts": "2026-04-29T07:25:54.350443"
-    },
     {
       "headline": "NZ median value up 0.1% April, Auckland still declining",
       "ts": "2026-05-01T07:27:32.898878"
@@ -41,6 +38,10 @@
     {
       "headline": "Middle East conflict threatens borrowers' ability repay debt",
       "ts": "2026-05-06T04:51:12.152304"
+    },
+    {
+      "headline": "Rising mortgage rates could reduce house prices further",
+      "ts": "2026-05-06T07:37:13.827253"
     }
   ]
 }
