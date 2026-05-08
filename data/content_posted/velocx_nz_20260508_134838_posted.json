@@ -1,0 +1,44 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260508_134838",
+  "posted_at": "20260508_134908",
+  "content": {
+    "facebook": {
+      "content_angle": "Hip rotation mechanics — how most club swimmers swim flat and unknowingly add drag and shorten every stroke, versus the 45-degree rotation elite swimmers use to lengthen reach and slice through the water faster",
+      "post_text": "Rotate 45 degrees. Go faster without a single extra stroke. 🌊\n\nMost club swimmers swim almost completely flat through the water. It feels controlled. It feels efficient. It isn't.\n\n👉 A flat body position shortens your reach by up to 10cm per stroke\n👉 It increases your frontal drag profile — the water pushes back harder\n👉 It disconnects your hips from your pull, bleeding power before it reaches your hand\n\nElite freestyle swimmers rotate 45–50 degrees on every single stroke. That rotation isn't style — it's physics. 💥\n\nMore reach. Less drag. More power transferred from your core into every pull.\n\n✔️ Drill it: swim 4x25m focusing only on showing your shoulder to the ceiling on every stroke\n✔️ Use a single-arm freestyle drill to isolate and feel the rotation without the distraction of full technique\n✔️ Film yourself from the front — if you can't see your shoulder blade come through, you're swimming flat\n\nYour stroke length is free speed. Most swimmers just haven't unlocked it yet.\n\nWhich drill are you adding to your next session?",
+      "engagement_bait": "Drop a 💧 if you've been told to rotate more but never understood why — until now.",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#SwimTraining",
+        "#SwimTechnique",
+        "#SwimmingTips",
+        "#SwimTips",
+        "#HipRotation",
+        "#SwimEfficiency",
+        "#PBChasing",
+        "#AutumnTraining",
+        "#SwimMindset",
+        "#LaneLife",
+        "#TrainLikeAnAthlete"
+      ],
+      "call_to_action": "Which drill are you adding to your next session?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122165940554977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
