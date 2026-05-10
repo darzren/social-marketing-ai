@@ -1,6 +1,5 @@
 {
   "urls": {
-    "https://www.interest.co.nz/personal-finance/138198/wholesale-swap-rates-jumping-recently-do-banks-have-good-case-raise": "2026-04-23T05:14:55.362648",
     "https://www.interest.co.nz/property/138236/houses-brought-auction-still-selling-same-pace-earlier-month-fewer-are-offered-and": "2026-04-28T04:52:14.360870",
     "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQzRCWFF2MmVsVzlnS2pqRHFQVXhQNFFDVGtkSm5UU1BFRVZXX0k0dGp6MGNiWGpwX01NWS00RnpOQk8wblJSVG1mMzV4YmhLVVN3cFhGRE14ei1sSzZLZG40T3hpaGtFOFBPeEl0aGJrdDJlTmpsaEtuWDFvYjNjbE9WNS1nR0MyT0dlTk13MTYtV1dPNFgyZnlVOXE4ZUJzV1d1Sk5hV3cyOF92QXRzdTVEZ3RZQlJvUi1GUnJNWmNYSHpZSzAxYlpneGo2S01DcGN5UDlKNko2aElTNWw0NHBXSlpkZEJ3WlpwZA?oc=5": "2026-04-28T05:27:55.274467",
     "https://www.rnz.co.nz/news/business/593544/here-s-how-much-sellers-are-cutting-house-prices": "2026-04-28T05:50:24.954924",
@@ -16,25 +15,10 @@
     "https://www.interest.co.nz/economy/138310/review-things-you-need-know-you-sign-friday-consumers-turn-negative-dwelling": "2026-05-03T02:32:26.275752",
     "https://www.rnz.co.nz/news/business/594393/middle-east-conflict-warning-over-kiwis-ability-to-pay-back-debt": "2026-05-06T04:51:12.152301",
     "https://www.interest.co.nz/economy/138366/nz-likely-see-slower-recovery-affecting-job-growth-and-debt-servicing-banks-and": "2026-05-06T07:37:13.827250",
-    "https://www.interest.co.nz/personal-finance/138370/depositor-compensation-scheme-launch-residential-mortgage-lending-finance": "2026-05-07T04:51:34.361755"
+    "https://www.interest.co.nz/personal-finance/138370/depositor-compensation-scheme-launch-residential-mortgage-lending-finance": "2026-05-07T04:51:34.361755",
+    "https://www.interest.co.nz/property/138394/over-1000-new-homes-were-completed-auckland-february-residential-construction": "2026-05-10T04:58:56.065073"
   },
   "topics": [
-    {
-      "headline": "NZ median value up 0.1% April, Auckland still declining",
-      "ts": "2026-05-01T07:27:32.898878"
-    },
-    {
-      "headline": "Housing stock at 12-year high, asking prices declining",
-      "ts": "2026-05-03T02:21:35.372373"
-    },
-    {
-      "headline": "Auction sales drop below one-third for first time",
-      "ts": "2026-05-03T02:27:02.547374"
-    },
-    {
-      "headline": "Housing market stalls as dwelling consents remain strong",
-      "ts": "2026-05-03T02:32:26.275754"
-    },
     {
       "headline": "Middle East conflict threatens borrowers' ability repay debt",
       "ts": "2026-05-06T04:51:12.152304"
@@ -46,6 +30,10 @@
     {
       "headline": "Finance company mortgage lending surges 30% post-insurance scheme",
       "ts": "2026-05-07T04:51:34.361758"
+    },
+    {
+      "headline": "Over 1000 new homes completed in Auckland February",
+      "ts": "2026-05-10T04:58:56.065076"
     }
   ]
 }
