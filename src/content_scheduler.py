@@ -321,10 +321,23 @@ def generate_content(prompt: str, api_key: str) -> dict:
     import anthropic
 
     client = anthropic.Anthropic(api_key=api_key)
+
+    # Cache the stable prefix (brand config + strategy) — changes only on weekly strategy update.
+    # Everything from RECENT TREND DATA onward is dynamic and excluded from the cache.
+    split_marker = "\n=== RECENT TREND DATA ==="
+    if split_marker in prompt:
+        static_part, dynamic_part = prompt.split(split_marker, 1)
+        content = [
+            {"type": "text", "text": static_part, "cache_control": {"type": "ephemeral"}},
+            {"type": "text", "text": split_marker + dynamic_part},
+        ]
+    else:
+        content = prompt
+
     response = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=3000,
-        messages=[{"role": "user", "content": prompt}],
+        messages=[{"role": "user", "content": content}],
     )
 
     text = response.content[0].text.strip()

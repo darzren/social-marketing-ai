@@ -2,7 +2,7 @@ name: Research - JL RealEstate
 
 on:
   schedule:
-    - cron: '0 20 * * 0,2,4'   # Sun/Tue/Thu 20:00 UTC = Mon/Wed/Fri 8:00am NZST
+    - cron: '0 20 * * 0'   # Sunday 20:00 UTC = Monday 8:00am NZST — weekly
   workflow_dispatch:
 
 permissions:
