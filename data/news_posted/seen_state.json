@@ -1,22 +1,20 @@
 {
   "urls": {
-    "https://www.interest.co.nz/property/138303/housing-stock-sale-april-12-year-high-and-asking-prices-declining-realestateconz": "2026-05-03T02:21:35.372371",
-    "https://www.interest.co.nz/property/138313/auction-rooms-much-quieter-fewer-properties-offer-and-less-third-selling-under": "2026-05-03T02:27:02.547372",
-    "https://www.interest.co.nz/economy/138310/review-things-you-need-know-you-sign-friday-consumers-turn-negative-dwelling": "2026-05-03T02:32:26.275752",
     "https://www.rnz.co.nz/news/business/594393/middle-east-conflict-warning-over-kiwis-ability-to-pay-back-debt": "2026-05-06T04:51:12.152301",
     "https://www.interest.co.nz/economy/138366/nz-likely-see-slower-recovery-affecting-job-growth-and-debt-servicing-banks-and": "2026-05-06T07:37:13.827250",
     "https://www.interest.co.nz/personal-finance/138370/depositor-compensation-scheme-launch-residential-mortgage-lending-finance": "2026-05-07T04:51:34.361755",
     "https://www.interest.co.nz/property/138394/over-1000-new-homes-were-completed-auckland-february-residential-construction": "2026-05-10T04:58:56.065073",
-    "https://www.interest.co.nz/property/138550/number-properties-selling-under-hammer-dropped-below-third-latest-residential": "2026-05-16T07:16:30.010013"
+    "https://www.interest.co.nz/property/138550/number-properties-selling-under-hammer-dropped-below-third-latest-residential": "2026-05-16T07:16:30.010013",
+    "https://www.interest.co.nz/economy/138549/after-softer-expected-april-spi-figures-westpac-nz-economist-says-full-impact-oil": "2026-05-17T05:06:16.097064"
   },
   "topics": [
     {
-      "headline": "Over 1000 new homes completed in Auckland February",
-      "ts": "2026-05-10T04:58:56.065076"
-    },
-    {
       "headline": "Residential property auctions drop below one-third activity",
       "ts": "2026-05-16T07:16:30.010016"
+    },
+    {
+      "headline": "Inflation concerns remain despite softer April data",
+      "ts": "2026-05-17T05:06:16.097067"
     }
   ]
 }
