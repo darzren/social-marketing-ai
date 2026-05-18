@@ -5,7 +5,8 @@
     "https://www.interest.co.nz/personal-finance/138370/depositor-compensation-scheme-launch-residential-mortgage-lending-finance": "2026-05-07T04:51:34.361755",
     "https://www.interest.co.nz/property/138394/over-1000-new-homes-were-completed-auckland-february-residential-construction": "2026-05-10T04:58:56.065073",
     "https://www.interest.co.nz/property/138550/number-properties-selling-under-hammer-dropped-below-third-latest-residential": "2026-05-16T07:16:30.010013",
-    "https://www.interest.co.nz/economy/138549/after-softer-expected-april-spi-figures-westpac-nz-economist-says-full-impact-oil": "2026-05-17T05:06:16.097064"
+    "https://www.interest.co.nz/economy/138549/after-softer-expected-april-spi-figures-westpac-nz-economist-says-full-impact-oil": "2026-05-17T05:06:16.097064",
+    "https://www.interest.co.nz/banking/138563/nz-first-wants-buy-bnz-its-aussie-parent-and-merge-it-kiwibank-create-national-bank": "2026-05-18T05:38:53.097357"
   },
   "topics": [
     {
@@ -15,6 +16,10 @@
     {
       "headline": "Inflation concerns remain despite softer April data",
       "ts": "2026-05-17T05:06:16.097067"
+    },
+    {
+      "headline": "Government proposes buying back BNZ, merging with Kiwibank",
+      "ts": "2026-05-18T05:38:53.097360"
     }
   ]
 }
