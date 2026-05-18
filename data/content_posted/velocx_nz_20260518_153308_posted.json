@@ -1,0 +1,46 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260518_153308",
+  "posted_at": "20260518_153350",
+  "content": {
+    "facebook": {
+      "content_angle": "Breathing pattern and oxygen debt — how breathing every stroke in the final 25m costs more time than most swimmers realise, and the controlled breathing strategy elite swimmers use to hold speed through the finish",
+      "post_text": "Gasping for air in the final 25m is costing you more than you think. 🫁\n\nMost club swimmers start panic-breathing every stroke when the pain hits — and that single habit breaks body position, kills rotation, and bleeds speed exactly when the race is decided.\n\n👉 Every extra breath disrupts your stroke cycle and adds drag at the worst possible moment\n👉 Elite swimmers rehearse a controlled breathing pattern in training so the final 25m feels familiar under pressure\n👉 Reducing to a 2-stroke breathing cycle in the last length — not eliminating breaths — keeps oxygen flowing without wrecking your line\n\nThe swimmers holding their best split to the wall aren't tougher. They're better prepared. 🔥\n\n✔️ Practice your race breathing pattern in every threshold set — not just on race day\n✔️ Build tolerance with a descending breathing drill: breath every 3, every 4, every 5 across 200m repeats\n✔️ Your body already knows how to finish fast — train the pattern until the pain can't change it\n\nWhat does your breathing look like in the final 25m — controlled or survival mode?",
+      "engagement_bait": "Drop a 💨 if you've ever lost the wall because the air ran out before the finish.",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#SwimTraining",
+        "#SwimTips",
+        "#SwimTechnique",
+        "#SwimDrills",
+        "#SwimCoach",
+        "#SwimPerformance",
+        "#SwimFaster",
+        "#PBChasing",
+        "#AutumnTraining",
+        "#NZSwimmer",
+        "#TrainLikeAnAthlete",
+        "#SwimMindset",
+        "#LaneLife"
+      ],
+      "call_to_action": "What does your breathing look like in the final 25m — controlled or survival mode?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122167722884977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
