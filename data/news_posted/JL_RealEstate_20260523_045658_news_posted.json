@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260523_045658",
+  "posted_at": "2026-05-23T04:57:32.452462",
+  "headline": "Westpac increases mortgage rates on most fixed terms",
+  "source_url": "https://www.interest.co.nz/personal-finance/138629/westpac-stays-competitive-its-two-year-fixed-mortgage-rate-increases-other",
+  "original_title": "Westpac increases mortgage and TD rates",
+  "priority_tier": 2,
+  "image_path": "data/news_images/JL_RealEstate_20260523_045658_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122109928940693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container failed: Only photo or video can be accepted as media type."
+    }
+  }
+}
