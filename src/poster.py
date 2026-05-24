@@ -79,15 +79,28 @@ def run(posts: dict, raw: dict, industry: str, env: dict, pending_path: Path) ->
                     f"/data/content_ready/{instagram_image}"
                 )
                 logger.info(f"Using quote image for Instagram: {image_url}")
-        result = instagram.post(
-            caption=_append_disclaimer(posts["instagram"], disclaimer),
-            ig_user_id=env.get("INSTAGRAM_USER_ID", ""),
-            access_token=env.get("INSTAGRAM_ACCESS_TOKEN", ""),
-            image_url=image_url,
-        )
-        results["platforms"]["instagram"] = result
-        status = "OK" if result["success"] else f"FAILED: {result.get('error')}"
-        logger.info(f"Instagram: {status}")
+        # Instagram requires an image URL — skip gracefully rather than letting the API error
+        if not image_url:
+            logger.warning(
+                "Instagram skipped — no image URL available. "
+                "Quote image generation may have failed. "
+                "Set INSTAGRAM_DEFAULT_IMAGE_URL as a fallback to avoid this."
+            )
+            results["platforms"]["instagram"] = {
+                "success": False,
+                "skipped": True,
+                "error": "No image URL available (quote image missing, INSTAGRAM_DEFAULT_IMAGE_URL not set)",
+            }
+        else:
+            result = instagram.post(
+                caption=_append_disclaimer(posts["instagram"], disclaimer),
+                ig_user_id=env.get("INSTAGRAM_USER_ID", ""),
+                access_token=env.get("INSTAGRAM_ACCESS_TOKEN", ""),
+                image_url=image_url,
+            )
+            results["platforms"]["instagram"] = result
+            status = "OK" if result["success"] else f"FAILED: {result.get('error')}"
+            logger.info(f"Instagram: {status}")
 
     # --- TikTok ---
     if "tiktok" in posts:
