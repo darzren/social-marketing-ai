@@ -1,10 +1,14 @@
 name: Post - VelocX NZ
 
 on:
-  push:
-    paths:
-      - 'data/content_ready/velocx_nz_*_pending.json'
-  workflow_dispatch:   # allows schedule_velocx_nz.yml to trigger this directly
+  workflow_dispatch:   # triggered explicitly by schedule_velocx_nz.yml via gh workflow run
+  # NOTE: on: push removed — the scheduler calls `gh workflow run` after pushing the pending
+  # file. Keeping both triggers caused two concurrent runs and double-posting to Facebook.
+
+# Prevent concurrent post runs for the same brand
+concurrency:
+  group: post-velocx_nz
+  cancel-in-progress: false
 
 permissions:
   contents: write
