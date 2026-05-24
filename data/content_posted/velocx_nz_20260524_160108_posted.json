@@ -1,0 +1,46 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260524_160108",
+  "posted_at": "20260524_160135",
+  "content": {
+    "facebook": {
+      "content_angle": "Breakout distance off the wall — how most club swimmers surface too early and hand back the fastest metres in every lap before they even start stroking",
+      "post_text": "You're wasting the fastest part of every lap before you even start swimming. 🚨\n\nMost club swimmers surface 3–4 metres off the wall. Elite swimmers stay underwater for 7–10 metres — where there is zero drag from arm recovery and maximum speed from the push-off is still carrying them forward.\n\n👉 The underwater phase is the only time in a lap your body meets zero surface drag\n👉 Surfacing too early kills momentum and forces your engine to rebuild speed from scratch\n👉 Studies show optimal breakout distance can recover 0.3–0.5 seconds per wall — that is over 1.5 seconds in a 200m race\n\nEvery lap, you are choosing to give that time back. 💥\n\n✔️ Target 7+ metres underwater off every push-off in training this week\n✔️ Count your dolphin kicks — three to five strong kicks before you surface\n✔️ Build the habit in training and it becomes automatic on race day\n\nHow many metres are you currently hitting off the wall — honestly?",
+      "engagement_bait": "Drop your breakout distance in the comments 👇",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#SwimTraining",
+        "#SwimTips",
+        "#SwimTechnique",
+        "#SwimDrills",
+        "#SwimmingTips",
+        "#AutumnTraining",
+        "#PBChasing",
+        "#SwimFaster",
+        "#SwimPerformance",
+        "#SwimCoach",
+        "#NZSwimmer",
+        "#TrainLikeAnAthlete",
+        "#SwimMindset"
+      ],
+      "call_to_action": "How many metres are you currently hitting off the wall — honestly?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122168712782977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
