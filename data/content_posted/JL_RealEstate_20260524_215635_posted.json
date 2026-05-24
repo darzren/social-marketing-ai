@@ -1,0 +1,50 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "20260524_215635",
+  "posted_at": "20260524_215750",
+  "content": {
+    "facebook": {
+      "content_angle": "How East Auckland sellers who choose the right listing month consistently protect their sale price and avoid the financial penalty of entering a winter market unprepared",
+      "post_text": "The difference between a great result and a disappointing one? Timing. 🗓️\n\nA lot of East Auckland homeowners assume there's always another good time to sell. But the market doesn't wait — and winter has a habit of arriving quietly.\n\nHere's what experienced sellers know:\n\n👉 Buyer activity in East Auckland peaks before June — motivated buyers are searching right now\n👉 Winter markets typically see fewer competing buyers, which weakens your negotiating position\n👉 A well-prepared listing launched in May captures that demand before it softens\n\nThe homes that sell well this season aren't always the biggest or the most renovated. They're the ones that hit the market at the right moment with the right preparation. 🏡\n\nIf you're thinking about selling, these are the things worth knowing before you decide:\n\n✔️ The pre-winter window in East Auckland typically closes by mid-June\n✔️ Fewer active buyers means longer days on market and more pressure to reduce price\n✔️ Getting ready now — even a few weeks of preparation — can meaningfully protect your result\n\nAre you still weighing up whether now is the right time to list your East Auckland home?",
+      "engagement_bait": "Drop a 🏡 if you're thinking about your next move this season.",
+      "hashtags": [
+        "#JinnyLeeRealEstate",
+        "#EastAucklandRealEstate",
+        "#AucklandProperty",
+        "#SmarterSelling",
+        "#BetterBuying",
+        "#AucklandHomes",
+        "#NZRealEstate",
+        "#PropertyNZ",
+        "#HouseForSaleNZ",
+        "#RayWhiteBotany",
+        "#EastAuckland",
+        "#HomeSelling",
+        "#SellThisSeason",
+        "#AutumnSelling",
+        "#NZProperty",
+        "#AucklandAgent",
+        "#PropertyTips",
+        "#NZPropertyMarket",
+        "#EastAucklandHomes",
+        "#PreWinterSelling"
+      ],
+      "call_to_action": "Are you still weighing up whether now is the right time to list your East Auckland home?"
+    },
+    "instagram_image": "JL_RealEstate_20260524_215635_quote.jpg"
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "1057881790747803_122110140062693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container creation failed: Only photo or video can be accepted as media type."
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Invalid authorization header. Please check the format."
+    }
+  }
+}
