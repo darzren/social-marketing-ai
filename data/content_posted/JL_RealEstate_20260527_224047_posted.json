@@ -1,0 +1,50 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "20260527_224047",
+  "posted_at": "20260527_224217",
+  "content": {
+    "facebook": {
+      "content_angle": "How East Auckland sellers who understand the difference between a well-prepared listing and an average one consistently attract more competitive offers in the final weeks before winter closes the market",
+      "post_text": "A prepared home doesn't just look better — it sells better. 🏡\n\nMany East Auckland homeowners think buyers will 'see past' small presentation issues. But in a competitive market, first impressions make or break an offer.\n\nHere's what separates the listings that generate multiple offers from the ones that sit:\n\n👉 Buyers decide emotionally within the first 60 seconds of walking through a door\n👉 A well-presented home signals pride of ownership — and justifies a stronger price\n👉 Strategic presentation isn't about spending big — it's about removing hesitation\n\nThe right preparation doesn't cost you — it pays you. ✨\n\n✔️ Declutter and depersonalise so buyers can picture themselves there\n✔️ Address minor repairs before your photographer arrives — not after\n✔️ Let natural light do the heavy lifting — clean windows change everything\n\nWith the winter slowdown approaching, the sellers who act now and present well are the ones walking away with the results they deserve.\n\nAre you thinking about getting your East Auckland home ready to list this season?",
+      "engagement_bait": "Drop a 🏡 if you're thinking about selling before winter arrives in East Auckland.",
+      "hashtags": [
+        "#JinnyLeeRealEstate",
+        "#EastAucklandRealEstate",
+        "#AucklandProperty",
+        "#SmarterSelling",
+        "#BetterBuying",
+        "#AucklandHomes",
+        "#NZRealEstate",
+        "#PropertyNZ",
+        "#HouseForSaleNZ",
+        "#HomeSelling",
+        "#HomeSellingTips",
+        "#AutumnSelling",
+        "#SellThisSeason",
+        "#PropertyTips",
+        "#RayWhiteBotany",
+        "#EastAuckland",
+        "#NZProperty",
+        "#AucklandAgent",
+        "#HomeStagingNZ",
+        "#PreWinterSelling"
+      ],
+      "call_to_action": "Are you thinking about getting your East Auckland home ready to list this season?"
+    },
+    "instagram_image": "JL_RealEstate_20260527_224047_quote.jpg"
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "1057881790747803_122110503548693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container creation failed: Only photo or video can be accepted as media type."
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Invalid authorization header. Please check the format."
+    }
+  }
+}
