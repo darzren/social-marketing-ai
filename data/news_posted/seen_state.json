@@ -6,13 +6,10 @@
     "https://www.rnz.co.nz/news/business/595842/almost-20-percent-of-townhouses-selling-for-a-loss": "2026-05-21T05:41:20.081760",
     "https://www.interest.co.nz/property/138602/anz-nz-says-short-term-mortgage-rates-are-cheaper-certainty-provided-longer-term": "2026-05-22T05:35:06.991746",
     "https://www.interest.co.nz/personal-finance/138629/westpac-stays-competitive-its-two-year-fixed-mortgage-rate-increases-other": "2026-05-23T04:57:32.451972",
-    "https://www.interest.co.nz/economy/138643/bank-economists-expect-rbnz-keep-official-cash-rate-hold-wednesday-inflation": "2026-05-25T05:54:38.174238"
+    "https://www.interest.co.nz/economy/138643/bank-economists-expect-rbnz-keep-official-cash-rate-hold-wednesday-inflation": "2026-05-25T05:54:38.174238",
+    "https://www.interest.co.nz/property/138735/government-sets-%E2%80%98incentives-growth-fund%E2%80%99-if-local-councils-enable-more-homes-they": "2026-05-28T05:42:51.164873"
   },
   "topics": [
-    {
-      "headline": "Almost 20% of townhouses selling for loss nationally",
-      "ts": "2026-05-21T05:41:20.081762"
-    },
     {
       "headline": "Mortgage borrowers face fix-term dilemma amid uncertainty",
       "ts": "2026-05-22T05:35:06.991749"
@@ -24,6 +21,10 @@
     {
       "headline": "RBNZ expected to hold OCR steady Wednesday amid inflation",
       "ts": "2026-05-25T05:54:38.174241"
+    },
+    {
+      "headline": "Government funds councils to enable more housing growth",
+      "ts": "2026-05-28T05:42:51.164876"
     }
   ]
 }
