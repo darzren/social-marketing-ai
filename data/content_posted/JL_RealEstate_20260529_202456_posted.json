@@ -1,0 +1,50 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "20260529_202456",
+  "posted_at": "20260529_202614",
+  "content": {
+    "facebook": {
+      "content_angle": "How East Auckland sellers who understand the power of timing their listing around buyer activity peaks consistently avoid the painful experience of watching their home sit unsold as the winter market arrives",
+      "post_text": "The window to sell before winter is closer to closing than most East Auckland homeowners realise. 🏡\n\nMany sellers assume they still have plenty of time. Then June arrives, buyer numbers drop, and that confident result they were expecting becomes a much harder conversation.\n\nHere is what motivated sellers understand right now:\n👉 Serious buyers are still actively searching in East Auckland — and competition among listings is about to thin out significantly\n👉 A home that hits the market in the next few weeks meets a buyer pool that is primed, pre-approved, and ready to move\n👉 Once winter sets in, even well-presented homes take longer and the negotiating dynamic shifts toward buyers\n\nThe sellers who achieve premium results do not wait for the perfect moment — they move while the market is still working in their favour. 💪\n\n✔️ Listing now means more eyes, more competition, more leverage\n✔️ Winter listings face smaller buyer pools and longer days on market\n✔️ The gap between acting now and waiting could be measured in tens of thousands of dollars\n\nIf you have been sitting on the fence, what is the one thing holding you back from making a move this season?",
+      "engagement_bait": "Drop a 🏡 if you are thinking about your next move before winter arrives.",
+      "hashtags": [
+        "#JinnyLeeRealEstate",
+        "#EastAucklandRealEstate",
+        "#AucklandProperty",
+        "#SmarterSelling",
+        "#BetterBuying",
+        "#AucklandHomes",
+        "#NZRealEstate",
+        "#PropertyNZ",
+        "#HouseForSaleNZ",
+        "#NZPropertyMarket",
+        "#SellWithConfidence",
+        "#AutumnSelling",
+        "#EastAuckland",
+        "#PreWinterSelling",
+        "#HomeSellers",
+        "#SellingYourHome",
+        "#AucklandRealEstate2026",
+        "#RayWhiteBotany",
+        "#EastAucklandHomes",
+        "#PropertyMarketNZ"
+      ],
+      "call_to_action": "If you have been sitting on the fence, what is the one thing holding you back from making a move this season?"
+    },
+    "instagram_image": "JL_RealEstate_20260529_202456_quote.jpg"
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "1057881790747803_122110749038693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container creation failed: Only photo or video can be accepted as media type."
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Invalid authorization header. Please check the format."
+    }
+  }
+}
