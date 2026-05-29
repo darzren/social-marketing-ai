@@ -1,0 +1,50 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "20260529_222844",
+  "posted_at": "20260529_223008",
+  "content": {
+    "facebook": {
+      "content_angle": "How East Auckland sellers who understand exactly what happens in the weeks after listing consistently avoid the costly mistakes that quietly kill buyer interest before a single offer arrives",
+      "post_text": "Most sellers focus hard on getting the home ready — then go quiet the moment it hits the market. 🏡\n\nBut what happens in the first two weeks after listing is where deals are won or lost.\n\nHere is what the strongest autumn results in East Auckland have in common right now:\n\n👉 Active follow-up with every buyer who walked through the open home\n👉 Weekly vendor updates so you always know where interest stands\n👉 Strategic momentum — keeping early buyers warm while new ones arrive\n\nWaiting passively after listing is one of the most expensive mistakes a seller can make. ⏳\n\nThe pre-winter window in East Auckland is shrinking fast. Serious buyers are still active — but they need the right nudge at the right moment.\n\n✔️ Know who came through and what they said\n✔️ Understand where your price sits against current buyer appetite\n✔️ Stay in control of the process — not just the preparation\n\nAre you clear on what your agent will be doing for you in the weeks after your home goes live?",
+      "engagement_bait": "Drop a 🏡 if you are thinking about listing before winter arrives in East Auckland.",
+      "hashtags": [
+        "#JinnyLeeRealEstate",
+        "#EastAucklandRealEstate",
+        "#AucklandProperty",
+        "#SmarterSelling",
+        "#BetterBuying",
+        "#AucklandHomes",
+        "#NZRealEstate",
+        "#PropertyNZ",
+        "#HouseForSaleNZ",
+        "#SellingYourHome",
+        "#HomeSellers",
+        "#EastAucklandHomes",
+        "#PreWinterSelling",
+        "#AutumnSelling",
+        "#NZPropertyMarket",
+        "#AucklandRealEstate2026",
+        "#SellWithConfidence",
+        "#RayWhiteBotany",
+        "#EastAuckland",
+        "#OpenHomeNZ"
+      ],
+      "call_to_action": "Are you clear on what your agent will be doing for you in the weeks after your home goes live?"
+    },
+    "instagram_image": "JL_RealEstate_20260529_222844_quote.jpg"
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "1057881790747803_122110757612693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container creation failed: Only photo or video can be accepted as media type."
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Invalid authorization header. Please check the format."
+    }
+  }
+}
