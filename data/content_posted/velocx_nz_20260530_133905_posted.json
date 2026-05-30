@@ -1,0 +1,46 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260530_133905",
+  "posted_at": "20260530_133932",
+  "content": {
+    "facebook": {
+      "content_angle": "Hip rotation mechanics — how most club swimmers swim flat and lose stroke length and efficiency on every single lap, and the 10-degree rotation fix that adds real distance per stroke",
+      "post_text": "Most swimmers train for months and never fix the one thing costing them a body length every lap. 🌊\n\nYou're probably swimming too flat. Not because you're lazy — because no one told you that hip rotation is the engine, not a bonus.\n\n👉 A 10-degree increase in hip rotation measurably extends stroke length and reduces frontal drag\n👉 Flat swimming forces your arms to do all the work — your biggest muscles never fire properly\n👉 Elite freestylers rotate through 40–50 degrees per stroke cycle — most club swimmers barely hit 20\n\nThis isn't a minor tweak. It's a mechanical shift that changes how fast you move through water permanently. 🔥\n\n✔️ Drill focus: side-kick drill with full hip drive, 6 x 50m, focus on rolling through the hip not the shoulder\n✔️ Cue: your belly button should face the lane rope — not the ceiling\n✔️ Autumn training blocks are where this gets locked in before next season counts\n\nAre you swimming flat without realising it — or has a coach already flagged your rotation?",
+      "engagement_bait": "Drop a 🔄 if your coach has ever told you to rotate more — or a 😬 if this is the first time you're hearing this.",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#TriathlonNZ",
+        "#SwimTraining",
+        "#HipRotation",
+        "#SwimEfficiency",
+        "#SwimTips",
+        "#SwimTechnique",
+        "#SwimPerformance",
+        "#AutumnTraining",
+        "#SwimCoach",
+        "#PBChasing",
+        "#TrainLikeAnAthlete",
+        "#NZSwimmer",
+        "#SwimFaster"
+      ],
+      "call_to_action": "Are you swimming flat without realising it — or has a coach already flagged your rotation?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122169796634977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
