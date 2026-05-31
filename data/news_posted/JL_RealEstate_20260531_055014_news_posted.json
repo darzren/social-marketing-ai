@@ -1,0 +1,19 @@
+{
+  "timestamp": "20260531_055014",
+  "posted_at": "2026-05-31T05:50:37.217872",
+  "headline": "Auckland new home completions increase steadily this quarter",
+  "source_url": "https://www.interest.co.nz/property/138745/lift-new-dwelling-completion-numbers-suggests-aucklands-building-industry-may-be",
+  "original_title": "Number of new homes being completed in Auckland increased steadily over the March quarter",
+  "priority_tier": 4,
+  "image_path": "data/news_images/JL_RealEstate_20260531_055014_news.jpg",
+  "platforms": {
+    "facebook": {
+      "success": true,
+      "post_id": "122110933736693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container failed: Only photo or video can be accepted as media type."
+    }
+  }
+}
