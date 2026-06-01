@@ -1,18 +1,14 @@
 {
   "urls": {
-    "https://www.interest.co.nz/banking/138563/nz-first-wants-buy-bnz-its-aussie-parent-and-merge-it-kiwibank-create-national-bank": "2026-05-18T05:38:53.097357",
     "https://www.rnz.co.nz/news/business/595842/almost-20-percent-of-townhouses-selling-for-a-loss": "2026-05-21T05:41:20.081760",
     "https://www.interest.co.nz/property/138602/anz-nz-says-short-term-mortgage-rates-are-cheaper-certainty-provided-longer-term": "2026-05-22T05:35:06.991746",
     "https://www.interest.co.nz/personal-finance/138629/westpac-stays-competitive-its-two-year-fixed-mortgage-rate-increases-other": "2026-05-23T04:57:32.451972",
     "https://www.interest.co.nz/economy/138643/bank-economists-expect-rbnz-keep-official-cash-rate-hold-wednesday-inflation": "2026-05-25T05:54:38.174238",
     "https://www.interest.co.nz/property/138735/government-sets-%E2%80%98incentives-growth-fund%E2%80%99-if-local-councils-enable-more-homes-they": "2026-05-28T05:42:51.164873",
-    "https://www.interest.co.nz/property/138745/lift-new-dwelling-completion-numbers-suggests-aucklands-building-industry-may-be": "2026-05-31T05:50:37.217427"
+    "https://www.interest.co.nz/property/138745/lift-new-dwelling-completion-numbers-suggests-aucklands-building-industry-may-be": "2026-05-31T05:50:37.217427",
+    "https://www.interest.co.nz/economy/138757/rbnz-assistant-governor-karen-silk-says-everyone-monetary-policy-committee": "2026-06-01T06:23:31.149939"
   },
   "topics": [
-    {
-      "headline": "RBNZ expected to hold OCR steady Wednesday amid inflation",
-      "ts": "2026-05-25T05:54:38.174241"
-    },
     {
       "headline": "Government funds councils to enable more housing growth",
       "ts": "2026-05-28T05:42:51.164876"
@@ -20,6 +16,10 @@
     {
       "headline": "Auckland new home completions increase steadily this quarter",
       "ts": "2026-05-31T05:50:37.217430"
+    },
+    {
+      "headline": "RBNZ split vote signals potential interest rate direction ahead",
+      "ts": "2026-06-01T06:23:31.149942"
     }
   ]
 }
