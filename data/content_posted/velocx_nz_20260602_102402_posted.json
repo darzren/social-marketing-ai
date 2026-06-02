@@ -1,0 +1,42 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260602_102402",
+  "posted_at": "20260602_102435",
+  "content": {
+    "facebook": {
+      "content_angle": "Tumble turn underwater dolphin kicks — most club swimmers take 1-2 kicks off every wall and surrender the fastest metres in the pool before they even surface",
+      "post_text": "You're leaving free speed at every single wall. 🌊\n\nMost club swimmers push off, take one or two dolphin kicks, and surface before they've even used the fastest phase of their entire lap.\n\nThe wall isn't a reset. It's a launch pad.\n\n👉 Elite swimmers hold 2.1–2.4 m/s off a legal underwater phase — faster than any stroke tempo they can sustain above water\n👉 Every extra underwater kick at race pace can shave 0.15–0.2 seconds per turn\n👉 In a 400m freestyle that's 7 turns — the maths add up fast\n\nIf your kick is strong enough in open water, it's even more powerful off the wall. 💥\n\n✔️ Aim for 5–7 streamlined dolphin kicks before surfacing on every turn\n✔️ Keep your core tight and your streamline locked — a wide entry breaks it all\n✔️ Drill it in training this autumn block so it becomes automatic under race pressure\n\nYour turns are either costing you or banking you time. Which is it right now?",
+      "engagement_bait": "Drop your current dolphin kick count per turn below 👇",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#SwimTraining",
+        "#SwimTechnique",
+        "#DrillWork",
+        "#SwimCoach",
+        "#AutumnTraining",
+        "#PBChasing",
+        "#SwimPerformance",
+        "#SwimFaster",
+        "#TrainLikeAnAthlete"
+      ],
+      "call_to_action": "How many dolphin kicks are you getting off the wall right now — and where do you want to be by winter champs?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122170337270977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
