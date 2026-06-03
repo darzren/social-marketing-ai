@@ -1,0 +1,47 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "20260603_230537",
+  "posted_at": "20260603_230658",
+  "content": {
+    "facebook": {
+      "content_angle": "How East Auckland sellers who take time to understand what their home's best features actually mean to a buyer's daily life — not just their visual appeal — consistently create deeper emotional connection and stronger offers in the final weeks before winter",
+      "post_text": "Your home's best feature isn't what you think it is. 🏡\n\nMost sellers focus on what looks good in photos. But the buyers who write the strongest offers? They're buying a feeling — not a feature.\n\nHere's what that looks like in practice:\n\n👉 That sunny north-facing deck isn't just outdoor space — it's Saturday morning coffee with nowhere else to be\n👉 That extra bedroom isn't a spare room — it's a grandparent staying over, or a home office that finally works\n👉 That quiet street isn't a selling point — it's the sound of kids playing outside safely every afternoon\n\nWhen your home is presented and described through the lens of how a buyer will actually live in it — offers get emotional. And emotional buyers move faster. ❤️\n\n✔️ Walk through your home as a buyer would — not an owner\n✔️ Ask what each space makes you feel, not just what it looks like\n✔️ Brief your agent on how your family actually used this home\n\nWhat's the one thing about your home you think buyers will fall in love with?",
+      "engagement_bait": "Drop it in the comments — I'd love to hear what makes your home special.",
+      "hashtags": [
+        "#JinnyLeeRealEstate",
+        "#EastAucklandRealEstate",
+        "#AucklandProperty",
+        "#SmarterSelling",
+        "#BetterBuying",
+        "#AucklandHomes",
+        "#NZRealEstate",
+        "#PropertyNZ",
+        "#HouseForSaleNZ",
+        "#SellingYourHome",
+        "#HomeSellers",
+        "#EastAucklandHomes",
+        "#NZPropertyMarket",
+        "#AucklandRealEstate2026",
+        "#SellWithConfidence",
+        "#PackageYourProperty",
+        "#RayWhiteBotany"
+      ],
+      "call_to_action": "What's the one thing about your home you think buyers will fall in love with — and have you thought about how to show it off before you list?"
+    },
+    "instagram_image": "JL_RealEstate_20260603_230537_quote.jpg"
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "1057881790747803_122111424464693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container creation failed: Only photo or video can be accepted as media type."
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Invalid authorization header. Please check the format."
+    }
+  }
+}
