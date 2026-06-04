@@ -1,0 +1,44 @@
+{
+  "industry": "velocx_nz",
+  "generated_at": "20260604_151520",
+  "posted_at": "20260604_151557",
+  "content": {
+    "facebook": {
+      "content_angle": "Stroke rate vs stroke length trade-off — how most competitive swimmers chase cadence and sacrifice the distance-per-stroke efficiency that actually determines race pace",
+      "post_text": "Faster turnover doesn't always mean a faster time. ⚡\n\nMost swimmers hit a plateau and instinctively spin their arms faster — but higher stroke rate without the distance to back it up just means working harder to go the same speed.\n\nHere's what the data shows:\n👉 Elite 100m freestyle swimmers average 1.8–2.1 metres per stroke — most club swimmers manage 1.2–1.4\n👉 Closing that gap by just 0.4 metres per stroke removes 4–6 strokes from a 100m race\n👉 Fewer strokes at the same pace means less energy burned and more speed held in the final 25m\n\nThe fastest swimmers aren't always the ones turning over quickest — they're the ones getting the most out of every single pull. 🔥\n\n✔️ Drill focus: count your strokes per lap and aim to reduce by two without slowing your tempo\n✔️ Use a tempo trainer to hold rate constant while you build stroke length\n✔️ Film yourself from above — a dropped elbow kills DPS before your pull even loads\n\nWhat's your average stroke count per 25m right now?",
+      "engagement_bait": "Drop your stroke count below — let's see where you're at.",
+      "hashtags": [
+        "#VelocxNZ",
+        "#Jaked",
+        "#SwimFast",
+        "#TrainToWin",
+        "#CompetitiveSwimming",
+        "#NZSwimmers",
+        "#SwimNZ",
+        "#SwimTraining",
+        "#SwimTechnique",
+        "#SwimEfficiency",
+        "#SwimCoach",
+        "#SwimFaster",
+        "#AutumnTraining",
+        "#PBChasing",
+        "#TrainingTip",
+        "#EliteAthletes",
+        "#SwimmerLife",
+        "#SwimCommunity"
+      ],
+      "call_to_action": "What's your average stroke count per 25m right now?"
+    }
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "721525974381276_122170699460977604"
+    },
+    "tiktok": {
+      "success": false,
+      "error": "TikTok video file not found: None",
+      "skipped": true
+    }
+  }
+}
