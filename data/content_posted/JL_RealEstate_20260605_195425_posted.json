@@ -1,0 +1,48 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "20260605_195425",
+  "posted_at": "20260605_195549",
+  "content": {
+    "facebook": {
+      "content_angle": "How East Auckland sellers who approach pricing as a strategy rather than a starting point consistently generate stronger competition and better final results in the closing weeks of the autumn market",
+      "post_text": "Pricing your home right isn't guesswork — it's your most powerful selling tool. 🎯\n\nMost sellers assume listing higher gives them more room to negotiate. But in reality, it often does the opposite — it quietly pushes serious buyers away before they even book a viewing.\n\n👉 Buyers today are well-researched and move fast when value is clear\n👉 A strategically priced home generates competition — and competition drives the result up\n👉 In East Auckland right now, the right price point can mean the difference between one offer and four\n\nThe homes achieving the strongest results this season aren't always the most expensive listings. ✨\n\n✔️ Understand what comparable East Auckland sales are actually telling the market\n✔️ Price to attract the widest qualified buyer pool from day one\n✔️ Let strategy — not hope — set your number\n\nWinter is weeks away and serious buyers are active right now. This is the window.\n\nAre you thinking about what your home could realistically achieve in today's East Auckland market?",
+      "engagement_bait": "Drop a 🏡 if you've ever wondered whether your home is priced to attract or priced to sit.",
+      "hashtags": [
+        "#JinnyLeeRealEstate",
+        "#EastAucklandRealEstate",
+        "#AucklandProperty",
+        "#SmarterSelling",
+        "#BetterBuying",
+        "#AucklandHomes",
+        "#NZRealEstate",
+        "#PropertyNZ",
+        "#HouseForSaleNZ",
+        "#NZPropertyMarket",
+        "#AucklandRealEstate2026",
+        "#SellWithConfidence",
+        "#HomeSellers",
+        "#SellingYourHome",
+        "#EastAucklandHomes",
+        "#AutumnSelling",
+        "#PackageYourProperty",
+        "#RayWhiteBotany"
+      ],
+      "call_to_action": "Are you thinking about what your home could realistically achieve in today's East Auckland market?"
+    },
+    "instagram_image": "JL_RealEstate_20260605_195425_quote.jpg"
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "1057881790747803_122111659820693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container creation failed: Only photo or video can be accepted as media type."
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Invalid authorization header. Please check the format."
+    }
+  }
+}
