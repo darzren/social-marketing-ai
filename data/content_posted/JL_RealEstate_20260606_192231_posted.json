@@ -1,0 +1,50 @@
+{
+  "industry": "JL_RealEstate",
+  "generated_at": "20260606_192231",
+  "posted_at": "20260606_192348",
+  "content": {
+    "facebook": {
+      "content_angle": "How East Auckland sellers who treat their home's presentation as a buyer experience — not a checklist — consistently create the emotional conditions that drive stronger, faster offers in the final weeks before winter",
+      "post_text": "Your home has one chance to make a buyer fall in love. 🏡\n\nMost sellers focus on what their home looks like. The ones who achieve premium results think about what it feels like to walk through it for the very first time.\n\nThere's a difference — and buyers feel it immediately.\n\n👉 A home that smells fresh, flows naturally, and feels lived-in warmly tells a story buyers want to be part of\n👉 Small sensory details — light, warmth, scent — trigger emotional decisions long before the price conversation starts\n👉 Buyers in East Auckland right now are serious, motivated, and ready to act — but only when a home moves them\n\nThe window to capture that buyer energy before winter is closing. ❤️\n\n✔️ Walk through your home as a buyer would — street to back door\n✔️ Remove anything that interrupts the feeling, not just the clutter\n✔️ Ask yourself: does this home feel like somewhere I'd want to stay?\n\nIf you're thinking about listing this winter, what's the one room in your home you feel most confident about — and which one are you still unsure of?",
+      "engagement_bait": "Drop the room you're most confident about and the one giving you doubt — I'd love to help you think it through.",
+      "hashtags": [
+        "#JinnyLeeRealEstate",
+        "#EastAucklandRealEstate",
+        "#AucklandProperty",
+        "#SmarterSelling",
+        "#BetterBuying",
+        "#AucklandHomes",
+        "#NZRealEstate",
+        "#PropertyNZ",
+        "#HouseForSaleNZ",
+        "#NZPropertyMarket",
+        "#EastAucklandHomes",
+        "#HomeStagingNZ",
+        "#SellingYourHome",
+        "#HomeSellers",
+        "#SellWithConfidence",
+        "#AutumnSelling",
+        "#PackageYourProperty",
+        "#RayWhiteBotany",
+        "#EastAuckland",
+        "#AucklandRealEstate2026"
+      ],
+      "call_to_action": "If you're thinking about listing this winter, what's the one room in your home you feel most confident about — and which one are you still unsure of?"
+    },
+    "instagram_image": "JL_RealEstate_20260606_192231_quote.jpg"
+  },
+  "results": {
+    "facebook": {
+      "success": true,
+      "post_id": "1057881790747803_122111760728693087"
+    },
+    "instagram": {
+      "success": false,
+      "error": "Container creation failed: Only photo or video can be accepted as media type."
+    },
+    "tiktok": {
+      "success": false,
+      "error": "Upload init failed: Invalid authorization header. Please check the format."
+    }
+  }
+}
