@@ -125,39 +125,39 @@ def should_post_now(industry: str, brand_config: dict, strategy: dict) -> tuple:
     post_interval = schedule_cfg.get("post_interval_days", 1)
     lookback_hours = post_interval * 24
 
-    # --- Primary: Instagram API (catches manual posts + all automated posts) ---
-    ig_user_id    = os.getenv("INSTAGRAM_USER_ID", "")
-    ig_token      = os.getenv("INSTAGRAM_ACCESS_TOKEN", "")
+    # --- Instagram API: early-exit signal only (catches manual posts) ---
+    # NOTE: this must never be the *sole* gate — Instagram posting can fail silently
+    # (e.g. image hosting issues) while Facebook keeps succeeding, which would make
+    # "no recent Instagram post" always true and bypass the interval check entirely.
+    ig_user_id = os.getenv("INSTAGRAM_USER_ID", "")
+    ig_token   = os.getenv("INSTAGRAM_ACCESS_TOKEN", "")
     if ig_user_id and ig_token:
         has_recent, reason = instagram_posted_within(ig_user_id, ig_token, hours=lookback_hours)
         if has_recent is True:
             return False, f"[Instagram] {reason}"
         elif has_recent is False:
-            logger.info(f"[Instagram] {reason}")
-            # Fall through to timing check
+            logger.info(f"[Instagram] {reason} — confirming against local history")
         else:
-            logger.warning(f"[Instagram] {reason} — falling back to local files")
-            # Fall through to local file check below
+            logger.warning(f"[Instagram] {reason} — confirming against local history")
 
-    # --- Fallback: local file check (used when Instagram API unavailable) ---
-    if not (ig_user_id and ig_token) or has_recent is None:
-        cutoff_date = now.date() - timedelta(days=post_interval - 1)
-        recent = []
-        for f in list(DATA_POSTED.glob(f"{industry}_*_posted.json")) + \
-                 list(DATA_READY.glob(f"{industry}_*_pending.json")):
-            m = re.search(r'_(\d{8})_', f.name)
-            if m:
-                file_date = datetime.strptime(m.group(1), "%Y%m%d").date()
-                if file_date >= cutoff_date:
-                    recent.append(file_date)
-        if recent:
-            days_ago = (now.date() - max(recent)).days
-            return False, f"[local] Posted {days_ago}d ago — next post in {post_interval - days_ago}d"
-        # Also check news posts as fallback
-        today_str = now.strftime("%Y%m%d")
-        news_posted_dir = Path("data/news_posted")
-        if any(today_str in f.name for f in news_posted_dir.glob(f"{industry}_*_news_posted.json")):
-            return False, f"[local] News post published today — skipping text post"
+    # --- Local file check: authoritative interval gate, always runs ---
+    cutoff_date = now.date() - timedelta(days=post_interval - 1)
+    recent = []
+    for f in list(DATA_POSTED.glob(f"{industry}_*_posted.json")) + \
+             list(DATA_READY.glob(f"{industry}_*_pending.json")):
+        m = re.search(r'_(\d{8})_', f.name)
+        if m:
+            file_date = datetime.strptime(m.group(1), "%Y%m%d").date()
+            if file_date >= cutoff_date:
+                recent.append(file_date)
+    if recent:
+        days_ago = (now.date() - max(recent)).days
+        return False, f"[local] Posted {days_ago}d ago — next post in {post_interval - days_ago}d"
+    # Also check news posts as fallback
+    today_str = now.strftime("%Y%m%d")
+    news_posted_dir = Path("data/news_posted")
+    if any(today_str in f.name for f in news_posted_dir.glob(f"{industry}_*_news_posted.json")):
+        return False, f"[local] News post published today — skipping text post"
 
     # --- Timing window check ---
     learned_times = strategy.get("posting_schedule", {}).get("optimal_times", [])
