@@ -95,7 +95,8 @@ def instagram_posted_within(instagram_user_id: str, access_token: str, hours: in
         from datetime import timezone
         resp = _requests.get(
             f"https://graph.facebook.com/v21.0/{instagram_user_id}/media",
-            params={"fields": "timestamp", "limit": 10, "access_token": access_token},
+            params={"fields": "timestamp", "limit": 10},
+            headers={"Authorization": f"Bearer {access_token}"},
             timeout=15,
         )
         data = resp.json()
