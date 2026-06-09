@@ -5,7 +5,8 @@
     "https://www.interest.co.nz/economy/138757/rbnz-assistant-governor-karen-silk-says-everyone-monetary-policy-committee": "2026-06-01T06:23:31.149939",
     "https://www.interest.co.nz/personal-finance/138796/financial-markets-authority-take-over-regulatory-oversight-consumer-credit": "2026-06-02T09:09:04.735103",
     "https://www.interest.co.nz/banking/138846/we-look-2026-shifts-fixed-home-loan-rates-all-rises-and-assess-whether-cost-drivers": "2026-06-05T08:44:46.750205",
-    "https://www.interest.co.nz/property/138854/fewer-properties-offer-fewer-selling-under-hammer-and-prices-easing-chilly-first": "2026-06-08T09:25:32.700090"
+    "https://www.interest.co.nz/property/138854/fewer-properties-offer-fewer-selling-under-hammer-and-prices-easing-chilly-first": "2026-06-08T09:25:32.700090",
+    "https://www.rnz.co.nz/news/community/597698/auckland-council-clears-path-for-high-rise-apartments-along-busy-bus-routes": "2026-06-09T08:32:21.772052"
   },
   "topics": [
     {
@@ -19,6 +20,10 @@
     {
       "headline": "Winter auction slowdown: fewer properties, prices easing",
       "ts": "2026-06-08T09:25:32.700093"
+    },
+    {
+      "headline": "Auckland Council approves high-rise apartments along bus routes",
+      "ts": "2026-06-09T08:32:21.772055"
     }
   ]
 }
