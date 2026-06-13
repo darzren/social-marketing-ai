@@ -6,13 +6,10 @@
     "https://www.interest.co.nz/banking/138846/we-look-2026-shifts-fixed-home-loan-rates-all-rises-and-assess-whether-cost-drivers": "2026-06-05T08:44:46.750205",
     "https://www.interest.co.nz/property/138854/fewer-properties-offer-fewer-selling-under-hammer-and-prices-easing-chilly-first": "2026-06-08T09:25:32.700090",
     "https://www.rnz.co.nz/news/community/597698/auckland-council-clears-path-for-high-rise-apartments-along-busy-bus-routes": "2026-06-09T08:32:21.772052",
-    "https://www.interest.co.nz/public-policy/138928/budget-202627s-spending-allocations-housing": "2026-06-12T06:07:47.020133"
+    "https://www.interest.co.nz/public-policy/138928/budget-202627s-spending-allocations-housing": "2026-06-12T06:07:47.020133",
+    "https://www.interest.co.nz/personal-finance/138881/not-following-anz-its-main-rivals-have-opened-competitive-mortgage-pricing": "2026-06-13T05:52:02.627161"
   },
   "topics": [
-    {
-      "headline": "Bank home loan rates rising in 2026 — what it means",
-      "ts": "2026-06-05T08:44:46.750209"
-    },
     {
       "headline": "Winter auction slowdown: fewer properties, prices easing",
       "ts": "2026-06-08T09:25:32.700093"
@@ -24,6 +21,10 @@
     {
       "headline": "Budget 2026/27 housing spending allocations revealed",
       "ts": "2026-06-12T06:07:47.020135"
+    },
+    {
+      "headline": "Mortgage rates competitive advantage emerges between major banks",
+      "ts": "2026-06-13T05:52:02.627163"
     }
   ]
 }
