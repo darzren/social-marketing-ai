@@ -1,8 +1,8 @@
 name: Schedule - VelocX NZ
 
 on:
-  schedule:
-    - cron: '0 */3 * * *'   # every 3 hours — scheduler decides internally if it's a posting window
+  # schedule: PAUSED (automation paused for this brand — no automatic posting)
+  #   - cron: '0 */3 * * *'   # every 3 hours — scheduler decides internally if it's a posting window
   workflow_dispatch:
     inputs:
       force:
