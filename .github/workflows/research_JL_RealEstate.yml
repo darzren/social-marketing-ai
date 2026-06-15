@@ -1,8 +1,8 @@
 name: Research - JL RealEstate
 
 on:
-  schedule:
-    - cron: '0 20 * * 0'   # Sunday 20:00 UTC = Monday 8:00am NZST — weekly
+  # schedule: PAUSED (automation paused for this brand)
+  #   - cron: '0 20 * * 0'   # Sunday 20:00 UTC = Monday 8:00am NZST — weekly
   workflow_dispatch:
 
 permissions:

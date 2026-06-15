@@ -1,8 +1,8 @@
 name: Health Check - JL RealEstate
 
 on:
-  schedule:
-    - cron: '20 21 * * *'   # 9:20am NZT (20 min after daily post at 9:00am)
+  # schedule: PAUSED (automation paused for this brand)
+  #   - cron: '20 21 * * *'   # 9:20am NZT (20 min after daily post at 9:00am)
   workflow_dispatch:
 
 permissions:

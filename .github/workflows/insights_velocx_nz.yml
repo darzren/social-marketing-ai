@@ -1,8 +1,8 @@
 name: Insights & Strategy - VelocX NZ
 
 on:
-  schedule:
-    - cron: '0 18 * * 0'   # Sunday 6am NZT (UTC+13 in summer) — weekly strategy refresh
+  # schedule: PAUSED (automation paused for this brand)
+  #   - cron: '0 18 * * 0'   # Sunday 6am NZT (UTC+13 in summer) — weekly strategy refresh
   workflow_dispatch:
 
 permissions:

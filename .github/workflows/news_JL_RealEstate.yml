@@ -1,11 +1,11 @@
 name: News Monitor - JL RealEstate
 
 on:
-  schedule:
-    - cron: '30 1 * * *'   # 14:30 NZDT (UTC+13, Sep–Apr)
-    - cron: '30 2 * * *'   # 14:30 NZST (UTC+12, Apr–Sep)
-    - cron: '0 5 * * *'    # 18:00 NZDT (UTC+13, Sep–Apr)
-    - cron: '0 6 * * *'    # 18:00 NZST (UTC+12, Apr–Sep)
+  # schedule: PAUSED (automation paused for this brand — no automatic posting)
+  #   - cron: '30 1 * * *'   # 14:30 NZDT (UTC+13, Sep–Apr)
+  #   - cron: '30 2 * * *'   # 14:30 NZST (UTC+12, Apr–Sep)
+  #   - cron: '0 5 * * *'    # 18:00 NZDT (UTC+13, Sep–Apr)
+  #   - cron: '0 6 * * *'    # 18:00 NZST (UTC+12, Apr–Sep)
   workflow_dispatch:
     inputs:
       force:

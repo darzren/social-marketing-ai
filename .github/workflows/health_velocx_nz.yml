@@ -1,8 +1,8 @@
 name: Health Check - VelocX NZ
 
 on:
-  schedule:
-    - cron: '23 21 * * *'   # 9:23am NZT (20 min after daily post agent at 9:03am)
+  # schedule: PAUSED (automation paused for this brand)
+  #   - cron: '23 21 * * *'   # 9:23am NZT (20 min after daily post agent at 9:03am)
   workflow_dispatch:
 
 permissions:
